@@ -19,13 +19,15 @@ x max is 23 --> 5 bits
 module nrs_index_gen (
  	input wire [8:0] N_cell_ID,
  	input wire [1:0] est_rd_addr,
- 	output reg [3:0] index_demap, /*id_1, id_2, id_3, id_4,*/
+ 	output reg [3:0] index_demap, //row
  	output reg [2:0] v_shift
 );
 
+reg [4:0] x;
+reg [3:0] id_1, id_2, id_3, id_4;
 //N_cell_ID mod 6
 always @(*) begin
-	x= N_cell_ID[0] + 2(N_cell_ID[1] + N_cell_ID[3] + N_cell_ID[5] + N_cell_ID[7]) + 4(N_cell_ID[2] + N_cell_ID[4] + N_cell_ID[6] + N_cell_ID[8]);
+	x= N_cell_ID[0] + 2*(N_cell_ID[1] + N_cell_ID[3] + N_cell_ID[5] + N_cell_ID[7]) + 4*(N_cell_ID[2] + N_cell_ID[4] + N_cell_ID[6] + N_cell_ID[8]);
 	if (x<6) 
 	  v_shift= x;
 	else if (x<12) 
@@ -36,6 +38,14 @@ always @(*) begin
 	  v_shift= x-18; 
 end
 
+/*
+ v_shift= 0 --> pilots at: 0,3,6,9
+ v_shift= 1 --> pilots at: 1,4,7,10
+ v_shift= 2 --> pilots at: 2,5,8,11
+ v_shift= 3 --> pilots at: 3,6,9,0
+ v_shift= 4 --> pilots at: 4,7,10,1
+ v_shift= 5 --> pilots at: 5,8,11,2
+ */
 always @(*) begin
 	id_1= v_shift; //pilot 1 slot 1 
 	id_2= id_1+3;  //pilot 1 slot 2
