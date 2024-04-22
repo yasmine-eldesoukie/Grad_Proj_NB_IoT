@@ -23,7 +23,7 @@
 module modified_complx_mult 
 #(parameter 
 	WIDTH_R_I=16,
-	PILOT_BITS= 11, 
+	PILOT_FLOAT_BITS= 11, 
     VALUE= 'b1011010_1000 //00000_1011010_1000 =  1/root(2)
 )
 (
@@ -40,6 +40,7 @@ reg [WIDTH_R_I+PILOT_FLOAT_BITS:0] real_long, imag_long; //max needed bits are 2
 reg [WIDTH_R_I:0] real_est_mem [3:0];
 reg [WIDTH_R_I:0] imag_est_mem [3:0];
 
+integer i;
 always @(*) begin
 	//s1
 	m1=rx_r* VALUE;
@@ -98,8 +99,10 @@ end
 
 always @(posedge clk or negedge rst) begin
 	if (!rst) begin
-		real_est_mem<= 'b0;
-		imag_est_mem<= 'b0;
+	    for (i=0; i<4; i=i+1) begin
+	    	real_est_mem[i]<= 'b0;
+		    imag_est_mem[i]<= 'b0;
+	    end
 	end
 	else if (en) begin
 		real_est_mem[wr_addr]<= real_long[WIDTH_R_I:0];

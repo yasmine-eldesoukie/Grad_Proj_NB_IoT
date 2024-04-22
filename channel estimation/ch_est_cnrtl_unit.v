@@ -17,7 +17,7 @@ module ch_est_cntrl_unit #( parameter
  	output reg valid_eqlz,
 
  	//within channel est. block
- 	output reg [1:0] wr_addr_mult_mem, wr_addr_avg_mem, rd_addr_mult_mem,
+ 	output reg [1:0] addr_mem, //for wr_addr_mult_mem, wr_addr_avg_mem and rd_addr_mult_mem
  	output reg mult_mem_en, avg_mem_en, 
  	
  	//----- interpolation -----
@@ -358,14 +358,33 @@ end
 
 //FSM dependant 
 always @(*) begin
-    wr_addr_mult_mem= counter4;
-    rd_addr_mult_mem= counter4; //changes with MULT_STORE and MULT_ADD but only needed and considered when MULT_ADD
-    mult_mem_en= (cs==MULT_STORE);
-    wr_addr_avg_mem= counter4;
-    avg_mem_en= (cs==MULT_ADD);
+    addr_mem= counter4; //changes with MULT_STORE and MULT_ADD but only needed and considered when MULT_ADD
     demap_read= (cs==MULT_STORE | cs== MULT_ADD);
 end
 
+always @(posedge clk or negedge rst) begin
+     if (!rst) begin
+        mult_mem_en<= 1'b0;
+     end
+     else if (cs==MULT_STORE) begin
+        mult_mem_en<= 1'b1;
+     end
+     else begin
+        mult_mem_en<= 1'b0;
+     end
+ end 
+
+ always @(posedge clk or negedge rst) begin
+     if (!rst) begin
+        avg_mem_en<= 1'b0;
+     end
+     else if (cs==MULT_ADD) begin
+        avg_mem_en<= 1'b1;
+     end
+     else begin
+        avg_mem_en<= 1'b0;
+     end
+ end 
 //Adders states dependant
 always @(*) begin
     // because it is comb. --> value is calculated in a state and ready at its end, enbale is set with the following state
@@ -532,13 +551,15 @@ always @(*) begin
     endcase
 end
 
-//nrs_index_addr  sent to index_gen and gets "row" to demapper
+//rd_addr_nrs & nrs_index_addr  sent to index_gen and gets "row" to demapper
 always @(posedge clk or negedge rst) begin
     if (!rst) begin
         nrs_index_addr<= 'b0;
+        rd_addr_nrs<='b0;
     end
-    else if (cs== MULT_STORE | cs==MULT_ADD) begin
+    else if (!counter4_done &(cs== MULT_STORE | cs==MULT_ADD))  begin
         nrs_index_addr<=nrs_index_addr+1;
+        rd_addr_nrs<=rd_addr_nrs+2;
     end
 end
 
@@ -571,20 +592,19 @@ always @(*) begin
     end
 end
 
-//counter4
+//counter4 
 always @(posedge clk or negedge rst) begin
     if (!rst) begin
         counter4<='d0;
-        rd_addr_nrs<='d0;
-    end
-    else if (counter4=='d3) begin
-        counter4_done<=1'b1;
-        counter4<='d0;
+        counter4_done<=1'b0;
     end
     else if (cs== MULT_STORE | cs== MULT_ADD) begin
         counter4<=counter4+1;
+        counter4_done<=(counter4=='d3);
+    end
+    else begin
+        counter4<= 'd0;
         counter4_done<=1'b0;
-        rd_addr_nrs<=rd_addr_nrs+2;
     end
 end
 
