@@ -534,9 +534,9 @@ end
 //col_addr
 always @(posedge clk or negedge rst) begin
     if (!rst) begin
-        col_addr<= 'b0;
+        col_addr<= 'd0;
     end
-    else if ((cs== MULT_STORE | cs==MULT_ADD) & !counter4[0]) begin
+    else if ((cs== MULT_STORE | cs==MULT_ADD) & counter4[0]) begin
         col_addr<=col_addr+1;
     end
 end

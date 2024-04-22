@@ -51,6 +51,7 @@ module ch_est_cntrl_unit_tb #(parameter
  //testbench internal signals
  reg [$clog2(NRS_DELAY_CLK)-1:0] x;
  reg slot1;
+ reg [15:0] col_reg;
 
 
  //instantaition
@@ -109,6 +110,7 @@ module ch_est_cntrl_unit_tb #(parameter
     //test just FSM (Mult. and Adder)
         v_shift_tb=0;
         slot1=1'b0;
+        col_reg={4'd13, 4'd12, 4'd6, 4'd5};
  		for (i=0; i<2; i=i+1) begin
  	    	demap_ready_tb=1'b1;
  	    	NRS_gen_ready_tb=1'b1;
@@ -124,7 +126,10 @@ module ch_est_cntrl_unit_tb #(parameter
         		addr_mem_expec=j;
         		nrs_index_addr_expec=j;
         		rd_addr_nrs_expec= rd_addr_nrs_expec+2; 
-
+                if (j%2==0) begin
+                	col_expec=col_reg[3:0];
+                    col_reg=col_reg>>'d4;
+                end
         		@(negedge clk); //FSM = MULT_STORE 
         		NRS_gen_ready_tb=1'b0;
         		if (j!=0) begin
@@ -155,6 +160,10 @@ module ch_est_cntrl_unit_tb #(parameter
         			$display ("Error: rd_addr_nrs");
         			$stop;
         		end
+        		if (col_expec!=col_dut) begin
+        			$display ("Error: col");
+        			$stop;
+        		end
         	end //for j
         	demap_read_expec=1'b0;
         	if (slot1) begin
@@ -164,5 +173,6 @@ module ch_est_cntrl_unit_tb #(parameter
  		end //for i
         @(negedge clk);
         $stop;
+
  end //initial
 endmodule

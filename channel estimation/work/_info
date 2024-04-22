@@ -21,6 +21,11 @@ R0
 R0
 R0
 R0
+R0
+R0
+R0
+R0
+R0
 !s11f vlog 2021.1 2021.01, Jan 19 2021
 13
 !s112 1.1
@@ -30,10 +35,10 @@ R0
 cModel Technology
 dC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation
 T_opt
-!s110 1713804031
-VkOe5D]FUdL7zYEgo63Re:3
+!s110 1713806400
+VGNhkclDI<:0ESN@?9WX0U0
 04 20 4 work ch_est_cntrl_unit_tb fast 0
-=22-7c8ae1c05cb5-662692ff-8f-14ac
+=28-7c8ae1c05cb5-66269c40-223-14ac
 !s124 OEM100
 o-quiet -auto_acc_if_foreign -work work +acc
 Z1 tCvgOpt 0
@@ -84,44 +89,44 @@ Z7 !s108 1713794870.000000
 R5
 R1
 vch_est_cntrl_unit
-!s110 1713804021
+!s110 1713806331
 !i10b 1
-!s100 =SUfJ@K?dSe2h49H?Uj=B0
-I=7`XZ:lCH[5oghZ@Zj0HZ0
+!s100 b:5HPb>BBlYTc4W[RE>3V3
+ILz]j<`g]8bP<l@E1>Iia01
 R2
-w1713804011
+w1713806315
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit.v
-!i122 39
+!i122 43
 L0 1 690
 R3
 R4
 r1
 !s85 0
 31
-!s108 1713804021.000000
+!s108 1713806331.000000
 !s107 C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit.v|
 !i113 0
 R5
 R1
 vch_est_cntrl_unit_tb
-!s110 1713802153
+!s110 1713806395
 !i10b 1
-!s100 1j:<POR3dT@e6;?c3eSQc1
-I0TBgNX;5[U]GV@K[@UZTi1
+!s100 @R19ShC9E5GKbkHlG5@_=1
+Ihc<o4Z6X=3U6L<KU0j40g2
 R2
-w1713801810
+w1713806387
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit_tb.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit_tb.v
-!i122 36
-L0 2 168
+!i122 44
+L0 2 177
 R3
 R4
 r1
 !s85 0
 31
-!s108 1713802153.000000
+!s108 1713806395.000000
 !s107 C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit_tb.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit_tb.v|
 !i113 0
