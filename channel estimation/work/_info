@@ -77,6 +77,13 @@ R0
 R0
 R0
 R0
+R0
+R0
+R0
+R0
+R0
+R0
+R0
 !s11f vlog 2021.1 2021.01, Jan 19 2021
 13
 !s112 1.1
@@ -97,17 +104,17 @@ n@_opt
 Z6 OL;O;2021.1;73
 R1
 T_opt1
-!s110 1714146872
-V=d>DTLFQAj6Q`aChPn`nT0
+!s110 1714150354
+V;aj8[k4BgOaWTe3RNbQUS1
 R2
-=31-7c8ae1c05cb5-662bce37-371-36a0
+=38-7c8ae1c05cb5-662bdbd1-317-36a0
 R3
 R4
 R5
 n@_opt1
 R6
 vadder_avg
-Z7 !s110 1714145876
+Z7 !s110 1714149314
 !i10b 1
 !s100 ^f7Wa=?;`[OmhREOiMG<83
 IjM<dobS>0h8h5lk1A;ET<3
@@ -115,21 +122,21 @@ Z8 dC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation
 w1713795513
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/adder_avg.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/adder_avg.v
-!i122 222
+!i122 262
 L0 2 42
 Z9 VDg1SIo80bB@j0V0VzS_@n1
 Z10 OL;L;2021.1;73
 r1
 !s85 0
 31
-Z11 !s108 1714145876.000000
+Z11 !s108 1714149314.000000
 !s107 C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/adder_avg.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/adder_avg.v|
 !i113 0
 Z12 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R5
 vadder_interp
-R7
+Z13 !s110 1714149315
 !i10b 1
 !s100 O4mXaUTSfS[FdeQ48h]eb2
 I@P5nY07l[a;PXLUK[M]bG0
@@ -137,7 +144,7 @@ R8
 w1712090019
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/adder_interp.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/adder_interp.v
-!i122 227
+!i122 267
 L0 1 12
 R9
 R10
@@ -151,44 +158,44 @@ R11
 R12
 R5
 vch_est_cntrl_unit
-R7
+!s110 1714150347
 !i10b 1
-!s100 k>=c>7Y7UgmP;VQdWQ];<3
-IM9UU>GiBo5^W6Bj[LOCSR1
+!s100 Ikn^O@]XNEfoH`fAQM:@U3
+IjZV^3eP4?kTR>aLSe48YH2
 R8
-w1714145434
+w1714150336
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit.v
-!i122 223
+!i122 282
 L0 1 695
 R9
 R10
 r1
 !s85 0
 31
-R11
+!s108 1714150347.000000
 !s107 C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit.v|
 !i113 0
 R12
 R5
 vch_est_cntrl_unit_tb
-!s110 1714146865
+!s110 1714150003
 !i10b 1
-!s100 hdO5oR`gYBYhJC6g]_VGI2
-InSTC?_Q?g=5zS11bd[d^d3
+!s100 `H1m16]?>F1m7WVG9nU=c1
+IY1zAB6?^P3m47QieJe28^1
 R8
-w1714146856
+w1714149990
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit_tb.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit_tb.v
-!i122 241
-L0 2 346
+!i122 280
+L0 2 372
 R9
 R10
 r1
 !s85 0
 31
-!s108 1714146865.000000
+!s108 1714150003.000000
 !s107 C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit_tb.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit_tb.v|
 !i113 0
@@ -203,7 +210,7 @@ R8
 w1713795602
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/complex multiplier.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/complex multiplier.v
-!i122 225
+!i122 265
 L0 1 34
 R9
 R10
@@ -217,7 +224,7 @@ R11
 R12
 R5
 vdiv_3
-R7
+R13
 !i10b 1
 !s100 ihHFMgz=7jKAij5W=@06m2
 IPSYN;[Ce22lP;QhflX5_z3
@@ -225,21 +232,21 @@ R8
 w1712083248
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/div_3.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/div_3.v
-!i122 228
+!i122 268
 L0 1 11
 R9
 R10
 r1
 !s85 0
 31
-R11
+Z14 !s108 1714149315.000000
 !s107 C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/div_3.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/div_3.v|
 !i113 0
 R12
 R5
 vestimate_mux
-R7
+R13
 !i10b 1
 !s100 fWm5?offZEk_@>Q8zzkGB1
 Ik=4Bb]45VI>6o=L=:]`0S1
@@ -247,21 +254,21 @@ R8
 w1713222881
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/estimate_mux.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/estimate_mux.v
-!i122 229
+!i122 269
 L0 1 13
 R9
 R10
 r1
 !s85 0
 31
-R11
+R14
 !s107 C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/estimate_mux.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/estimate_mux.v|
 !i113 0
 R12
 R5
 vinterpolation_top
-Z13 !s110 1714145877
+R13
 !i10b 1
 !s100 W>?HVdYE<7WzC8Bo6aCnb1
 IHm;A0NCVJ0YFeDgV3gd9:2
@@ -269,14 +276,14 @@ R8
 w1712090254
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/interpolation_top.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/interpolation_top.v
-!i122 230
+!i122 270
 L0 2 199
 R9
 R10
 r1
 !s85 0
 31
-R11
+R14
 !s107 C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/interpolation_top.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/interpolation_top.v|
 !i113 0
@@ -291,7 +298,7 @@ R8
 w1713795469
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/modified_cmplx_mult.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/modified_cmplx_mult.v
-!i122 226
+!i122 266
 L0 23 90
 R9
 R10
@@ -313,14 +320,14 @@ R8
 w1713163230
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/mux_add1_a.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/mux_add1_a.v
-!i122 231
+!i122 271
 L0 1 23
 R9
 R10
 r1
 !s85 0
 31
-Z14 !s108 1714145877.000000
+R14
 !s107 C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/mux_add1_a.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/mux_add1_a.v|
 !i113 0
@@ -335,7 +342,7 @@ R8
 w1713163238
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/mux_add1_b.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/mux_add1_b.v
-!i122 232
+!i122 272
 L0 1 22
 R9
 R10
@@ -357,7 +364,7 @@ R8
 w1713165949
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/mux_add2_a.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/mux_add2_a.v
-!i122 233
+!i122 273
 Z15 L0 1 21
 R9
 R10
@@ -379,7 +386,7 @@ R8
 w1713164166
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/mux_add2_b.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/mux_add2_b.v
-!i122 234
+!i122 274
 R15
 R9
 R10
@@ -401,7 +408,7 @@ R8
 w1713189553
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/mux_h1.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/mux_h1.v
-!i122 235
+!i122 275
 Z16 L0 1 19
 R9
 R10
@@ -415,7 +422,7 @@ R14
 R12
 R5
 vmux_h2
-R13
+Z17 !s110 1714149316
 !i10b 1
 !s100 Va[E9E0hXMA_o0ReY7Gf03
 I]42lkS`K[kI@YRVQDSHU;3
@@ -423,7 +430,7 @@ R8
 w1713189574
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/mux_h2.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/mux_h2.v
-!i122 236
+!i122 276
 R16
 R9
 R10
@@ -437,7 +444,7 @@ R14
 R12
 R5
 vregisters
-R13
+R17
 !i10b 1
 !s100 99JgzmHnzaC9`6H9PS>o42
 IT;P_zYPJE>Ic]TPA[6_Jl2
@@ -445,14 +452,14 @@ R8
 w1712087436
 8C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/registers.v
 FC:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/registers.v
-!i122 237
+!i122 277
 L0 1 38
 R9
 R10
 r1
 !s85 0
 31
-R14
+!s108 1714149316.000000
 !s107 C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/registers.v|
 !s90 -reportprogress|300|-work|work|-vopt|-stats=none|C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/registers.v|
 !i113 0

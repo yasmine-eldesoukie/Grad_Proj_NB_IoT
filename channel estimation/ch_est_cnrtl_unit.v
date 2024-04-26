@@ -390,9 +390,9 @@ always @(posedge clk or negedge rst) begin
 //Adders states dependant
 always @(*) begin
     // because it is comb. --> value is calculated in a state and ready at its end, enbale is set with the following state
-    en_reg_E=  ( ((shift=='d0) & (cs_A1==A1_2E2))    | ((shift=='d1) & (cs_A1==A1_E2_2E4)) );  //-ve value of an estimate E
-    en_reg_2E= ( ((shift=='d0) & (cs_A1==A1_E2_2E3)) | ((shift=='d1) & (cs_A2==A2_4E1_E3)) | ((shift=='d2) & (cs_A1==A1_5E1_2E3)) ); //-ve 2*value of an estimate, execption: when shift=1, -E3 is stored 
-    en_reg_5E= ( ((shift=='d0) & (cs_A2==A2_4E4_E2)) | ((shift=='d2) & (cs_A2==A2_4E4_E2)) ); //5*value of an estimate
+    en_reg_E=  ( ((shift=='d0) & (cs_A2==A2_2E1_E3)) | ((shift=='d1) & (cs_A1==A1_E2_2E4)) | ((shift=='d2) & (cs_A2==A2_4E1_E3)) );  //-ve value of an estimate E
+    en_reg_2E= ( ((shift=='d0) & (cs_A2==A2_E1_2E3)) | ((shift=='d1) & (cs_A2==A2_4E1_E3)) | ((shift=='d2) & (cs_A2==A2_4E1_E3)) ); //-ve 2*value of an estimate, execption: when shift=1, -E3 is stored 
+    en_reg_5E= ( ((shift=='d0) & (cs_A2==A2_4E4_E2)) | ((shift=='d2) & (cs_A2==A2_E3)) ); //5*value of an estimate
 end
 
 // ----------------------------------------------------

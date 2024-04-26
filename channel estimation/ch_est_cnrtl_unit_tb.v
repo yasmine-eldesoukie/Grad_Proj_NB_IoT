@@ -303,6 +303,17 @@ module ch_est_cntrl_unit_tb #(parameter
             if (j==(x-1)) valid_eqlz_expec=1'b0; //j is [0:x-1] , the last run , valid is zero
             else if ( ((i==2 | i==5) & j>2) | (!(i==2 | i==5) & j>1) ) valid_eqlz_expec=1'b1;
 
+            //test en_reg signals
+            if ( ((i==0 | i==3) & j==1) | ((i==1 | i==4) & j==5) | ((i==2 | i==5) & j==2) ) en_reg_E_expec=1'b1;
+            else en_reg_E_expec=1'b0;
+
+            if ( ((i==0 | i==3) & j==2) | ((i==1 | i==4) & j==1) | ((i==2 | i==5) & j==2) ) en_reg_2E_expec=1'b1;
+            else en_reg_2E_expec=1'b0;
+
+            if ( ((i==0 | i==3) & j==6) | ((i==2 | i==5) & j==1) ) en_reg_5E_expec=1'b1;
+            else en_reg_5E_expec=1'b0;
+
+
             //@(negedge clk); this is an added "wrong" delay, it should be at the for loop end
         	if (valid_eqlz_expec!=valid_eqlz_dut) begin
         		$display ("Error: valid_eqlz");
@@ -338,6 +349,21 @@ module ch_est_cntrl_unit_tb #(parameter
         		$display ("Error: s_est");
         		$stop;
         	end
+
+        	if (en_reg_E_expec!=en_reg_E_dut) begin
+        		$display ("Error: en_reg_E");
+        		$stop;
+        	end
+        	if (en_reg_2E_expec!=en_reg_2E_dut) begin
+        		$display ("Error: en_reg_2E");
+        		$stop;
+        	end
+        	if (en_reg_5E_expec!=en_reg_5E_dut) begin
+        		$display ("Error: en_reg_5E");
+        		$stop;
+        	end
+
+
         	@(negedge clk);
         end //for j
     end //for i

@@ -12,13 +12,6 @@ QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
 Top level modules:
 	estimate_mux
 
-} {} {}} {C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit.v} {1 {vlog -work work -vopt -stats=none {C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit.v}
-QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
--- Compiling module ch_est_cntrl_unit
-
-Top level modules:
-	ch_est_cntrl_unit
-
 } {} {}} {C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/registers.v} {1 {vlog -work work -vopt -stats=none {C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/registers.v}
 QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
 -- Compiling module registers
@@ -67,6 +60,13 @@ QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
 
 Top level modules:
 	mux_add2_a
+
+} {} {}} {C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit_tb.v} {1 {vlog -work work -vopt -stats=none {C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/ch_est_cnrtl_unit_tb.v}
+QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+-- Compiling module ch_est_cntrl_unit_tb
+
+Top level modules:
+	ch_est_cntrl_unit_tb
 
 } {} {}} {C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/mux_add2_b.v} {1 {vlog -work work -vopt -stats=none {C:/Users/user/Grad_Proj_NB_IoT_local/channel estimation/interpolation/mux_add2_b.v}
 QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
