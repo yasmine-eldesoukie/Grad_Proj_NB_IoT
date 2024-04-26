@@ -17,7 +17,7 @@ module ch_est_cntrl_unit #( parameter
  	output reg valid_eqlz,
 
  	//within channel est. block
- 	output reg [1:0] wr_addr_mult_mem, wr_addr_avg_mem, rd_addr_mult_mem,
+ 	output reg [1:0] addr_mem, //for wr_addr_mult_mem, wr_addr_avg_mem and rd_addr_mult_mem
  	output reg mult_mem_en, avg_mem_en, 
  	
  	//----- interpolation -----
@@ -52,7 +52,7 @@ localparam
     A2_E1_2E3 =4'b0011,
     A2_2E2_E3 =4'b0010,
     A2_2E2_E4 =4'b0100,
-    A2_4E4_E4 =4'b0101,
+    A2_5E4 =4'b0101,
     A2_4E4_E2 =4'b0111,
 
     A2_E3     =4'b1000,
@@ -71,6 +71,7 @@ localparam
  reg load_sel;
  reg [OUT_SEL_SEQ_LENGTH-1:0] s_h1_reg, s_h2_reg;
  reg [1:0] col_addr;
+ reg sh;
 
 // ==============================================================================
 // ============================ current state logic =============================
@@ -150,10 +151,10 @@ always @(*) begin
 
                 A1_2E2: begin
                     if (go_1) begin
-                        ns=A1_E2_2E3;
+                        ns_A1=A1_E2_2E3;
                     end
                     else begin
-                        ns=A1_2E2;
+                        ns_A1=A1_2E2;
                     end
                 end
 
@@ -193,8 +194,8 @@ always @(*) begin
                 A2_2E1_E3: ns_A2= A2_E1_2E3;
                 A2_E1_2E3: ns_A2= A2_2E2_E3;
                 A2_2E2_E3: ns_A2= A2_2E2_E4;
-                A2_2E2_E4: ns_A2= A2_4E4_E4;
-                A2_4E4_E4: ns_A2= A2_4E4_E2;
+                A2_2E2_E4: ns_A2= A2_5E4;
+                A2_5E4:    ns_A2= A2_4E4_E2;
                 A2_4E4_E2: ns_A2= A2_IDLE;
                 default:   ns_A2= A2_IDLE;
             endcase
@@ -211,12 +212,12 @@ always @(*) begin
 
                 A1_2E3_E1: ns_A1= A1_E2_2E3;
                 A1_E2_2E3: begin
-                    if (go_1) begin
+                    //if (go_1) begin
                         ns_A1= A1_E2;
-                    end
-                    else begin
-                        ns_A1= A1_E2_2E3;
-                    end
+                    //end
+                    //else begin
+                        //ns_A1= A1_E2_2E3;
+                    //end
                 end
                 A1_E2: ns_A1= A1_E2_2E4;
                 A1_E2_2E4: begin
@@ -250,12 +251,12 @@ always @(*) begin
                 end
                 A2_2E2_E3: ns_A2= A2_2E2_E4;
                 A2_2E2_E4: begin
-                    if (go_2) begin
+                    //if (go_2) begin
                         ns_A2= A2_4E4_E2;
-                    end
-                    else begin
-                        ns_A2= A2_2E2_E4;
-                    end
+                    //end
+                    //else begin
+                        //ns_A2= A2_2E2_E4;
+                    //end
                 end
 
                 A2_4E4_E2: ns_A2= A2_IDLE;
@@ -305,7 +306,7 @@ always @(*) begin
 
             case (cs_A2)
                 A2_IDLE: begin
-                    if (E1_ready) begin
+                    if (E2_ready) begin
                         ns_A2= A2_5E1;
                     end
                     else begin
@@ -314,6 +315,7 @@ always @(*) begin
                 end
 
                 A2_5E1: ns_A2= A2_E3;
+                A2_E3:  ns_A2= A2_4E1_E3;
                 A2_4E1_E3: ns_A2= A2_2E1_E3;
                 A2_2E1_E3: begin
                     if (go_2) begin
@@ -323,7 +325,7 @@ always @(*) begin
                         ns_A2= A2_2E1_E3;
                     end
                 end
-                A2_2E1_E3: ns_A2= A2_2E2_E4;
+                A2_2E2_E3: ns_A2= A2_2E2_E4;
 
                 A2_2E2_E4: ns_A2= A2_IDLE;
                 default:   ns_A2= A2_IDLE;
@@ -358,20 +360,39 @@ end
 
 //FSM dependant 
 always @(*) begin
-    wr_addr_mult_mem= counter4;
-    rd_addr_mult_mem= counter4; //changes with MULT_STORE and MULT_ADD but only needed and considered when MULT_ADD
-    mult_mem_en= (cs==MULT_STORE);
-    wr_addr_avg_mem= counter4;
-    avg_mem_en= (cs==MULT_ADD);
+    addr_mem= counter4; //changes with MULT_STORE and MULT_ADD but only needed and considered when MULT_ADD
     demap_read= (cs==MULT_STORE | cs== MULT_ADD);
 end
 
+always @(posedge clk or negedge rst) begin
+     if (!rst) begin
+        mult_mem_en<= 1'b0;
+     end
+     else if (cs==MULT_STORE) begin
+        mult_mem_en<= 1'b1;
+     end
+     else begin
+        mult_mem_en<= 1'b0;
+     end
+ end 
+
+ always @(posedge clk or negedge rst) begin
+     if (!rst) begin
+        avg_mem_en<= 1'b0;
+     end
+     else if (cs==MULT_ADD) begin
+        avg_mem_en<= 1'b1;
+     end
+     else begin
+        avg_mem_en<= 1'b0;
+     end
+ end 
 //Adders states dependant
 always @(*) begin
     // because it is comb. --> value is calculated in a state and ready at its end, enbale is set with the following state
-    en_reg_E=  ( ((shift=='d0) & (cs_A1==A1_2E2))    | ((shift=='d1) & (cs_A1==A1_E2_2E4)) );  //-ve value of an estimate E
-    en_reg_2E= ( ((shift=='d0) & (cs_A1==A1_E2_2E3)) | ((shift=='d1) & (cs_A2==A2_4E1_E3)) | ((shift=='d2) & (cs_A1==A1_5E1_2E3)) ); //-ve 2*value of an estimate, execption: when shift=1, -E3 is stored 
-    en_reg_5E= ( ((shift=='d0) & (cs_A2==A2_4E4_E2)) | ((shift=='d2) & (cs_A2==A2_4E4_E2)) ); //5*value of an estimate
+    en_reg_E=  ( ((shift=='d0) & (cs_A2==A2_2E1_E3)) | ((shift=='d1) & (cs_A1==A1_E2_2E4)) | ((shift=='d2) & (cs_A2==A2_4E1_E3)) );  //-ve value of an estimate E
+    en_reg_2E= ( ((shift=='d0) & (cs_A2==A2_E1_2E3)) | ((shift=='d1) & (cs_A2==A2_4E1_E3)) | ((shift=='d2) & (cs_A2==A2_4E1_E3)) ); //-ve 2*value of an estimate, execption: when shift=1, -E3 is stored 
+    en_reg_5E= ( ((shift=='d0) & (cs_A2==A2_4E4_E2)) | ((shift=='d2) & (cs_A2==A2_E3)) ); //5*value of an estimate
 end
 
 // ----------------------------------------------------
@@ -461,7 +482,7 @@ always @(*) begin
             s2b=  'b011;
         end
 
-        A2_4E4_E4: begin
+        A2_5E4: begin
             s2a=  'b010;
             s2b=  'b011;
         end
@@ -515,9 +536,9 @@ end
 //col_addr
 always @(posedge clk or negedge rst) begin
     if (!rst) begin
-        col_addr<= 'b0;
+        col_addr<= 'd0;
     end
-    else if ((cs== MULT_STORE | cs==MULT_ADD) & !counter4[0]) begin
+    else if ((cs== MULT_STORE | cs==MULT_ADD) & counter4[0]) begin
         col_addr<=col_addr+1;
     end
 end
@@ -532,13 +553,15 @@ always @(*) begin
     endcase
 end
 
-//nrs_index_addr  sent to index_gen and gets "row" to demapper
+//rd_addr_nrs & nrs_index_addr  sent to index_gen and gets "row" to demapper
 always @(posedge clk or negedge rst) begin
     if (!rst) begin
         nrs_index_addr<= 'b0;
+        rd_addr_nrs<='b0;
     end
-    else if (cs== MULT_STORE | cs==MULT_ADD) begin
+    else if ((cs== MULT_STORE | cs==MULT_ADD))  begin
         nrs_index_addr<=nrs_index_addr+1;
+        rd_addr_nrs<=rd_addr_nrs+2;
     end
 end
 
@@ -548,14 +571,14 @@ end
 
 //load_sel and ready signals
 /* 
- load sel registers, signal is to be set 1 clk begore the valid signal is set, and since load_sel is comb. --> same cond. of valid signal
- same cond. --> comb: in the same clk of the state , seq: in the following clk
+ load sel registers, signal is to be set 2 clks begore the valid signal is set, that's bacause:
+  s_h1 starts 1 clk before valid--> value of s_h1_reg must be ready then--> condition must be true 1 clk before that--> total 2 clks
 */
 always @(*) begin
-    load_sel= ( (shift=='d0 & cs_A2==A2_2E1_E3) | (cs_A2==A2_4E1_E3) ); 
-    E1_ready= (cs==MULT_ADD & counter4=='d1);
-    E2_ready= (cs==MULT_ADD & counter4=='d2);
-    E3_ready= (cs==MULT_ADD & counter4=='d3);
+    load_sel= ( (shift=='d0 & cs_A1==A1_E2) | (cs_A2==A2_E3) );
+    E1_ready= (cs==MULT_ADD & counter4=='d0); //set at the start of the clk it'll be ready at, because it controls a sequential state, that will be set at the start of the next clk
+    E2_ready= (cs==MULT_ADD & counter4=='d1);
+    E3_ready= (cs==MULT_ADD & counter4=='d2);
 end
 
 //shift signal
@@ -571,21 +594,21 @@ always @(*) begin
     end
 end
 
-//counter4
+//counter4 and counter4_done
 always @(posedge clk or negedge rst) begin
     if (!rst) begin
-        counter4<='d0;
-        rd_addr_nrs<='d0;
-    end
-    else if (counter4=='d3) begin
-        counter4_done<=1'b1;
         counter4<='d0;
     end
     else if (cs== MULT_STORE | cs== MULT_ADD) begin
         counter4<=counter4+1;
-        counter4_done<=1'b0;
-        rd_addr_nrs<=rd_addr_nrs+2;
     end
+    //else begin
+        //counter4<= 'd0;
+    //end
+end
+
+always @(*) begin
+    counter4_done= (counter4=='d3);
 end
 
 //first_slot
@@ -593,7 +616,7 @@ always @(posedge clk or negedge rst) begin
     if (!rst) begin
         first_slot<=1'b1;
     end
-    else if (NRS_gen_ready) begin
+    else if ((cs==MULT_STORE | cs==MULT_ADD) & counter4_done) begin //starts at 1 , changes at the end of MULT_STORE
         first_slot<=!first_slot;
     end
 end
@@ -605,6 +628,7 @@ always @(posedge clk or negedge rst) begin
         s_h2_reg<= 'b0;
     end
     else if (load_sel) begin
+        sh<=1'b1;
         case (shift) 
             'd0: begin
                 s_h1_reg<='b 01_11_10_11_01_00;
@@ -626,9 +650,10 @@ always @(posedge clk or negedge rst) begin
             end
         endcase
     end
-    else if (valid_eqlz) begin
+    else if (sh | valid_eqlz) begin
         s_h1_reg<= s_h1_reg>>2; 
         s_h2_reg<= s_h2_reg>>2;
+        sh<=1'b0;
     end
 end
 
