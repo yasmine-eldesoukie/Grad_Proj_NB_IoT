@@ -20,78 +20,66 @@
    for that we only need the sign of the nrs parts, this reduces complexity of design, area and power of multipliers  
 
 */
+/* take care of sign extension*/
 module modified_complx_mult 
 #(parameter 
-	WIDTH_R_I=16,
-	PILOT_FLOAT_BITS= 11, 
-    VALUE= 'b1011010_1000 //00000_1011010_1000 =  1/root(2)
+	WIDTH=16,
+    VALUE= 16'b1011010_1000 //00000_1011010_1000 =  1/root(2)
 )
 (
 	input wire clk, rst, en,
 	input wire [1:0] wr_addr, rd_addr,
-	input wire [WIDTH_R_I-1:0] rx_r, rx_i,
+	input wire [WIDTH-1:0] rx_r, rx_i,
 	input wire nrs_r, nrs_i,
-	output reg [WIDTH_R_I :0] real_part, imag_part //max needed bits are 17 
+	output reg [WIDTH-1:0] real_part, imag_part //max needed bits are 16 for real and 17 for imag part from original equation and the max actual values 
 );
 
-reg [WIDTH_R_I+PILOT_FLOAT_BITS-1:0] m1, s1, m2, s2, m3, s3;
-reg [WIDTH_R_I+PILOT_FLOAT_BITS:0] real_long, imag_long; //max needed bits are 27+1
+//reg [WIDTH+PILOT_BITS-1:0] m1, s1, m2, s2, m3, s3;
+reg [2*WIDTH-1:0] m1, m2, s1, s2;  //max is (-2^15)*(1/root 2)< 2^15 signed --> 15 bit for value and 1 for sign--> (16 bit)
+reg [2*WIDTH-1:0] real_long;
 
-reg [WIDTH_R_I:0] real_est_mem [3:0];
-reg [WIDTH_R_I:0] imag_est_mem [3:0];
+reg [2*WIDTH+1:0] m3, s3, s1_long, s2_long; //max is 2*(-2^15)*2*(1/root 2)--> (18 bits) , s1_long and s2_long are sign extended versions
+reg [2*WIDTH+1:0] imag_long; //17 bits
+
+reg [WIDTH-1:0] real_est_mem [3:0];
+reg [WIDTH-1:0] imag_est_mem [3:0];
 
 integer i;
 always @(*) begin
 	//s1
 	m1=rx_r* VALUE;
 	if (nrs_r) begin
-		s1= !(m1)+1; //its 2's comp
+		s1= ~(m1)+1'd1; //its 2's comp
 	end
 	else begin
 		s1= m1;
 	end
+	s1_long= {{2{s1[2*WIDTH-1]}} ,s1};
 
 	//s2
 	m2=rx_i* VALUE;
 	if (nrs_i) begin
-		s2= !(m2)+1; //its 2's comp
+		s2= ~(m2)+1'd1; //its 2's comp
 	end
 	else begin
 		s2= m2;
 	end
+	s2_long={{2{s2[2*WIDTH-1]}} ,s2};
 
 	//s3
 	m3= (rx_r+ rx_i) *2 * VALUE ;
 	if (nrs_r^nrs_i) begin
-		s3=0;
+		s3='d0;
 	end
 	else if (nrs_r) begin
-		s3= !(m3)+1;
+		s3= ~(m3)+1'd1;
 	end
 	else begin
 		s3= m3;
 	end
-    
-    /*
-	//s3 enabled multiplier
-    en= !(nrs_r^nrs_i);
-    if (en) begin
-		m3= (rx_r+ rx_i) *2 * VALUE ;
-    end
-	else begin
-	    m3=0;
-	end
-
-	if (!nrs_r) begin
-		s3=m3;
-	end
-	else begin
-		s3= !(m3)+1;
-	end
-	*/
 
 	real_long= s1-s2;
-	imag_long= s3-s1-s2;
+	imag_long= s3-s1_long-s2_long;
 
 	real_part= real_est_mem[rd_addr];
 	imag_part= imag_est_mem[rd_addr];
@@ -105,9 +93,8 @@ always @(posedge clk or negedge rst) begin
 	    end
 	end
 	else if (en) begin
-		real_est_mem[wr_addr]<= real_long[WIDTH_R_I:0];
-		imag_est_mem[wr_addr]<= imag_long[WIDTH_R_I:0];
+	    real_est_mem[wr_addr] <= real_long[2*WIDTH-1:WIDTH];
+	    imag_est_mem[wr_addr] <= imag_long[2*WIDTH+1:WIDTH+2];
 	end
 end
 endmodule
-//is it better to use submodules of adders and multipliers to be able to completely turn off the complex multiplier?

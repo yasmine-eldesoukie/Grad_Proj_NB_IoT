@@ -92,7 +92,7 @@ module ch_est_cntrl_unit_tb #(parameter
  end
 
  //stimulus generation
- integer i,j,k;
+ integer i,j;
  initial begin
  	rst= 'b0;
  	repeat (50) @(negedge clk);
