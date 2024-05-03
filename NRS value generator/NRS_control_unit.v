@@ -17,8 +17,10 @@ module NRS_control_unit
 	input wire cinit_valid, 
 	input wire new_frame,
 	input wire last_run,
+	input wire est_ack,
 	output reg shift_x, out, wr_en, init, cinit_run, //cinit_run is a signal to enable cinit_generator
-	output reg [LINES-1:0] wr_addr
+	output reg [LINES-1:0] wr_addr,
+	output reg NRS_gen_ready
 ); 
 
 reg [$clog2(1600)-1:0] counter_shifts;
@@ -156,6 +158,19 @@ always @(posedge clk or negedge rst) begin
 	else if (cs==IDLE) begin
 		frame_done<=1'b0;
 	end
+end
+
+//NRS_gen_ready 
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
+        NRS_gen_ready<=1'b0;
+    end
+    else if (evaluate_done) begin
+        NRS_gen_ready<= 1'b1;
+    end
+    else if (est_ack) begin
+    	NRS_gen_ready<=1'b0;
+    end
 end
 
 endmodule

@@ -7,12 +7,13 @@ module NRS_top_new
 	NRS_WIDTH_R_I=16
 )
 (
-	input wire clk, rst, new_frame,
+	input wire clk, rst, new_frame, est_ack,
 	input wire [WIDTH_B-1:0] N_cell_ID,
 	//input wire [LINES-1:0] rd_addr_est, rd_addr_fine, 
 	input wire [LINES-1:0] rd_addr_est,
 	//output wire [NRS_WIDTH_R_I-1:0] nrs_est, nrs_fine
-	output wire nrs_est
+	output wire nrs_est,
+	output wire NRS_gen_ready
 );
 
 wire cinit_run;
@@ -95,12 +96,14 @@ NRS_control_unit NRS_control_unit (
 	.cinit_valid(cinit_valid),
 	.new_frame(new_frame),
 	.last_run(last_run),
+	.est_ack(est_ack),
 	.shift_x(shift_x), 
 	.out(out), 
 	.wr_en(wr_en), 
 	.init(init), 
 	.cinit_run(cinit_run),
-	.wr_addr(wr_addr)
+	.wr_addr(wr_addr),
+	.NRS_gen_ready(NRS_gen_ready)
 );
 
 endmodule

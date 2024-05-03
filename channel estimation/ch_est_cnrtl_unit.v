@@ -11,6 +11,7 @@ module ch_est_cntrl_unit #( parameter
  	output reg [3:0] col,
  	output reg [1:0] nrs_index_addr, 
  	output reg demap_read,
+    output reg est_ack,
  	//output reg [3:0] row, //it's calculated at nrs_index gen
 
  	output reg [NRS_ADDR-1:0] rd_addr_nrs,
@@ -355,6 +356,19 @@ always @(posedge clk or negedge rst) begin
     //(shift=='d0) & (cs_A2==A2_2E1_E3)) | ((shift=='d1) & (cs_A2==A2_4E1_E3)) | ((shift=='d2) & (cs_A2==A2_4E1_E3)) --> detailed condition
     else if ( (shift=='d0 & cs_A2==A2_2E1_E3) | (cs_A2==A2_4E1_E3) ) begin
         valid_eqlz<=1'b1;
+    end
+end
+
+//est_ack
+always @(posedge clk or negedge rst) begin
+    if (!rst) begin
+        est_ack<=1'b0;
+    end
+    else if (NRS_gen_ready & demap_ready) begin
+        est_ack<=1'b1;
+    end
+    else begin
+        est_ack<=1'b0;
     end
 end
 
