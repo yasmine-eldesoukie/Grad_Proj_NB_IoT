@@ -4,7 +4,7 @@ module adder_avg #(parameter WIDTH_EST= 17, WIDTH_PILOT=16)
 	input wire clk, rst, en,
 	input wire [1:0] wr_addr,
 	input wire [WIDTH_PILOT-1:0] a, b,
-	output reg [WIDTH_EST-1:0] h0, h6, h3, h9
+	output reg [WIDTH_EST-1:0] E1, E2, E3, E4
 );
 
 reg [WIDTH_EST:0] c;
@@ -22,10 +22,10 @@ always @(*) begin
 		adder_avg='b0;
 	end
     
-    h0= adder_avg_mem[0];
-    h6= adder_avg_mem[1];
-    h3= adder_avg_mem[2];
-    h9= adder_avg_mem[3];
+    E1= adder_avg_mem[0];
+    E2= adder_avg_mem[1];
+    E3= adder_avg_mem[2];
+    E4= adder_avg_mem[3];
 
 end
 
