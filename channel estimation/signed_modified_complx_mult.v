@@ -3,8 +3,8 @@
    s1= rx_r* nrs_r
    s2= rx_i* nrs_i
    s3= (nrs_r- nrs_i)(rx_r+ rx_i)
-   real_part= s1-s2
-   imag_part= s3-s2-s1
+   real_part= s1+s2
+   imag_part= s3+s2-s1
 
    nrs real or imag. parts take one of two values: + or - (1/root(2)) . Hence, nrs can take one of 4 options: 
       1- (+)(+j)
@@ -37,7 +37,7 @@ module signed_modified_complx_mult
 reg signed [WIDTH_R_I+PILOT_FLOAT_BITS-1:0] m1, s1, m2, s2; //27 bits
 reg signed [WIDTH_R_I+PILOT_FLOAT_BITS+1:0] m3, s3; //29 bits
 reg signed [WIDTH_R_I+PILOT_FLOAT_BITS:0] real_long; //28 bits 
-reg signed [WIDTH_R_I+PILOT_FLOAT_BITS:0] imag_long; //max needed bits are 29
+reg signed [WIDTH_R_I+PILOT_FLOAT_BITS:0] imag_long; //max needed bits are 28
 
 reg signed [WIDTH_R_I:0] real_est_mem [3:0];
 reg signed [WIDTH_R_I:0] imag_est_mem [3:0];
