@@ -1,6 +1,6 @@
 //how do we know that a new frame has arrived ? to make sure that the N_cell_ID value we use for the new cinit calculations is correct
 //in this design , an input of a signal to indicate a new frame is assumed
-module NRS_control_unit 
+module NRS_control_unit_tx 
 #(parameter
   WIDTH_REG=16,
   LINES= $clog2(WIDTH_REG),
@@ -15,16 +15,16 @@ module NRS_control_unit
 (
 	input wire clk, rst,
 	input wire cinit_valid, 
-	input wire new_frame,
-	input wire last_run,
-	input wire est_ack,
-	output reg shift_x, out, wr_en, init, cinit_run, //cinit_run is a signal to enable cinit_generator
-	output reg [LINES-1:0] wr_addr,
-	output reg NRS_gen_ready
+	input wire new_frame, new_subframe,
+	input wire last_run, first_run,
+	//input wire est_ack,
+	output reg shift_x, out, wr_en, init_x1, init_x2, cinit_run, //cinit_run is a signal to enable cinit_generator
+	output reg [LINES-1:0] wr_addr
+	//output reg NRS_gen_ready
 ); 
 
 reg [$clog2(1600)-1:0] counter_shifts;
-reg en_shift_counter, shift_done, evaluate_done, stop_cinit_run, frame_done;
+reg en_shift_counter, shift_done, evaluate_done, stop_cinit_run, subframe_done;
 reg [2:0] cs, ns;
 
 //current state logic
@@ -41,7 +41,7 @@ end
 always @(*) begin
 	case (cs) 
 	    IDLE: begin
-	    	if (new_frame) begin
+	    	if (new_frame | new_subframe) begin
 	    		ns = FIRE_CINIT;
 	    	end
 	    	else begin
@@ -72,11 +72,11 @@ always @(*) begin
 	    end
 
 	    EVALUATE: begin
-	    	if (evaluate_done & frame_done) begin
+	    	if (evaluate_done & subframe_done) begin
 	    		ns= IDLE;
 	    	end
 	    	else if (evaluate_done) begin
-	    		ns= SEED;
+	    		ns=SEED;
 	    	end
 	    	else begin
 	    		ns = EVALUATE;
@@ -87,7 +87,8 @@ end
 
 ///////////////////////------------ output stage ------------///////////////////////
 always @(*) begin
-	init= (cs==SEED); 
+	init_x2= (cs==SEED); 
+	init_x1= (cs==SEED & first_run);
     shift_x= (cs==SHIFT | cs==EVALUATE);
     out= (cs==EVALUATE);
     wr_en= (cs==EVALUATE);
@@ -150,16 +151,17 @@ end
 //frame done
 always @(posedge clk or negedge rst) begin
 	if (!rst) begin
-       frame_done<= 1'b0;
+       subframe_done<= 1'b0;
 	end
 	else if (cs==SEED & last_run) begin
-	   frame_done<=1'b1;
+	   subframe_done<=1'b1;
 	end
 	else if (cs==IDLE) begin
-		frame_done<=1'b0;
+		subframe_done<=1'b0;
 	end
 end
 
+/*
 //NRS_gen_ready 
 always @(posedge clk or negedge rst) begin
     if (!rst) begin
@@ -172,6 +174,7 @@ always @(posedge clk or negedge rst) begin
     	NRS_gen_ready<=1'b0;
     end
 end
+*/
 
 endmodule
 

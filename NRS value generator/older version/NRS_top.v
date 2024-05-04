@@ -16,6 +16,7 @@ wire cinit_run;
 wire [4:0] slot;
 wire [27:0] cinit;
 wire cinit_valid;
+wire last_run;
 wire shift_x, init, out, x1, x2, c_n;
 wire wr_en;
 wire [LINES-1:0] wr_addr;

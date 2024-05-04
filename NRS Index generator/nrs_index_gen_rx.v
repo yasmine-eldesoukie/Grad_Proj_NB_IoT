@@ -16,7 +16,7 @@ N_cell_ID that gives max x is 1_1111_0111 --> 503
 x max is 23 --> 5 bits
 
 */
-module nrs_index_gen (
+module nrs_index_gen_rx (
  	input wire [8:0] N_cell_ID,
  	input wire [1:0] est_rd_addr,
  	output reg [3:0] index_demap, //row

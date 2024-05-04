@@ -1,5 +1,5 @@
 //no fine sync in the design
-module NRS_top_new 
+module NRS_top_new_rx 
 #(parameter 
 	WIDTH_REG=16, 
 	WIDTH_B=9,
@@ -20,11 +20,12 @@ wire cinit_run;
 wire [4:0] slot;
 wire [27:0] cinit;
 wire cinit_valid;
-wire shift_x, init, out, x1, x2, c_n;
+wire last_run, first_run;
+wire shift_x, init_x1, init_x2, out, x1, x2, c_n;
 wire wr_en;
 wire [LINES-1:0] wr_addr;
 //wire c_n_fine,c_n_est;
-wire c_n_est;
+//wire c_n_est;
 
 cinit_gen_top cinit_generator (
 	.clk(clk),
@@ -36,19 +37,20 @@ cinit_gen_top cinit_generator (
 	.valid(cinit_valid)
 );
 
-slot_counter slot_counter (
+slot_counter_rx slot_counter (
 	.clk(clk),
 	.rst(rst), 
 	.cinit_run(cinit_run),
 	.slot(slot),
-	.last_run(last_run)
+	.last_run(last_run),
+	.first_run(first_run)
 );
 
 x1_LFSR x1_LFSR (
 	.clk(clk),
 	.rst(rst),  
 	.en(shift_x),
-	.init(init), 
+	.init(init_x1), 
 	.out(out),
 	.x(x1)
 );
@@ -57,7 +59,7 @@ x2_LFSR x2_LFSR (
 	.clk(clk),
 	.rst(rst),  
 	.en(shift_x),
-	.init(init), 
+	.init(init_x2), 
 	.out(out),
 	.seed(cinit),
 	.x(x2)
@@ -69,7 +71,7 @@ XOR XOR (
 	.c_n(c_n)
 );
 
-NRS_reg_new NRS_reg (
+NRS_reg_new_rx NRS_reg (
 	.clk(clk), 
 	.rst(rst), 
 	.wr_en(wr_en),
@@ -90,17 +92,19 @@ NRS_decision_muxes NRS_decision_muxes (
 );
 */
 
-NRS_control_unit NRS_control_unit (
+NRS_control_unit_rx NRS_control_unit (
 	.clk(clk),
 	.rst(rst), 
 	.cinit_valid(cinit_valid),
 	.new_frame(new_frame),
 	.last_run(last_run),
+	.first_run(first_run),
 	.est_ack(est_ack),
 	.shift_x(shift_x), 
 	.out(out), 
 	.wr_en(wr_en), 
-	.init(init), 
+	.init_x1(init_x1),
+    .init_x2(init_x2),
 	.cinit_run(cinit_run),
 	.wr_addr(wr_addr),
 	.NRS_gen_ready(NRS_gen_ready)

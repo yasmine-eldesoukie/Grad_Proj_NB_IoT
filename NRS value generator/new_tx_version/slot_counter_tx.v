@@ -1,12 +1,11 @@
-module slot_counter (
+module slot_counter_tx (
 	input clk, rst, cinit_run,
-	output reg last_run,
+	output reg last_run, first_run,
 	output reg [4:0] slot
 );
 
 reg [5:0] runs_counter;
 
-// /*
 always @(posedge clk or negedge rst) begin
 	if (!rst) begin
  		runs_counter<='d63;
@@ -23,8 +22,9 @@ always @(posedge clk or negedge rst) begin
 end
 
 always @(*) begin
-	last_run= (runs_counter==4*10-1);
+	last_run= (runs_counter%4=='d3); //change it to each 4 runs (each subframe) instead of the whole frame
+	first_run= (runs_counter=='d0);
 	slot= (runs_counter/2);
 end
-// */
+
 endmodule

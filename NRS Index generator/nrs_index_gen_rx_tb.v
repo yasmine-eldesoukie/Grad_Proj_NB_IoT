@@ -1,4 +1,4 @@
-module nrs_index_gen_tb ();
+module nrs_index_gen_rx_tb ();
 //signal declaration
  reg [8:0] N_cell_ID_tb;
  reg [1:0] est_rd_addr_tb;
@@ -14,7 +14,7 @@ module nrs_index_gen_tb ();
   reg [3:0] v_eq;
 
 //instantiation
- nrs_index_gen dut (
+ nrs_index_gen_rx dut (
  	.N_cell_ID(N_cell_ID_tb),
  	.est_rd_addr(est_rd_addr_tb),
  	.index_demap(index_demap_dut),

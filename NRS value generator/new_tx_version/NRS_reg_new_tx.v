@@ -1,11 +1,11 @@
-module NRS_reg_new #(parameter WIDTH_REG=16 , LINES= $clog2(WIDTH_REG))
+module NRS_reg_new_tx #(parameter WIDTH_REG=16 , LINES= $clog2(WIDTH_REG))
 (
 	input wire clk, rst, wr_en,
 	input wire c_n,
 	input wire [LINES-1:0] wr_addr,
-	input wire [LINES-1:0] rd_addr_est,
+	input wire [LINES-1:0] rd_addr_mapper_1r, rd_addr_mapper_1i, rd_addr_mapper_2r, rd_addr_mapper_2i,
 	//input wire [LINES-1:0] rd_addr_fine,
-	output reg c_n_est //will be nrs_est, no need for the whole value, this bit is enough for channel estimation modified complex mult.
+	output reg  c0, c1, c2, c3
 	//output reg c_n_fine
 );
 
@@ -20,8 +20,10 @@ always @(posedge clk or negedge rst) begin
 end
 
 always @(*) begin
-	c_n_est=mem[rd_addr_est];
-	//c_n_fine=mem[rd_addr_fine];
+	c0=mem[rd_addr_mapper_1r];
+	c1=mem[rd_addr_mapper_1i];
+	c2=mem[rd_addr_mapper_2r];
+	c3=mem[rd_addr_mapper_2i];
 end
  
 endmodule

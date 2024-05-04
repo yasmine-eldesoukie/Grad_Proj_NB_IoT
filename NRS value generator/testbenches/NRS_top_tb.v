@@ -25,7 +25,7 @@ reg [27:0] cinit_tb;
 reg first; //control signal
 
 //dut instantiation
-NRS_top dut (
+NRS_top_new_rx dut (
     .clk(clk),
     .rst(rst),
     .new_frame(new_frame_tb),
