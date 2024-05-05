@@ -3,8 +3,8 @@
    s1= rx_r* nrs_r
    s2= rx_i* nrs_i
    s3= (nrs_r- nrs_i)(rx_r+ rx_i)
-   real_part= s1+s2
-   imag_part= s3+s2-s1
+   real_part_reg= s1+s2
+   imag_part_reg= s3+s2-s1
 
    nrs real or imag. parts take one of two values: + or - (1/root(2)) . Hence, nrs can take one of 4 options: 
       1- (+)(+j)
@@ -31,7 +31,7 @@ module signed_modified_complx_mult
 	input wire [1:0] wr_addr, rd_addr,
 	input wire signed [WIDTH_R_I-1:0] rx_r, rx_i,
 	input wire nrs_r, nrs_i,
-	output reg signed [WIDTH_R_I :0] real_part, imag_part //max needed bits are 17 
+	output reg signed [WIDTH_R_I :0] real_part_reg, real_part, imag_part_reg, imag_part //max needed bits are 17 
 );
 
 reg signed [WIDTH_R_I+PILOT_FLOAT_BITS-1:0] m1, s1, m2, s2; //27 bits
@@ -78,8 +78,11 @@ always @(*) begin
 	real_long= s1+s2;
 	imag_long= s3+s2-s1;
 
-	real_part= real_est_mem[rd_addr];
-	imag_part= imag_est_mem[rd_addr];
+	real_part= real_long[WIDTH_R_I+PILOT_FLOAT_BITS:PILOT_FLOAT_BITS];
+	imag_part= imag_long[WIDTH_R_I+PILOT_FLOAT_BITS:PILOT_FLOAT_BITS];
+
+	real_part_reg= real_est_mem[rd_addr];
+	imag_part_reg= imag_est_mem[rd_addr];
 end
 
 always @(posedge clk or negedge rst) begin

@@ -1,4 +1,4 @@
-module estimate_mux #(parameter WIDTH=16)(
+module estimate_mux #(parameter WIDTH=17)(
 	input wire [WIDTH-1:0] E1, E2, E3, E4, 
 	input wire sel,
 	output reg [WIDTH-1:0] est1, est2, est3, est4

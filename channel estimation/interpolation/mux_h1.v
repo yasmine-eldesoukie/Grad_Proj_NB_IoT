@@ -1,4 +1,4 @@
-module mux_h1 #(parameter WIDTH= 16)
+module mux_h1 #(parameter WIDTH= 17)
 (
 	input wire [1:0] sel,
 	input wire [WIDTH-1:0] est1, est2, 

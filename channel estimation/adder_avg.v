@@ -1,9 +1,9 @@
 //this module gets average values of real or imag parts of subcarrier h --> instantiated twice !!
-module adder_avg #(parameter WIDTH_EST= 17, WIDTH_PILOT=16)
+module adder_avg #(parameter WIDTH_EST= 17, IN_WIDTH=17)
 (
 	input wire clk, rst, en,
 	input wire [1:0] wr_addr,
-	input wire [WIDTH_PILOT-1:0] a, b,
+	input wire [IN_WIDTH-1:0] a, b,
 	output reg [WIDTH_EST-1:0] E1, E2, E3, E4
 );
 

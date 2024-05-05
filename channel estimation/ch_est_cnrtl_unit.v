@@ -11,7 +11,7 @@ module ch_est_cntrl_unit #( parameter
  	output reg [3:0] col,
  	output reg [1:0] nrs_index_addr, 
  	output reg demap_read,
-    output reg est_ack,
+    output reg est_ack_nrs, est_ack_demap,
  	//output reg [3:0] row, //it's calculated at nrs_index gen
 
  	output reg [NRS_ADDR-1:0] rd_addr_nrs,
@@ -359,23 +359,13 @@ always @(posedge clk or negedge rst) begin
     end
 end
 
-//est_ack
-always @(posedge clk or negedge rst) begin
-    if (!rst) begin
-        est_ack<=1'b0;
-    end
-    else if (NRS_gen_ready & demap_ready) begin
-        est_ack<=1'b1;
-    end
-    else begin
-        est_ack<=1'b0;
-    end
-end
 
 //FSM dependant 
 always @(*) begin
     addr_mem= counter4; //changes with MULT_STORE and MULT_ADD but only needed and considered when MULT_ADD
     demap_read= (cs==MULT_STORE | cs== MULT_ADD);
+    est_ack_nrs= (cs==MULT_STORE);
+    est_ack_demap= (cs==MULT_ADD);
 end
 
 always @(posedge clk or negedge rst) begin

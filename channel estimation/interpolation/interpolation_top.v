@@ -2,12 +2,13 @@
 module interpolation_top 
 #(parameter 
 	IN_WIDTH= 17, 
-	OUT_WIDTH= 16
+	OUT_WIDTH= 17
 )
 (
 	input wire clk, rst,
 	input wire [2:0] s1a, s1b, s2a, s2b, 
 	input wire [1:0] s_h1, s_h2,
+	input wire sel_est,
 	input wire en_reg_E, en_reg_2E, en_reg_5E,
 	input wire [IN_WIDTH-1:0] E1_r, E2_r, E3_r, E4_r,
 	input wire [IN_WIDTH-1:0] E1_i, E2_i, E3_i, E4_i,
@@ -16,13 +17,14 @@ module interpolation_top
 );
 
 wire [IN_WIDTH:0] reg_2E_r, reg_2E_i;
-wire [IN_WIDTH:0] add1_a_r, add1_a_i, add2_a_r, add2_a_i;
+wire [IN_WIDTH+3-1:0] add1_a_r, add1_a_i; //20 bits
+wire [IN_WIDTH+1:0] add2_a_r, add2_a_i; //19 bits
 wire [IN_WIDTH+3-1:0] reg_5E_r, reg_5E_i;
 wire [IN_WIDTH+3-1:0] add1_b_r, add1_b_i;
 wire [IN_WIDTH-1:0] reg_E_r, reg_E_i;
 wire [IN_WIDTH+2-1:0] add2_b_r, add2_b_i;
 wire [IN_WIDTH+3-1:0] add1_r, add2_r, add1_i, add2_i;
-wire [OUT_WIDTH-1:0] div1_res_r, div1_res_i, div2_res_r, div2_res_i;
+wire [OUT_WIDTH-1:0] div1_res_r, div1_res_i, div2_res_r, div2_res_i; 
 wire [IN_WIDTH-1:0] est1_r, est2_r, est3_r, est4_r, est1_i, est2_i, est3_i, est4_i;
 
 //real part
@@ -64,7 +66,7 @@ mux_add2_b mux_add2_b_r (
 	.add2_b(add2_b_r)
 );
 
-adder_interp adder1_r (
+adder_interp #(.WIDTH_SMALL(IN_WIDTH+3)) adder1_r (
 	.a(add1_a_r),
 	.b(add1_b_r),
 	.out(add1_r)
@@ -170,7 +172,7 @@ mux_add2_b mux_add2_b_i (
 	.add2_b(add2_b_i)
 );
 
-adder_interp adder1_i (
+adder_interp #(.WIDTH_SMALL(IN_WIDTH+3)) adder1_i (
 	.a(add1_a_i),
 	.b(add1_b_i),
 	.out(add1_i)
