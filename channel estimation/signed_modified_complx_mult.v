@@ -18,7 +18,14 @@
    s3 is modified in the same way with an added option of zero result if (nrs_r + nrs_i)=0
 
    for that we only need the sign of the nrs parts, this reduces complexity of design, area and power of multipliers  
-
+*/
+/*
+  result is in 28 bits, max value can be represented in 17 bits--> which bits to extract?
+    rx  is Q_4.11 (16 bit , 1 sign bit , 4 integer bits and 11 fractional bits) 
+    nrs is Q_0.11 (16 bit , 5 sign bit , 0 integer bits and 11 fractional bits)
+    rx * nrs --> Q_4.22 (27 bit, 1 sign bit, 4 integer bits and 22 fractional bits)
+    output is a sum of 2 rx*nrs terms --> 28 bits --> Q_5.22 (28 bits, 1 sign bit, 5 integer bits and 22 fractional bits)
+    take 16 MSB Q_5.11
 */
 module signed_modified_complx_mult 
 #(parameter 
@@ -29,7 +36,7 @@ module signed_modified_complx_mult
 (
 	input wire clk, rst, en,
 	input wire [1:0] wr_addr, rd_addr,
-	input wire signed [WIDTH_R_I-1:0] rx_r, rx_i,
+	input wire signed [WIDTH_R_I-1:0] rx_r, rx_i, 
 	input wire nrs_r, nrs_i,
 	output reg signed [WIDTH_R_I :0] real_part_reg, real_part, imag_part_reg, imag_part //max needed bits are 17 
 );
