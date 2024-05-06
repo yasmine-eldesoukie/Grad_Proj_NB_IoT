@@ -1,10 +1,10 @@
-module mux_add1_a #(parameter WIDTH= 17)
+module mux_add1_a #(parameter IN_WIDTH= 17, OUT_WIDTH= 19)
 (
 	input wire [2:0] sel,
-	input wire [WIDTH-1:0] E2, E3,
-	input wire [WIDTH:0] reg_2E,
-    input wire [WIDTH+3-1:0] reg_5E, 
-	output reg [WIDTH+3-1:0] add1_a
+	input wire signed [IN_WIDTH-1:0] E2, E3,
+	input wire signed [IN_WIDTH:0] reg_2E,
+    input wire signed [OUT_WIDTH-1:0] reg_5E, 
+	output reg signed [OUT_WIDTH-1:0] add1_a
 );
 
 always @(*) begin

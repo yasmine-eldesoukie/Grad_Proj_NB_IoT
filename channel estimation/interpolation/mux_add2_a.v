@@ -1,9 +1,9 @@
-module mux_add2_a #(parameter WIDTH= 17)
+module mux_add2_a #(parameter IN_WIDTH= 17, OUT_WIDTH= 19)
 (
 	input wire [2:0] sel,
-	input wire [WIDTH-1:0] E1, E2, E3, E4,
-	input wire [WIDTH-1:0] reg_E, //it will be connected actually with reg_2E (reg sharing) just named that way for simplicity
-	output reg [WIDTH+1:0] add2_a //max output is 4E
+	input wire signed [IN_WIDTH-1:0] E1, E2, E3, E4,
+	input wire signed [IN_WIDTH-1:0] reg_E, //it will be connected actually with reg_2E (reg sharing) just named that way for simplicity
+	output reg signed [OUT_WIDTH-1:0] add2_a //max output is 4E
 );
 
 always @(*) begin

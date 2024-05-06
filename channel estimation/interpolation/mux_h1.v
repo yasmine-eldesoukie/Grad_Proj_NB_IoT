@@ -1,9 +1,9 @@
 module mux_h1 #(parameter WIDTH= 17)
 (
 	input wire [1:0] sel,
-	input wire [WIDTH-1:0] est1, est2, 
-	input wire [WIDTH-1:0] div_res_1, div_res_2,
-	output reg [WIDTH-1:0] h_eqlz_1
+	input wire signed [WIDTH-1:0] est1, est2, 
+	input wire signed [WIDTH-1:0] div_res_1, div_res_2,
+	output reg signed [WIDTH-1:0] h_eqlz_1
 );
 
 always @(*) begin

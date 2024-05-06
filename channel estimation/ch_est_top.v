@@ -9,7 +9,7 @@ module ch_est_top #(parameter
  	input wire clk, rst, 
 
     //from demapper to multiplier
-	input wire [WIDTH_RX-1:0] rx_r, rx_i,
+	input wire signed [WIDTH_RX-1:0] rx_r, rx_i,
 	input wire nrs_r, nrs_i,
     
     //from other blocks to control unit "ch_est_cntrl_unit"
@@ -17,8 +17,8 @@ module ch_est_top #(parameter
  	input wire [2:0] v_shift,
     
     //to equalizer
- 	output wire [OUT_WIDTH-1:0] h_eqlz_1_r, h_eqlz_2_r,
-	output wire [OUT_WIDTH-1:0] h_eqlz_1_i, h_eqlz_2_i,
+ 	output wire signed [OUT_WIDTH-1:0] h_eqlz_1_r, h_eqlz_2_r,
+	output wire signed [OUT_WIDTH-1:0] h_eqlz_1_i, h_eqlz_2_i,
 	output wire valid_eqlz,
 
     //to demapper
@@ -38,7 +38,7 @@ module ch_est_top #(parameter
  //internal signals
  wire mult_mem_en;
  wire [1:0] addr_mem;
- wire [WIDTH_EST-1 :0] E_r_1, E_r_2, E_i_1, E_i_2, E1_r, E2_r, E3_r, E4_r, E1_i, E2_i, E3_i, E4_i;
+ wire signed [WIDTH_EST-1 :0] E_r_1, E_r_2, E_i_1, E_i_2, E1_r, E2_r, E3_r, E4_r, E1_i, E2_i, E3_i, E4_i;
  wire [2:0] s1a, s1b, s2a, s2b;
  wire [1:0] s_h1, s_h2;
  wire s_est;

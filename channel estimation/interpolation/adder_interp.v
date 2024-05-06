@@ -1,8 +1,7 @@
-module adder_interp #(parameter WIDTH_SMALL= 19, WIDTH_BIG= 20, OUT_WIDTH=20)
+module adder_interp #(parameter IN_WIDTH= 19, OUT_WIDTH=19) 
 (
-	input wire [WIDTH_SMALL-1:0] a,
-	input wire [WIDTH_BIG-1:0] b,
-	output reg [OUT_WIDTH-1:0] out
+	input wire signed [IN_WIDTH-1:0] a, b,
+	output reg signed [OUT_WIDTH-1:0] out
 );
 
 always @(*) begin

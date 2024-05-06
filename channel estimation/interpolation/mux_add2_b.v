@@ -1,9 +1,9 @@
-module mux_add2_b #(parameter WIDTH= 17)
+module mux_add2_b #(parameter IN_WIDTH= 17, OUT_WIDTH= 19)
 (
 	input wire [2:0] sel,
-	input wire [WIDTH-1:0] E1, E3, E4,
-    input wire [WIDTH-1:0] reg_E,
-	output reg [WIDTH+2-1:0] add2_b
+	input wire signed [IN_WIDTH-1:0] E1, E3, E4,
+    input wire signed [IN_WIDTH-1:0] reg_E,
+	output reg signed [OUT_WIDTH-1:0] add2_b
 );
 
 always @(*) begin

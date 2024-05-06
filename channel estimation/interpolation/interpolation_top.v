@@ -2,7 +2,10 @@
 module interpolation_top 
 #(parameter 
 	IN_WIDTH= 17, 
-	OUT_WIDTH= 17
+	OUT_WIDTH= 17,
+	ADDER_OP_WIDTH=19,
+	ADDER1_OUT_WIDTH=20,
+	ADDER2_OUT_WIDTH=19
 )
 (
 	input wire clk, rst,
@@ -10,22 +13,20 @@ module interpolation_top
 	input wire [1:0] s_h1, s_h2,
 	input wire sel_est,
 	input wire en_reg_E, en_reg_2E, en_reg_5E,
-	input wire [IN_WIDTH-1:0] E1_r, E2_r, E3_r, E4_r,
-	input wire [IN_WIDTH-1:0] E1_i, E2_i, E3_i, E4_i,
-	output wire [OUT_WIDTH-1:0] h_eqlz_1_r, h_eqlz_2_r,
-	output wire [OUT_WIDTH-1:0] h_eqlz_1_i, h_eqlz_2_i
+	input wire signed [IN_WIDTH-1:0] E1_r, E2_r, E3_r, E4_r,
+	input wire signed [IN_WIDTH-1:0] E1_i, E2_i, E3_i, E4_i,
+	output wire signed [OUT_WIDTH-1:0] h_eqlz_1_r, h_eqlz_2_r,
+	output wire signed [OUT_WIDTH-1:0] h_eqlz_1_i, h_eqlz_2_i
 );
 
-wire [IN_WIDTH:0] reg_2E_r, reg_2E_i;
-wire [IN_WIDTH+3-1:0] add1_a_r, add1_a_i; //20 bits
-wire [IN_WIDTH+1:0] add2_a_r, add2_a_i; //19 bits
-wire [IN_WIDTH+3-1:0] reg_5E_r, reg_5E_i;
-wire [IN_WIDTH+3-1:0] add1_b_r, add1_b_i;
-wire [IN_WIDTH-1:0] reg_E_r, reg_E_i;
-wire [IN_WIDTH+2-1:0] add2_b_r, add2_b_i;
-wire [IN_WIDTH+3-1:0] add1_r, add2_r, add1_i, add2_i;
-wire [OUT_WIDTH-1:0] div1_res_r, div1_res_i, div2_res_r, div2_res_i; 
-wire [IN_WIDTH-1:0] est1_r, est2_r, est3_r, est4_r, est1_i, est2_i, est3_i, est4_i;
+wire signed [ADDER_OP_WIDTH-1:0] add1_a_r, add1_a_i, add2_a_r, add2_a_i, add2_b_r, add2_b_i, add1_b_r, add1_b_i;
+wire signed [ADDER_OP_WIDTH-1:0] reg_5E_r, reg_5E_i;
+wire signed [IN_WIDTH:0] reg_2E_r, reg_2E_i;
+wire signed [IN_WIDTH-1:0] reg_E_r, reg_E_i;
+wire signed [ADDER1_OUT_WIDTH-1:0] add1_r, add1_i; 
+wire signed [ADDER2_OUT_WIDTH-1:0] add2_r, add2_i;
+wire signed [OUT_WIDTH-1:0] div1_res_r, div1_res_i, div2_res_r, div2_res_i; 
+wire signed [IN_WIDTH-1:0] est1_r, est2_r, est3_r, est4_r, est1_i, est2_i, est3_i, est4_i;
 
 //real part
 mux_add1_a mux_add1_a_r (
@@ -66,13 +67,13 @@ mux_add2_b mux_add2_b_r (
 	.add2_b(add2_b_r)
 );
 
-adder_interp #(.WIDTH_SMALL(IN_WIDTH+3)) adder1_r (
+adder_interp #(.OUT_WIDTH(ADDER1_OUT_WIDTH)) adder1_r (
 	.a(add1_a_r),
 	.b(add1_b_r),
 	.out(add1_r)
 );
 
-adder_interp #(.WIDTH_BIG(IN_WIDTH+2)) adder2_r (
+adder_interp adder2_r (
 	.a(add2_a_r),
 	.b(add2_b_r),
 	.out(add2_r)
@@ -84,7 +85,7 @@ registers regs_r (
 	.en_reg_E(en_reg_E), 
 	.en_reg_2E(en_reg_2E), 
 	.en_reg_5E(en_reg_5E),
-	.adder1_res(add1_r), 
+	.adder1_res({add1_r[ADDER1_OUT_WIDTH-1], add1_r[IN_WIDTH-1:0]}), //only 18 bits needed, 17 LSB and 1 sign bit
 	.adder2_res(add2_r),
 	.reg_E(reg_E_r),
 	.reg_2E(reg_2E_r),
@@ -97,8 +98,7 @@ div_3 divider_1_r (
 );
 
 
-
-div_3 divider_2_r (
+div_3  #(.IN_WIDTH(ADDER2_OUT_WIDTH)) divider_2_r (
 	.adder_out(add2_r),
 	.div_3_out(div2_res_r)
 );
@@ -172,13 +172,13 @@ mux_add2_b mux_add2_b_i (
 	.add2_b(add2_b_i)
 );
 
-adder_interp #(.WIDTH_SMALL(IN_WIDTH+3)) adder1_i (
+adder_interp #(.OUT_WIDTH(ADDER1_OUT_WIDTH)) adder1_i (
 	.a(add1_a_i),
 	.b(add1_b_i),
 	.out(add1_i)
 );
 
-adder_interp #(.WIDTH_BIG(IN_WIDTH+2)) adder2_i (
+adder_interp adder2_i (
 	.a(add2_a_i),
 	.b(add2_b_i),
 	.out(add2_i)
@@ -190,7 +190,7 @@ registers regs_i (
 	.en_reg_E(en_reg_E), 
 	.en_reg_2E(en_reg_2E), 
 	.en_reg_5E(en_reg_5E),
-	.adder1_res(add1_i), 
+	.adder1_res({add1_i[ADDER1_OUT_WIDTH-1], add1_i[IN_WIDTH-1:0]}), 
 	.adder2_res(add2_i),
 	.reg_E(reg_E_i),
 	.reg_2E(reg_2E_i),
@@ -204,7 +204,7 @@ div_3 divider_1_i (
 
 
 
-div_3 divider_2_i (
+div_3 #(.IN_WIDTH(ADDER2_OUT_WIDTH)) divider_2_i (
 	.adder_out(add2_i),
 	.div_3_out(div2_res_i)
 );
