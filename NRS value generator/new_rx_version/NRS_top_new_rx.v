@@ -12,7 +12,7 @@ module NRS_top_new_rx
 	//input wire [LINES-1:0] rd_addr_est, rd_addr_fine, 
 	input wire [LINES-1:0] rd_addr_est,
 	//output wire [NRS_WIDTH_R_I-1:0] nrs_est, nrs_fine
-	output wire nrs_est,
+	output wire nrs_est_r, nrs_est_i,
 	output wire NRS_gen_ready
 );
 
@@ -79,7 +79,8 @@ NRS_reg_new_rx NRS_reg (
 	.wr_addr(wr_addr),
 	.rd_addr_est(rd_addr_est),
 	//.rd_addr_fine(rd_addr_fine),
-	.c_n_est(nrs_est) 
+	.c_n_est_r(nrs_est_r),
+	.c_n_est_i(nrs_est_i)
 	//.c_n_fine(c_n_fine)
 );
 
