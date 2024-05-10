@@ -31,7 +31,7 @@ module signed_modified_complx_mult
 #(parameter 
 	WIDTH_R_I=16,
 	PILOT_FLOAT_BITS= 11, 
-    VALUE= 11'b1011010_1000 //00000_1011010_1000 =  1/root(2)
+    VALUE= 11'sb1011010_1000 //00000_1011010_1000 =  1/root(2)
 )
 (
 	input wire clk, rst, en,
