@@ -67,12 +67,14 @@ localparam
  reg [1:0] counter4;
  reg counter4_done;
  reg go_1, go_2, first_slot;
- reg E1_ready, E2_ready, E3_ready;
+ //reg E1_ready, E2_ready;
+ reg E3_ready;
  reg [1:0] shift;
  reg load_sel;
  reg [OUT_SEL_SEQ_LENGTH-1:0] s_h1_reg, s_h2_reg;
  reg [1:0] col_addr;
  reg sh;
+ reg halt;
 
 // ==============================================================================
 // ============================ current state logic =============================
@@ -111,7 +113,7 @@ always @(*) begin
         end
 
         MULT_STORE: begin
-            if (counter4_done) begin
+            if (counter4_done | halt) begin
                 ns=IDLE;
             end
             else begin
@@ -120,7 +122,7 @@ always @(*) begin
         end
 
         MULT_ADD: begin
-            if (counter4_done) begin
+            if (counter4_done | halt) begin
                 ns=IDLE;
             end
             else begin
@@ -138,7 +140,7 @@ always @(*) begin
         'd0: begin
             case (cs_A1)
                 A1_IDLE: begin
-                    if (E2_ready) begin
+                    if (E3_ready) begin
                         ns_A1= A1_E2;
                     end
                     else begin
@@ -307,7 +309,7 @@ always @(*) begin
 
             case (cs_A2)
                 A2_IDLE: begin
-                    if (E2_ready) begin
+                    if (E3_ready) begin
                         ns_A2= A2_5E1;
                     end
                     else begin
@@ -350,11 +352,11 @@ always @(posedge clk or negedge rst) begin
     if (!rst) begin
         valid_eqlz<=1'b0;
     end
-    else if ( (shift== 'd2 & ns_A1==A1_IDLE) | (shift!= 'd2 & ns_A2==A2_IDLE) ) begin 
+    else if ( (shift== 'd2 & cs_A1==A1_IDLE) | (shift!= 'd2 & cs_A2==A2_IDLE) ) begin 
         valid_eqlz<= 1'b0;
     end
-    //(shift=='d0) & (cs_A2==A2_2E1_E3)) | ((shift=='d1) & (cs_A2==A2_4E1_E3)) | ((shift=='d2) & (cs_A2==A2_4E1_E3)) --> detailed condition
-    else if ( (shift=='d0 & cs_A2==A2_2E1_E3) | (cs_A2==A2_4E1_E3) ) begin
+    //(shift=='d0) & (cs_A1==A1_E2)) | ((shift=='d1) & (cs_A2==A2_E3)) | ((shift=='d2) & (cs_A2==A2_E3)) --> detailed condition , 1 clk before output is ready
+    else if ( (shift=='d0 & cs_A1==A1_E2) | (cs_A2==A2_E3) ) begin
         valid_eqlz<=1'b1;
     end
 end
@@ -364,8 +366,8 @@ end
 always @(*) begin
     addr_mem= counter4; //changes with MULT_STORE and MULT_ADD but only needed and considered when MULT_ADD
     demap_read= (cs==MULT_STORE | cs== MULT_ADD);
-    est_ack_nrs= (cs==MULT_STORE);
-    est_ack_demap= (cs==MULT_ADD);
+    est_ack_nrs= (cs==MULT_STORE | cs==MULT_ADD);
+    est_ack_demap= (E3_ready);
 end
 
 always @(posedge clk or negedge rst) begin
@@ -580,8 +582,8 @@ end
 */
 always @(*) begin
     load_sel= ( (shift=='d0 & cs_A1==A1_E2) | (cs_A2==A2_E3) );
-    E1_ready= (cs==MULT_ADD & counter4=='d0); //set at the start of the clk it'll be ready at, because it controls a sequential state, that will be set at the start of the next clk
-    E2_ready= (cs==MULT_ADD & counter4=='d1);
+    //E1_ready= (cs==MULT_ADD & counter4=='d0); //set at the start of the clk it'll be ready at, because it controls a sequential state, that will be set at the start of the next clk
+    //E2_ready= (cs==MULT_ADD & counter4=='d1);
     E3_ready= (cs==MULT_ADD & counter4=='d2);
 end
 
@@ -613,6 +615,7 @@ end
 
 always @(*) begin
     counter4_done= (counter4=='d3);
+    halt= (counter4=='d1);
 end
 
 //first_slot
@@ -630,6 +633,7 @@ always @(posedge clk or negedge rst) begin
     if (!rst) begin
         s_h1_reg<= 'b0;
         s_h2_reg<= 'b0;
+        sh<=1'b0;
     end
     else if (load_sel) begin
         sh<=1'b1;

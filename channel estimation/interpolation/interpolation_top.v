@@ -85,7 +85,7 @@ registers regs_r (
 	.en_reg_E(en_reg_E), 
 	.en_reg_2E(en_reg_2E), 
 	.en_reg_5E(en_reg_5E),
-	.adder1_res({add1_r[ADDER1_OUT_WIDTH-1], add1_r[IN_WIDTH-1:0]}), //only 18 bits needed, 17 LSB and 1 sign bit
+	.adder1_res(add1_r), //only 18 bits needed, 17 LSB and 1 sign bit
 	.adder2_res(add2_r),
 	.reg_E(reg_E_r),
 	.reg_2E(reg_2E_r),
@@ -190,7 +190,7 @@ registers regs_i (
 	.en_reg_E(en_reg_E), 
 	.en_reg_2E(en_reg_2E), 
 	.en_reg_5E(en_reg_5E),
-	.adder1_res({add1_i[ADDER1_OUT_WIDTH-1], add1_i[IN_WIDTH-1:0]}), 
+	.adder1_res(add1_i), 
 	.adder2_res(add2_i),
 	.reg_E(reg_E_i),
 	.reg_2E(reg_2E_i),

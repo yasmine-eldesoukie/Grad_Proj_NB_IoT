@@ -75,8 +75,9 @@ always @(*) begin
 		s3= m3; 
 	end
     
-
-	real_long= s1+s2;
+	//this should be divided by the domi. magnitude (2048 approx 2^11) -->shifted 11 bits to the right. output will be 17 MSB
+    //this causes some inaccuracy, up to 5 in decimal or (5/2^11--> 2.44*10^(-3))
+	real_long= s1+s2; 
 	imag_long= s3+s2-s1;
 
 	real_part= real_long[WIDTH_R_I+PILOT_FLOAT_BITS:PILOT_FLOAT_BITS];
