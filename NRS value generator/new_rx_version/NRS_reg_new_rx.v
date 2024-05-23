@@ -21,7 +21,7 @@ end
 
 always @(*) begin
 	c_n_est_r=mem[rd_addr_est];
-	c_n_est_i=mem[{rd_addr_est[LINES-1:1], 1'b1]; //eqivlant to rd_addr_est+1 and since rd_add is always 0, 2, 4, etc (LSB is 0) , add +1 will just replace LSB by 1
+	c_n_est_i=mem[{rd_addr_est[LINES-1:1], 1'b1}]; //eqivlant to rd_addr_est+1 and since rd_add is always 0, 2, 4, etc (LSB is 0) , add +1 will just replace LSB by 1
 
 	//c_n_fine=mem[rd_addr_fine];
 end

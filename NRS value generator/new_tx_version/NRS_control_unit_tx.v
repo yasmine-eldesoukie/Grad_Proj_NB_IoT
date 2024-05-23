@@ -81,7 +81,10 @@ always @(*) begin
 	    	else begin
 	    		ns = EVALUATE;
 	    	end
-	    end        
+	    end   
+	    default: begin
+	            ns= IDLE;
+	    end     
 	endcase
 end
 
