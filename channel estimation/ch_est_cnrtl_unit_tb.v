@@ -14,6 +14,8 @@ module ch_est_cntrl_unit_tb #(parameter
  wire [3:0] col_dut;
  wire [1:0] nrs_index_addr_dut; 
  wire demap_read_dut;
+ wire est_ack_demap_dut;
+ wire est_ack_nrs_dut;
 
  wire [NRS_ADDR-1:0] rd_addr_nrs_dut;
  wire valid_eqlz_dut;
@@ -53,6 +55,7 @@ module ch_est_cntrl_unit_tb #(parameter
  reg [9*3-1:0] s1a_reg, s1b_reg, s2a_reg, s2b_reg; //10 clks , each part is 3 bits
  reg [9*2-1:0] s_h1_reg, s_h2_reg;
  reg [3:0] x;
+ reg [1:0] n;
 
  //instantaition
  ch_est_cntrl_unit dut (
@@ -65,6 +68,8 @@ module ch_est_cntrl_unit_tb #(parameter
  	.col(col_dut), 
  	.nrs_index_addr(nrs_index_addr_dut), 
  	.demap_read(demap_read_dut), 
+    .est_ack_demap(est_ack_demap_dut),
+    .est_ack_nrs(est_ack_nrs_dut),
 
  	.rd_addr_nrs(rd_addr_nrs_dut), 
  	.valid_eqlz(valid_eqlz_dut), 
@@ -109,20 +114,20 @@ module ch_est_cntrl_unit_tb #(parameter
     
     //test just FSM (Mult. and Adder)
     v_shift_tb=0;
-    slot1=1'b0;
+    slot1=1'b1;
     col_reg={4'd5, 4'd6, 4'd12, 4'd13};
- 	for (i=0; i<2; i=i+1) begin
+    n=0;
+ 	for (i=0; i<4; i=i+1) begin
  	    demap_ready_tb=1'b1;
  	    NRS_gen_ready_tb=1'b1;
- 	    slot1=~slot1;
+ 	    if (i==2) slot1=~slot1;
         demap_read_expec=1'b1;
         mult_mem_en_expec=1'b0;
         avg_mem_en_expec=1'b0;
         if (i==0) rd_addr_nrs_expec='d14;
         //@(negedge clk);
         //NRS_gen_ready_tb=1'b0;
-
-        for (j=0; j<4; j=j+1) begin //4 because 4 pilots are operated apon in 1 run
+        for (j=n; j<n+2; j=j+1) begin //2 because 2 pilots are operated apon in 1 run
         	addr_mem_expec=j;
         	nrs_index_addr_expec=j;
         	rd_addr_nrs_expec= rd_addr_nrs_expec+2; 
@@ -132,10 +137,14 @@ module ch_est_cntrl_unit_tb #(parameter
             end
         	@(negedge clk); //FSM = MULT_STORE 
         	NRS_gen_ready_tb=1'b0;
-        	if (j!=0) begin
+        	if (j!=n) begin
         		mult_mem_en_expec=(slot1);
-        	       avg_mem_en_expec=(!slot1);
+        	    avg_mem_en_expec=(!slot1);
         	end
+            else begin
+                mult_mem_en_expec='b0;
+                avg_mem_en_expec='b0;
+            end
         	if (demap_read_expec!=demap_read_dut) begin
         		$display ("Error: demap_read");
         		$stop;
@@ -164,12 +173,17 @@ module ch_est_cntrl_unit_tb #(parameter
         		$display ("Error: col");
         		$stop; 
         	end
+            
+            //check: est_ack_nrs
+            if (est_ack_nrs_dut!=1'd1) begin
+                $display ("Error: est_ack_nrs");
+                $stop; 
+            end
         end //for j
+        n=n+2;
 
         demap_read_expec=1'b0;
-        if (slot1) begin
- 	        repeat (10) @(negedge clk);   //test with any delay >=4
-        end
+ 	    repeat (2) @(negedge clk);   //delay between runs 
  	end //for i
 
     //@(negedge clk);
@@ -184,40 +198,6 @@ module ch_est_cntrl_unit_tb #(parameter
         v_shift_tb=i;
         s_est_expec= (i==1 | i==4)? 1'b1: 1'b0;
 
-        //assign initial values of select signals registers
-        case (i) 
-           'd0, 'd3: begin
-           	    s1a_reg=  {3'b000, 3'b001, 3'b001, 3'b011, 3'b011, 3'b011, 3'b010, 3'b111, 3'b111}; //LSB are dummy but must be added , because this reg is read from MSB to LSB, and in this case the MSB 8 (3 bits) are considered
-           	    s1b_reg=  {3'b000, 3'b000, 3'b000, 3'b001, 3'b001, 3'b011, 3'b010, 3'b111, 3'b111};
-           	    s2a_reg=  {3'b111, 3'b000, 3'b001, 3'b011, 3'b011, 3'b010, 3'b010, 3'b111, 3'b111};
-           	    s2b_reg=  {3'b111, 3'b000, 3'b001, 3'b000, 3'b011, 3'b011, 3'b010, 3'b111, 3'b111};
-
-           	    s_h1_reg= {2'b00,  2'b00,  2'b01,  2'b11,  2'b10,  2'b11,  2'b01,  2'b00, 2'b00 };//LSB are dummy
-           	    s_h2_reg= {2'b00,  2'b00,  2'b01,  2'b00,  2'b00,  2'b11,  2'b10,  2'b00, 2'b00 };
-           end
-
-           'd1, 'd4: begin
-           	    s1a_reg=  {3'b111, 3'b111, 3'b110, 3'b011, 3'b000, 3'b011, 3'b111, 3'b111, 3'b111};//same
-                s1b_reg=  {3'b111, 3'b111, 3'b110, 3'b001, 3'b000, 3'b011, 3'b111, 3'b111, 3'b111};
-                s2a_reg=  {3'b110, 3'b100, 3'b000, 3'b000, 3'b011, 3'b011, 3'b010, 3'b111, 3'b111};
-                s2b_reg=  {3'b110, 3'b100, 3'b000, 3'b000, 3'b000, 3'b011, 3'b010, 3'b111, 3'b111};
-
-                s_h1_reg= {2'b00,  2'b01,  2'b01,  2'b00,  2'b01,  2'b11,  2'b10,  2'b00, 2'b00 };
-                s_h2_reg= {2'b00,  2'b01,  2'b10,  2'b10,  2'b11,  2'b10,  2'b00,  2'b00, 2'b00 };
-           end
-
-           'd2, 'd5: begin
-           	    s1a_reg=  {3'b111, 3'b100, 3'b101, 3'b101, 3'b110, 3'b011, 3'b011, 3'b011, 3'b111};//here all data is needed
-                s1b_reg=  {3'b111, 3'b000, 3'b100, 3'b100, 3'b110, 3'b001, 3'b001, 3'b011, 3'b111};
-                s2a_reg=  {3'b001, 3'b110, 3'b100, 3'b000, 3'b000, 3'b011, 3'b011, 3'b111, 3'b111};
-                s2b_reg=  {3'b100, 3'b110, 3'b100, 3'b000, 3'b000, 3'b000, 3'b011, 3'b111, 3'b111};
-
-
-                s_h1_reg= {2'b00,  2'b00,  2'b11,  2'b00,  2'b11,  2'b11,  2'b10,  2'b01, 2'b00 };
-                s_h2_reg= {2'b00,  2'b00,  2'b00,  2'b00,  2'b01,  2'b00,  2'b10,  2'b11, 2'b00 };
-           end
-        endcase
-
     	demap_ready_tb=1'b1;
         NRS_gen_ready_tb=1'b1;
 
@@ -230,7 +210,7 @@ module ch_est_cntrl_unit_tb #(parameter
         s_h1_expec='b00;
         s_h2_expec='b00;
 
-        for (j=0; j<5; j=j+1) begin //4 for MULT_STORE and 1 for the IDLE (before MULT_ADD) in between
+        for (j=0; j<10; j=j+1) begin //4 for MULT_STORE and 1 for the IDLE (before MULT_ADD) in between, update: its 2>1>2>1 >> 2>1>1 (total 6+4 clks) (1st 6: 2 means MULT_STORE, 1 for IDLE) then (4: 2 for MULT_ADD, 1 IDLE then 1 for the 2nd MULT_ADD)
         	@(negedge clk);
         	if (valid_eqlz_expec!=valid_eqlz_dut) begin
         		$display ("Error: valid_eqlz");
@@ -254,7 +234,7 @@ module ch_est_cntrl_unit_tb #(parameter
         		$stop;
         	end
 
-        	if (s_h1_expec!=s_h1_dut) begin
+        	if (s_h1_expec!=s_h1_dut) begin 
         		$display ("Error: s_h1");
         		$stop;
         	end
@@ -267,22 +247,61 @@ module ch_est_cntrl_unit_tb #(parameter
         		$stop;
         	end
         end
-        @(negedge clk); //extend NRS_gen_ready for 1 more clk, so that ns doesn't change before cs becomes MULT_ADD
+        //repeat (4) @(negedge clk); //extend NRS_gen_ready for 1 more clk, so that ns doesn't change before cs becomes MULT_ADD , update: extend for (4 clks) and wait no more 
         NRS_gen_ready_tb=1'b0; //because when you don't reset it, MULT_ADD doesn't go to IDLE, instead it goes to MULT_STORE while the interpolation is still working
 
         //determine latency before assigning and checking
-        case (i)
-            'd1, 'd4: begin //E3_ready is set after nrs_gen_ready by 3 clks
-            	repeat (3) @(negedge clk);
+        //update: not 3 clks nor 2, both will be waiting for E3_ready and it'd be ready in (2>1>1) (total 4 clks) (2 for 1st MULT_ADD , 1 IDLE then 1 for the 2nd MULT_ADD)
+        /*case (i)
+            'd1, 'd4: begin //E3_ready is set after nrs_gen_ready by 3 clks 
+            	repeat (4) @(negedge clk);
             end
             default: begin //waiting for E2_ready
-            	repeat (2) @(negedge clk);  
+            	repeat (4) @(negedge clk);  
             end
         endcase
+        */
 
-        x= (i==2 | i==5)? 'd9 : 'd8;
+        //assign initial values of select signals registers
+        case (i) 
+           'd0, 'd3: begin
+                s1a_reg=  {3'b000, 3'b001, 3'b011, 3'b011, 3'b011, 3'b010, 3'b111, 3'b111, 3'b111}; //LSB are dummy but must be added , because this reg is read from MSB to LSB, and in this case the MSB 8 (3 bits) are considered
+                s1b_reg=  {3'b000, 3'b000, 3'b001, 3'b001, 3'b011, 3'b010, 3'b111, 3'b111, 3'b111};
+                s2a_reg=  {3'b000, 3'b001, 3'b011, 3'b011, 3'b010, 3'b010, 3'b111, 3'b111, 3'b111};
+                s2b_reg=  {3'b000, 3'b001, 3'b000, 3'b011, 3'b011, 3'b010, 3'b111, 3'b111, 3'b111};
+
+                s_h1_reg= {2'b00,  2'b00,  2'b01,  2'b11,  2'b10,  2'b11,  2'b01,  2'b01,  2'b01};//LSB are dummy
+                s_h2_reg= {2'b00,  2'b00,  2'b01,  2'b00,  2'b00,  2'b11,  2'b10,  2'b10,  2'b10};
+           end
+
+           'd1, 'd4: begin
+                s1a_reg=  {3'b111, 3'b111, 3'b110, 3'b011, 3'b000, 3'b011, 3'b111, 3'b111, 3'b111};//same
+                s1b_reg=  {3'b111, 3'b111, 3'b110, 3'b001, 3'b000, 3'b011, 3'b111, 3'b111, 3'b111};
+                s2a_reg=  {3'b110, 3'b100, 3'b000, 3'b000, 3'b011, 3'b011, 3'b010, 3'b111, 3'b111};
+                s2b_reg=  {3'b110, 3'b100, 3'b000, 3'b000, 3'b000, 3'b011, 3'b010, 3'b111, 3'b111};
+
+                s_h1_reg= {2'b00,  2'b00,  2'b01,  2'b01,  2'b00,  2'b01,  2'b11,  2'b10,  2'b10};
+                s_h2_reg= {2'b00,  2'b00,  2'b01,  2'b10,  2'b10,  2'b11,  2'b10,  2'b00,  2'b00};
+           end
+
+           'd2, 'd5: begin
+                s1a_reg=  {3'b111, 3'b100, 3'b101, 3'b101, 3'b110, 3'b011, 3'b011, 3'b011, 3'b111};//here all data is needed
+                s1b_reg=  {3'b111, 3'b000, 3'b100, 3'b100, 3'b110, 3'b001, 3'b001, 3'b011, 3'b111};
+                s2a_reg=  {3'b001, 3'b110, 3'b100, 3'b000, 3'b000, 3'b011, 3'b011, 3'b111, 3'b111};
+                s2b_reg=  {3'b100, 3'b110, 3'b100, 3'b000, 3'b000, 3'b000, 3'b011, 3'b111, 3'b111};
+
+
+                s_h1_reg= {2'b00,  2'b00,  2'b00,  2'b11,  2'b00,  2'b11,  2'b11,  2'b10,  2'b01};
+                s_h2_reg= {2'b00,  2'b00,  2'b00,  2'b00,  2'b00,  2'b01,  2'b00,  2'b10,  2'b11};
+           end
+        endcase
+
+        //@(negedge clk);  //now interpolation has started, output has not  
+
+        x= (i==2 | i==5)? 'd9 : (i==1 | i==4)? 'd8: 'd7;
         
         for (j=0; j<x; j=j+1) begin //from this point and for the upcoming 8,9 clks, test the select and valid signals
+            
             s1a_expec=s1a_reg[26:24];
             s1a_reg=s1a_reg<<'d3;
             s1b_expec=s1b_reg[26:24];
@@ -295,13 +314,13 @@ module ch_est_cntrl_unit_tb #(parameter
             s_h1_expec=s_h1_reg[17:16];
             s_h2_expec=s_h2_reg[17:16];
             if (j!=(x-1)) begin //in the last run, s_h1 and s_h2 don't change, they remain on their latest value
-            	s_h1_reg=s_h1_reg<<'d2;
-            	s_h2_reg=s_h2_reg<<'d2;
+                s_h1_reg=s_h1_reg<<'d2;
+                s_h2_reg=s_h2_reg<<'d2;
             end 
             
 
             if (j==(x-1)) valid_eqlz_expec=1'b0; //j is [0:x-1] , the last run , valid is zero
-            else if ( ((i==2 | i==5) & j>2) | (!(i==2 | i==5) & j>1) ) valid_eqlz_expec=1'b1;
+            else if ( ((i==2 | i==5) & j>1) | ((i==1 | i==4) & j>0) | ((i==0 | i==3) ) ) valid_eqlz_expec=1'b1; 
 
             //test en_reg signals
             if ( ((i==0 | i==3) & j==1) | ((i==1 | i==4) & j==5) | ((i==2 | i==5) & j==2) ) en_reg_E_expec=1'b1;
@@ -310,12 +329,13 @@ module ch_est_cntrl_unit_tb #(parameter
             if ( ((i==0 | i==3) & j==2) | ((i==1 | i==4) & j==1) | ((i==2 | i==5) & j==2) ) en_reg_2E_expec=1'b1;
             else en_reg_2E_expec=1'b0;
 
-            if ( ((i==0 | i==3) & j==6) | ((i==2 | i==5) & j==1) ) en_reg_5E_expec=1'b1;
+            if ( ((i==0 | i==3) & j==5) | ((i==2 | i==5) & j==1) ) en_reg_5E_expec=1'b1;
             else en_reg_5E_expec=1'b0;
+           
 
-
-            //@(negedge clk); this is an added "wrong" delay, it should be at the for loop end
-        	if (valid_eqlz_expec!=valid_eqlz_dut) begin
+            @(negedge clk); 
+        	
+            if (valid_eqlz_expec!=valid_eqlz_dut) begin
         		$display ("Error: valid_eqlz");
         		$stop;
         	end
@@ -349,7 +369,8 @@ module ch_est_cntrl_unit_tb #(parameter
         		$display ("Error: s_est");
         		$stop;
         	end
-
+           
+            
         	if (en_reg_E_expec!=en_reg_E_dut) begin
         		$display ("Error: en_reg_E");
         		$stop;
@@ -363,8 +384,13 @@ module ch_est_cntrl_unit_tb #(parameter
         		$stop;
         	end
 
-
-        	@(negedge clk);
+            //check est_ack signals
+            if (dut.E3_ready != est_ack_demap_dut) begin
+                $display ("Error: est_ack_demap");
+                $stop;
+            end
+            
+        	//@(negedge clk);
         end //for j
     end //for i
     @(negedge clk);
