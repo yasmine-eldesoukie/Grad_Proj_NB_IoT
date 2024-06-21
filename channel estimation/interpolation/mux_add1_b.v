@@ -10,8 +10,8 @@ module mux_add1_b #(parameter IN_WIDTH= 17, OUT_WIDTH= 19)
 always @(*) begin
 	case (sel)
         'b000:  add1_b= 'b1;
-        'b001:  add1_b= {E3, 1'b0}; //(2E3)
-        'b011:  add1_b= {E4, 1'b0}; //(2E4)
+        'b001:  add1_b= E3<<1; //(2E3) witten this way instead of {E3, 1'b0} for sign extension--> to work with -ve numbers
+        'b011:  add1_b= E4<<1; //(2E4)
         'b010:  add1_b= reg_5E;
         'b110:  add1_b= E1;
         'b100:  add1_b= reg_2E; //-2E3

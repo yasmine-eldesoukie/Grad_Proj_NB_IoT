@@ -68,47 +68,57 @@ module ch_est_top_tb #(parameter
  	repeat (30) @(negedge clk);
 
     rst=1'b1;
-    @(negedge clk);
-    v_shift_tb='b0;
-    NRS_gen_ready_tb=1'b1;
+    v_shift_tb='d0;
+    NRS_gen_ready_tb=1'b1; //at negedge, then follow it with a posedge
     demap_ready_tb=1'b1;
+    @(posedge clk); //MULT_STORE
     rx_r_tb= 'd1234;
     rx_i_tb= 'd3456;
     nrs_r_tb=1'b0;
     nrs_i_tb=1'b0;
-    
-    @(negedge clk);
+    @(posedge clk);
     rx_r_tb= 'd1122;
     rx_i_tb= -'sd1732;
     nrs_r_tb=1'b0;
     nrs_i_tb=1'b0;
-    repeat (2) @(negedge clk);
+    NRS_gen_ready_tb=1'b0;
+    repeat (2) @(negedge clk); //any delay
+
+    NRS_gen_ready_tb=1'b1;
+    @(posedge clk); //2nd MULT_STORE
     rx_r_tb= 'd15567;
     rx_i_tb= 'd1077;
     nrs_r_tb=1'b0;
     nrs_i_tb=1'b0;
-    @(negedge clk);
+    @(posedge clk);
     rx_r_tb= 'd15507;
     rx_i_tb= 'd1097;
     nrs_r_tb=1'b0;
     nrs_i_tb=1'b0;
-
+    NRS_gen_ready_tb=1'b0;
     repeat (2) @(negedge clk);
+
+    NRS_gen_ready_tb=1'b1;
+    @(posedge clk); //MULT_ADD
     rx_r_tb= 'd1034;
     rx_i_tb= 'd3496;
     nrs_r_tb=1'b0;
     nrs_i_tb=1'b0;
-    @(negedge clk);
+    @(posedge clk);
     rx_r_tb= 'd13322;
     rx_i_tb= -'sd1232;
     nrs_r_tb=1'b0;
     nrs_i_tb=1'b0;
+    NRS_gen_ready_tb=1'b0;
     repeat (2) @(negedge clk);
+
+    NRS_gen_ready_tb=1'b1;
+    @(posedge clk); //2nd MULT_ADD
     rx_r_tb= 'd11567;
     rx_i_tb= 'd1007;
     nrs_r_tb=1'b0;
     nrs_i_tb=1'b0;
-    @(negedge clk);
+    @(posedge clk);
     rx_r_tb= 'd1527;
     rx_i_tb= 'd1007;
     nrs_r_tb=1'b0;

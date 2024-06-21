@@ -1,3 +1,7 @@
+/*
+ General Info:
+  1- the output of each state is ready at its start because the circuits that calculate are comb. 
+*/
 module ch_est_cntrl_unit #( parameter 
  	NRS_ADDR=4,
  	OUT_SEL_SEQ_LENGTH= 12
@@ -25,7 +29,8 @@ module ch_est_cntrl_unit #( parameter
  	output reg en_reg_E, en_reg_2E, en_reg_5E,
  	output reg [2:0] s1a, s1b, s2a, s2b, //adders muxes select signals
  	output reg [1:0] s_h1, s_h2, //out muxes select signals  
- 	output reg s_est //there are 4 estimate muxes but their select signal is the same 
+ 	output reg s_est, //there are 4 estimate muxes but their select signal is the same 
+    output reg [1:0] shift
 );
 
 localparam 
@@ -69,7 +74,7 @@ localparam
  reg go_1, go_2, first_slot;
  //reg E1_ready, E2_ready;
  reg E3_ready;
- reg [1:0] shift;
+ //reg [1:0] shift; made it an output
  reg load_sel;
  reg [OUT_SEL_SEQ_LENGTH-1:0] s_h1_reg, s_h2_reg;
  reg [1:0] col_addr;
@@ -339,7 +344,7 @@ end
 
 //valid signal  
 /*
-  signal is set 1 clk before the evaluation-of-1st_h state in each shift case.
+  signal is set with the output
   signal is back to 0 when last state is reached (at its start).
 */
 always @(posedge clk or negedge rst) begin
@@ -362,9 +367,12 @@ always @(*) begin
     demap_read= (cs==MULT_STORE | cs== MULT_ADD);
     est_ack_nrs= (cs==MULT_STORE | cs==MULT_ADD);
     est_ack_demap= (E3_ready);
+    mult_mem_en= (cs==MULT_STORE);
+    avg_mem_en= (cs==MULT_ADD);
 end
 
-always @(posedge clk or negedge rst) begin
+//update: no need for registers + output to be stored is comb and it is ready once cs==MULT_STORE so enable signal must be ready at that time 
+/*always @(posedge clk or negedge rst) begin
      if (!rst) begin
         mult_mem_en<= 1'b0;
      end
@@ -376,6 +384,7 @@ always @(posedge clk or negedge rst) begin
      end
  end 
 
+
  always @(posedge clk or negedge rst) begin
      if (!rst) begin
         avg_mem_en<= 1'b0;
@@ -386,14 +395,14 @@ always @(posedge clk or negedge rst) begin
      else begin
         avg_mem_en<= 1'b0;
      end
- end 
+ end
+ */ 
 //Adders states dependant
 always @(*) begin
-    // because it is comb. --> value is calculated in a state and ready at its end, enbale is set with the following state
-    en_reg_E=  ( ((shift=='d0) & (cs_A1==A1_2E2))    | ((shift=='d1) & (cs_A1==A1_E2_2E4)) | ((shift=='d2) & (cs_A2==A2_4E1_E3)) );  //-ve value of an estimate E
-    //en_reg_2E= ( ((shift=='d0) & (cs_A1==A1_E2_2E3)) | ((shift=='d1) & (cs_A2==A2_4E1_E3)) | ((shift=='d2) & (cs_A2==A2_4E1_E3)) ); //detailed //-ve 2*value of an estimate, execption: when shift=1, -E3 is stored 
-    en_reg_2E= ( ((shift=='d0) & (cs_A2==A2_2E2_E3)) | (cs_A2==A2_4E1_E3) ); //simplified
-    en_reg_5E= ( ((shift=='d0) & (cs_A2==A2_4E4_E2)) | ((shift=='d2) & (cs_A2==A2_E3)) ); //5*value of an estimate
+    // because it is comb. --> value is calculated in a state and ready at its end, enbale is set with the following state, update: value is ready at the state start--> enable will be set with the same state
+    en_reg_E=  ( (cs_A1==A1_E2)   | ((shift=='d2) & (cs_A2==A2_E3)) );  //-ve value of an estimate E
+    en_reg_2E= ( (cs_A1==A1_2E2) | ((shift=='d1) & (cs_A2==A2_E3)) | (cs_A1==A1_2E3) ); //-ve 2*value of an estimate, execption: when shift=1, -E3 is stored 
+    en_reg_5E= ( (cs_A2==A2_5E4) | (cs_A2==A2_5E1) ); //5*value of an estimate
 end
 
 // ----------------------------------------------------
@@ -572,11 +581,10 @@ end
 
 //load_sel and ready signals
 /* 
- load sel registers, signal is to be set 2 clks begore the valid signal is set, that's bacause:
-  s_h1 starts 1 clk before valid--> value of s_h1_reg must be ready then--> condition must be true 1 clk before that--> total 2 clks
+  load_sel should be 1 clk before the evaluation of 1st output, this will not work for shift=0 but it won't be a problem because the init value for s_h1 and s_h2 can be used, just let s_h1_reg be for 5 cases only
 */
 always @(*) begin
-    load_sel= ( (shift=='d0 & cs_A1==A1_E2) | (cs_A2==A2_4E1_E3) ); 
+    load_sel= ( (shift=='d0 & cs_A1==A1_E2) | (cs_A2==A2_E3) ); 
     //E1_ready= (cs==MULT_ADD & counter4=='d0); //set at the start of the clk it'll be ready at, because it controls a sequential state, that will be set at the start of the next clk
     //E2_ready= (cs==MULT_ADD & counter4=='d1); //this signal is not needed, it will be ready and will start adder1 but adder2 is dep. on adder1-->wrong operation.. just wait for E3_ready
     E3_ready= (cs==MULT_ADD & counter4=='d2);
@@ -634,18 +642,18 @@ always @(posedge clk or negedge rst) begin
         //sh<=1'b1;
         case (shift) 
             'd0: begin
-                s_h1_reg<='b 01_11_10_11_01_00;
-                s_h2_reg<='b 10_11_00_00_01_00;
+                s_h1_reg<='b 01_11_10_01_01; //update: 10 bits instead of 12
+                s_h2_reg<='b 10_11_00_10_01;
             end
 
             'd1: begin
-                s_h1_reg<='b 10_11_01_00_01_01;
+                s_h1_reg<='b 10_01_01_00_01_01;
                 s_h2_reg<='b 00_10_11_10_10_01;
             end
 
             'd2: begin
-                s_h1_reg<='b 01_10_11_11_00_11;
-                s_h2_reg<='b 11_10_00_01_00_00; 
+                s_h1_reg<='b 11_10_11_11_00_11;
+                s_h2_reg<='b 11_00_00_01_00_00; 
             end
             default: begin
                 s_h1_reg<='b 01_11_10_11_01_00; //any value

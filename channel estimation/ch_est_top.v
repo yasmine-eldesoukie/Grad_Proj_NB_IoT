@@ -42,6 +42,7 @@ module ch_est_top #(parameter
  wire [2:0] s1a, s1b, s2a, s2b;
  wire [1:0] s_h1, s_h2;
  wire s_est;
+ wire [1:0] shift;
 
  //complex mult
  signed_modified_complx_mult cmplx_mult (
@@ -101,6 +102,7 @@ module ch_est_top #(parameter
     .en_reg_E(en_reg_E), 
     .en_reg_2E(en_reg_2E), 
     .en_reg_5E(en_reg_5E),
+	.shift(shift),
     .E1_r(E1_r), 
     .E2_r(E2_r), 
     .E3_r(E3_r), 
@@ -141,7 +143,8 @@ module ch_est_top #(parameter
     .s2b(s2b), 
     .s_h1(s_h1), 
     .s_h2(s_h2),
- 	.s_est(s_est)
+ 	.s_est(s_est),
+ 	.shift(shift)
  );
  
 endmodule

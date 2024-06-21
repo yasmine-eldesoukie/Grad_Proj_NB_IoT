@@ -24,9 +24,9 @@ module div_3 #(parameter //for adder_interp 1 chain
 reg signed [MULT_RES_WIDTH-1:0] mult_res;
 reg signed [SHFT_WIDTH-1:0] shft_6;
 always @(*) begin
-    mult_res = adder_out * 'd21;
+    mult_res = adder_out * 'sd21;
     shft_6 = mult_res >> 'd6;
-    div_3_out= shft_6[SHFT_WIDTH-1:1];
+    div_3_out= shft_6;
 end
 
 endmodule
