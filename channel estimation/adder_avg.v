@@ -3,13 +3,13 @@ module adder_avg #(parameter WIDTH_EST= 17, IN_WIDTH=17)
 (
 	input wire clk, rst, en,
 	input wire [1:0] wr_addr,
-	input wire [IN_WIDTH-1:0] a, b,
+	input wire signed [IN_WIDTH-1:0] a, b,
 	output reg [WIDTH_EST-1:0] E1, E2, E3, E4
 );
 
-reg [WIDTH_EST:0] c;
-reg [WIDTH_EST-1:0] adder_avg;
-reg [WIDTH_EST-1:0] adder_avg_mem [3:0];
+reg signed [WIDTH_EST:0] c;
+reg signed [WIDTH_EST-1:0] adder_avg;
+reg signed [WIDTH_EST-1:0] adder_avg_mem [3:0];
 
 integer i;
 always @(*) begin

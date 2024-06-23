@@ -13,6 +13,7 @@ module interpolation_top
 	input wire [1:0] s_h1, s_h2,
 	input wire sel_est,
 	input wire en_reg_E, en_reg_2E, en_reg_5E,
+	input wire [1:0] shift,
 	input wire signed [IN_WIDTH-1:0] E1_r, E2_r, E3_r, E4_r,
 	input wire signed [IN_WIDTH-1:0] E1_i, E2_i, E3_i, E4_i,
 	output wire signed [OUT_WIDTH-1:0] h_eqlz_1_r, h_eqlz_2_r,
@@ -50,11 +51,12 @@ mux_add1_b mux_add1_b_r (
 
 mux_add2_a mux_add2_a_r (
 	.sel(s2a),
+	.shift(shift),
 	.E1(E1_r),
 	.E2(E2_r),
 	.E3(E3_r),
 	.E4(E4_r),
-	.reg_E(reg_E_r),
+	.reg_E(reg_2E_r),
 	.add2_a(add2_a_r)
 );
 
@@ -85,6 +87,7 @@ registers regs_r (
 	.en_reg_E(en_reg_E), 
 	.en_reg_2E(en_reg_2E), 
 	.en_reg_5E(en_reg_5E),
+	.shift(shift),
 	.adder1_res(add1_r), //only 18 bits needed, 17 LSB and 1 sign bit
 	.adder2_res(add2_r),
 	.reg_E(reg_E_r),
@@ -155,11 +158,12 @@ mux_add1_b mux_add1_b_i (
 
 mux_add2_a mux_add2_a_i (
 	.sel(s2a),
+	.shift(shift),
 	.E1(E1_i),
 	.E2(E2_i),
 	.E3(E3_i),
 	.E4(E4_i),
-	.reg_E(reg_E_i),
+	.reg_E(reg_2E_i),
 	.add2_a(add2_a_i)
 );
 
@@ -190,6 +194,7 @@ registers regs_i (
 	.en_reg_E(en_reg_E), 
 	.en_reg_2E(en_reg_2E), 
 	.en_reg_5E(en_reg_5E),
+	.shift(shift),
 	.adder1_res(add1_i), 
 	.adder2_res(add2_i),
 	.reg_E(reg_E_i),
