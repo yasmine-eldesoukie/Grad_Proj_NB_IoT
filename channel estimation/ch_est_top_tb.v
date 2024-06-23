@@ -61,6 +61,14 @@ module ch_est_top_tb #(parameter
  	forever #1 clk=~clk;
  end
 
+/*
+rx = [(1380+j*1425) (-1364+j*1353) (1440+j*1440) (1438+j*1359);...
+       (1418+j*1388) (1313+j*1397) (1440+j*1440) (1438+j*1359)]
+            
+nrs= (1448)*[(1+j*1) (-1+j*1) (-1+j*1) (1+j*1);...
+             (1-j*1) (-1+j*1) (1+j*1) (-1-j*1)]
+*/
+
  //stimulus generation
  integer i,j,k;
  initial begin
@@ -68,31 +76,31 @@ module ch_est_top_tb #(parameter
  	repeat (30) @(negedge clk);
 
     rst=1'b1;
-    v_shift_tb='d0;
+    v_shift_tb='d1;
     NRS_gen_ready_tb=1'b1; //at negedge, then follow it with a posedge
     demap_ready_tb=1'b1;
     @(posedge clk); //MULT_STORE
-    rx_r_tb= 'd1234;
-    rx_i_tb= 'd3456;
+    rx_r_tb= 'd1380;
+    rx_i_tb= 'd1425;
     nrs_r_tb=1'b0;
     nrs_i_tb=1'b0;
     @(posedge clk);
-    rx_r_tb= 'd1122;
-    rx_i_tb= -'sd1732;
-    nrs_r_tb=1'b0;
+    rx_r_tb= -'sd1364;
+    rx_i_tb= 'd1353;
+    nrs_r_tb=1'b1;
     nrs_i_tb=1'b0;
     NRS_gen_ready_tb=1'b0;
     repeat (2) @(negedge clk); //any delay
 
     NRS_gen_ready_tb=1'b1;
     @(posedge clk); //2nd MULT_STORE
-    rx_r_tb= 'd15567;
-    rx_i_tb= 'd1077;
-    nrs_r_tb=1'b0;
+    rx_r_tb= 'd1440;
+    rx_i_tb= 'd1440;
+    nrs_r_tb=1'b1;
     nrs_i_tb=1'b0;
     @(posedge clk);
-    rx_r_tb= 'd15507;
-    rx_i_tb= 'd1097;
+    rx_r_tb= 'd1438;
+    rx_i_tb= 'd1359;
     nrs_r_tb=1'b0;
     nrs_i_tb=1'b0;
     NRS_gen_ready_tb=1'b0;
@@ -100,29 +108,29 @@ module ch_est_top_tb #(parameter
 
     NRS_gen_ready_tb=1'b1;
     @(posedge clk); //MULT_ADD
-    rx_r_tb= 'd1034;
-    rx_i_tb= 'd3496;
+    rx_r_tb= 'd1418;
+    rx_i_tb= 'd1388;
     nrs_r_tb=1'b0;
-    nrs_i_tb=1'b0;
+    nrs_i_tb=1'b1;
     @(posedge clk);
-    rx_r_tb= 'd13322;
-    rx_i_tb= -'sd1232;
-    nrs_r_tb=1'b0;
+    rx_r_tb= 'd1313;
+    rx_i_tb= 'd1397;
+    nrs_r_tb=1'b1;
     nrs_i_tb=1'b0;
     NRS_gen_ready_tb=1'b0;
     repeat (2) @(negedge clk);
 
     NRS_gen_ready_tb=1'b1;
     @(posedge clk); //2nd MULT_ADD
-    rx_r_tb= 'd11567;
-    rx_i_tb= 'd1007;
+    rx_r_tb= 'd1440;
+    rx_i_tb= 'd1440;
     nrs_r_tb=1'b0;
     nrs_i_tb=1'b0;
     @(posedge clk);
-    rx_r_tb= 'd1527;
-    rx_i_tb= 'd1007;
-    nrs_r_tb=1'b0;
-    nrs_i_tb=1'b0;
+    rx_r_tb= 'd1438;
+    rx_i_tb= 'd1359;
+    nrs_r_tb=1'b1;
+    nrs_i_tb=1'b1;
 
     NRS_gen_ready_tb=1'b0;
     demap_ready_tb=1'b0;
