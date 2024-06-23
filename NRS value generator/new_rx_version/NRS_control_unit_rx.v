@@ -15,7 +15,7 @@ module NRS_control_unit_rx
 (
 	input wire clk, rst,
 	input wire cinit_valid, 
-	input wire new_frame,
+	input wire new_frame, new_subframe,
 	input wire last_run, first_run,
 	input wire est_ack,
 	output reg shift_x, out, wr_en, init_x1, init_x2, cinit_run, //cinit_run is a signal to enable cinit_generator
@@ -41,7 +41,7 @@ end
 always @(*) begin
 	case (cs) 
 	    IDLE: begin
-	    	if (new_frame) begin
+	    	if (new_frame | new_subframe) begin
 	    		ns = FIRE_CINIT;
 	    	end
 	    	else begin
@@ -72,7 +72,7 @@ always @(*) begin
 	    end
 
 	    EVALUATE: begin
-	    	if (evaluate_done & frame_done) begin
+	    	if (evaluate_done & subframe_done) begin
 	    		ns= IDLE;
 	    	end
 	    	else if (evaluate_done) begin
@@ -151,13 +151,13 @@ end
 //frame done
 always @(posedge clk or negedge rst) begin
 	if (!rst) begin
-       frame_done<= 1'b0;
+        subframe_done<= 1'b0;
 	end
 	else if (cs==SEED & last_run) begin
-	   frame_done<=1'b1;
+	    subframe_done<=1'b1;
 	end
 	else if (cs==IDLE) begin
-		frame_done<=1'b0;
+	    subframe_done<=1'b0;
 	end
 end
 

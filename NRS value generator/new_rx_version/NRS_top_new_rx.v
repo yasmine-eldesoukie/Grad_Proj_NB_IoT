@@ -7,7 +7,7 @@ module NRS_top_new_rx
 	NRS_WIDTH_R_I=16
 )
 (
-	input wire clk, rst, new_frame, est_ack,
+	input wire clk, rst, new_frame, new_subframe, est_ack,
 	input wire [WIDTH_B-1:0] N_cell_ID,
 	//input wire [LINES-1:0] rd_addr_est, rd_addr_fine, 
 	input wire [LINES-1:0] rd_addr_est,
@@ -98,6 +98,7 @@ NRS_control_unit_rx NRS_control_unit (
 	.rst(rst), 
 	.cinit_valid(cinit_valid),
 	.new_frame(new_frame),
+	.new_subframe(new_subframe),
 	.last_run(last_run),
 	.first_run(first_run),
 	.est_ack(est_ack),

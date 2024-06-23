@@ -23,7 +23,7 @@ always @(posedge clk or negedge rst) begin
 end
 
 always @(*) begin
-	last_run= (runs_counter==4*10-1); 
+    last_run= (runs_counter%4=='d3);
 	first_run= (runs_counter=='d0);
 	slot= (runs_counter/2);
 end
