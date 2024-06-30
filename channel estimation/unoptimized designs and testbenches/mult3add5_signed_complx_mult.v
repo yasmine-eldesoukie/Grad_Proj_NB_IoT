@@ -5,22 +5,11 @@
    s3= (nrs_r- nrs_i)(rx_r+ rx_i)
    real_part_reg= s1+s2
    imag_part_reg= s3+s2-s1
-
-   nrs real or imag. parts take one of two values: + or - (1/root(2)) . Hence, nrs can take one of 4 options: 
-      1- (+)(+j)
-      2- (+)(-j)
-      3- (-)(+j)
-      4- (-)(-j)
-
-   s1 and s2 multiplications are modified to a multiplication by a const (1/root(2)) and a multiplexer.
-   for example: s1= rx_r* (1/root(2)) or  -rx_r* (1/root(2))
-
-   s3 is modified in the same way with an added option of zero result if (nrs_r + nrs_i)=0
-
-   for that we only need the sign of the nrs parts, this reduces complexity of design, area and power of multipliers  
+   
+   using 3 mult instead of 4 and 5 adders instead of 2
 
 */
-module signed_modified_complx_mult 
+module mult3add5_signed_complx_mult 
 #(parameter 
 	WIDTH_R_I=16,
 	PILOT_FLOAT_BITS= 11, 
@@ -35,8 +24,9 @@ module signed_modified_complx_mult
 	output reg signed [WIDTH_R_I :0] real_part, imag_part
 );
 
-reg signed [WIDTH_R_I+PILOT_FLOAT_BITS-1:0] m1, s1, m2, s2; //27 bits
-reg signed [WIDTH_R_I+PILOT_FLOAT_BITS+1:0] m3, s3; //29 bits
+reg signed [WIDTH_R_I+PILOT_FLOAT_BITS-1:0] s1, s2; //27 bits
+reg signed [WIDTH_R_I+PILOT_FLOAT_BITS+1:0] s3; //29 bits
+reg signed [PILOT_FLOAT_BITS:0] pilot_r, pilot_i;
 reg signed [WIDTH_R_I+PILOT_FLOAT_BITS:0] real_long; //28 bits 
 reg signed [WIDTH_R_I+PILOT_FLOAT_BITS:0] imag_long; 
 
@@ -45,40 +35,15 @@ reg signed [WIDTH_R_I:0] imag_est_mem [3:0];
 
 integer i;
 always @(*) begin
-	//s1
-	m1=rx_r* VALUE;
-	if (nrs_r) begin
-		s1= ~(m1)+1; //its 2's comp
-	end
-	else begin
-		s1= m1;
-	end
-
-	//s2
-	m2=rx_i* VALUE;
-	if (nrs_i) begin
-		s2= ~(m2)+1; //its 2's comp
-	end
-	else begin
-		s2= m2;
-	end
-
-	//s3
-	m3= (rx_r+ rx_i) *2 * VALUE ;
-	if (nrs_r~^nrs_i) begin //xnor
-		s3='d0;
-	end
-	else if (nrs_r) begin
-		s3= ~(m3)+1;
-	end
-	else begin
-		s3= m3; 
-	end
+	pilot_r=(nrs_r)? 12'sb1_0100101_1000: 12'sb0_1011010_1000;
+	pilot_i=(nrs_i)? 12'sb1_0100101_1000: 12'sb0_1011010_1000;
     
-	//this should be divided by the domi. magnitude (2048 approx 2^11) -->shifted 11 bits to the right. output will be 17 MSB
-    //this causes some inaccuracy, up to 5 in decimal or (5/2^11--> 2.44*10^(-3))
-	real_long= s1+s2; 
-	imag_long= s3+s2-s1;
+    s1= rx_r* pilot_r ;
+    s2= rx_i* pilot_i ;
+    s3= (pilot_r- pilot_i)*(rx_r+ rx_i) ;
+
+	real_long= s1 + s2 ;
+	imag_long= s3 + s2 - s1 ;
 
 	real_part= real_long[WIDTH_R_I+PILOT_FLOAT_BITS:PILOT_FLOAT_BITS];
 	imag_part= imag_long[WIDTH_R_I+PILOT_FLOAT_BITS:PILOT_FLOAT_BITS];
