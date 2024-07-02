@@ -14,7 +14,7 @@ always @(posedge clk or negedge rst) begin
 		adder_out<='b0;
 	end
 	else if (en) begin
-		adder_out= adder_out_comp;
+		adder_out<= adder_out_comp;
 	end
 end
 endmodule
