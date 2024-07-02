@@ -53,9 +53,9 @@ initial begin
 			if (~(j==10 | j==11 )) begin
 	            for (k=5; k<7; k=k+1) begin
                     if (k==5)
-			           repeat (7) @(negedge clk); 
+			           repeat (5) @(negedge clk); 
 			        else
-			           repeat (8) @(negedge clk); //one more clk for l=6			        
+			           repeat (6) @(negedge clk); //one more clk for l=6			        
 
 			        if (cinit_expec!= cinit_dut) begin
 				        $display ("ERROR: cinit value wrong at ns_tb=%0d, l=%0d, N_cell_ID= %0d", ns_tb, l_tb, N_cell_ID_tb);
@@ -95,9 +95,10 @@ initial begin
                     @(negedge clk); 
                     run_tb=1'b0;
 			        if (k==5)
-			           repeat (6) @(negedge clk); //make it 6 for now
+			           repeat (5) @(negedge clk); //make it 6 for now
 			        else
-			           repeat (7) @(negedge clk); //one more clk for l=6
+			           repeat (6) @(negedge clk); //one more clk for l=6
+
             	    cinit_expec={(7*(ns_tb+1)+l_tb+1)*(2*N_cell_ID_tb+1)*1024}+ 2* N_cell_ID_tb+1;
  			        cinit_valid_expec=1'b1;
 

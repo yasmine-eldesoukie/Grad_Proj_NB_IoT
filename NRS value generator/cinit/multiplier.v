@@ -1,11 +1,12 @@
 module multiplier #(parameter WIDTH_A=8, WIDTH_B=9)(
-	input wire clk, rst, en,
+	//input wire clk, rst, en,
     input wire [WIDTH_A-1:0] a,
 	input wire [WIDTH_B-1:0] b,
 	output reg [WIDTH_A+WIDTH_B-1:0] mult_out
 	//output reg mult_done
 	);
 
+/*
 reg [WIDTH_A+WIDTH_B-1:0] mult_out_comp;
 always @(*) begin
 	if (en) begin
@@ -24,5 +25,11 @@ always @(posedge clk or negedge rst) begin
 	else begin
 		mult_out<=mult_out_comp;
 	end
+end
+*/
+
+//this is suffiecient and uses less area
+always @(*) begin
+	mult_out = a*b;
 end
 endmodule

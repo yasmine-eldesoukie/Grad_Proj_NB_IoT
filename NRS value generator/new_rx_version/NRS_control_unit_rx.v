@@ -24,7 +24,7 @@ module NRS_control_unit_rx
 ); 
 
 reg [$clog2(1600)-1:0] counter_shifts;
-reg en_shift_counter, shift_done, evaluate_done, stop_cinit_run, frame_done;
+reg en_shift_counter, shift_done, evaluate_done, stop_cinit_run, subframe_done;
 reg [2:0] cs, ns;
 
 //current state logic
@@ -81,7 +81,11 @@ always @(*) begin
 	    	else begin
 	    		ns = EVALUATE;
 	    	end
-	    end        
+	    end   
+
+	    default: begin
+	    	ns= IDLE;
+	    end     
 	endcase
 end
 

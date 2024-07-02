@@ -84,18 +84,18 @@ initial begin
                     //all variables ready--> calculate cinit
                     cinit_tb={(7*(ns_tb+1)+l_tb+1)*(2*N_cell_ID_tb+1)*1024}+ 2* N_cell_ID_tb+1;
                     x2=cinit_tb;
-                    /* 1st time after reset takes 8 clks after cinit_run. After the 1st frame, the new cinit is ready after just 7 clks--> why? 
+                    /* 1st time after reset takes 7 clks after cinit_run. After the 1st frame, the new cinit is ready after just 7 clks--> why? 
                       cinit_run takes 2 clks after the new_frame signal, one of them is used when N_cell_ID is updated
                       then one more clk for init signal (SEED state)
-                      --> 10 clks after reset, 9 for the 1st evaluation of each new frame and 1 clk (SEED state) for others
+                      --> 9 clks after reset, 8 for the 1st evaluation of each new frame and 1 clk (SEED state) for others
                     */
                     //waiting
                     if (first==1) begin
-                       repeat (10) @(negedge clk);
+                       repeat (9) @(negedge clk);
                        first='b0;
                     end
                     else if (j==0 & k==5) begin //new frame
-                       repeat (9) @(negedge clk);
+                       repeat (8) @(negedge clk);
                     end
                     //else if (k==6) begin //SEED state delay
                        //@(negedge clk);
@@ -103,7 +103,7 @@ initial begin
                     else if (new_subframe_tb==1) begin
                         @(negedge clk);
                         new_subframe_tb=1'b0; 
-                        repeat (9-1) @(negedge clk);
+                        repeat (8-1) @(negedge clk);
                     end
                     else begin
                        /*repeat (2)*/ @(negedge clk);

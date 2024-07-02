@@ -20,7 +20,8 @@ input wire clk, rst,
 input wire run, //control signal from the NRS_value_gen control unit 
 output reg [1:0] s4, 
 output reg [2:0] s5,
-output reg en_add, en_mult, en_add_reg,
+//output reg en_add, en_mult, en_add_reg,
+output reg en_add,
 output reg valid 
 );
 
@@ -42,10 +43,9 @@ always @(*) begin
     s4= 2'b00;
     s5= 3'b000;
     en_add=1'b1;
-    en_mult=1'b0;
+    //en_mult=1'b0;
 	case (cs) 
 	IDLE: begin
-	    en_add=1'b0;
 		if (run) begin
 			ns=A_NS_2NS;
 		end
@@ -85,7 +85,7 @@ always @(*) begin
 
 	M_A_N: begin
 	    en_add=1'b0;
-	    en_mult=1'b1;
+	    //en_mult=1'b1;
 		ns=A_A_2M_STORE;
 		//they are irrelevant here, but set to their next (A_A_2M_STORE case) values
 		s4= 2'b01;
@@ -99,6 +99,7 @@ always @(*) begin
 	end
 
     A_2N_1: begin
+        en_add=1'b0;
         s4= 2'b11;
         s5= 3'b110;
         if (run) begin
@@ -120,6 +121,7 @@ always @(*) begin
 	valid= (l_five & cs==A_2N_1); //only cs==A_2N_1 is needed but l_five is added to prevent valid to be on for the last run of the subframe, as this gets NRS out of FIRE_CINIT state incorrectly
 end
 
+/*
 always @(posedge clk or negedge rst) begin
 	if (!rst) begin
 		en_add_reg<=1'b0;
@@ -131,6 +133,7 @@ always @(posedge clk or negedge rst) begin
 		en_add_reg<=1'b0;
 	end
 end
+*/
 
 //sequential internal control dignals
 always @(posedge clk or negedge rst) begin

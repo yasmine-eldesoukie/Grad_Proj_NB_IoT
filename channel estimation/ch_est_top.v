@@ -44,6 +44,8 @@ module ch_est_top #(parameter
  wire s_est;
  wire [1:0] shift;
 
+ wire avg_mem_en, en_reg_E, en_reg_2E, en_reg_5E;
+
  //complex mult
  signed_modified_complx_mult cmplx_mult (
  	.clk(clk),

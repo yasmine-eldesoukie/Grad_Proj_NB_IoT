@@ -335,6 +335,11 @@ always @(*) begin
                 default:   ns_A2= A2_IDLE;
             endcase
         end
+
+        default: begin
+            ns_A1= A1_IDLE;
+            ns_A2= A2_IDLE;
+        end
     endcase
 end
 
