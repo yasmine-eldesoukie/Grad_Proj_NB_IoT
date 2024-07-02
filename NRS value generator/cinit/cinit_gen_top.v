@@ -9,10 +9,11 @@ module cinit_gen_top #(parameter WIDTH=18 , WIDTH_A=8 , WIDTH_B=9)
 
 wire [1:0] s4;
 wire [2:0] s5;
-wire [WIDTH-1:0] adder_out, adder_out_comp, out_a, b_out;
+wire [WIDTH-1:0] adder_out, out_a, b_out;
 wire [WIDTH_A+WIDTH_B-1:0] mult_out;
 //wire en_add, en_mult, en_add_reg;
 wire en_add;
+wire [9:0] adder_out_comp;
 
 a_mux a_mux (
 	.s4(s4),
@@ -45,7 +46,7 @@ multiplier multiplier (
 	.mult_out(mult_out)
 	);
 
-assign cinit= {adder_out, adder_out_comp[9:0]};
+assign cinit= {adder_out, adder_out_comp};
 
 cinit_control_unit cinit_control_unit (
 	.clk(clk),
