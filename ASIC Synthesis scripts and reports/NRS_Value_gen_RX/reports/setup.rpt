@@ -1,0 +1,1344 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 20
+Design : NRS_top_new_rx
+Version: K-2015.06
+Date   : Tue Jul  2 23:20:13 2024
+****************************************
+
+Operating Conditions: scmetro_tsmc_cl013g_rvt_ss_1p08v_125c   Library: scmetro_tsmc_cl013g_rvt_ss_1p08v_125c
+Wire Load Model Mode: top
+
+  Startpoint: rd_addr_est[1]
+              (input port clocked by clk)
+  Endpoint: nrs_est_i (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_est[1] (in)                                     0.01      26.01 r
+  NRS_reg/rd_addr_est[1] (NRS_reg_new_rx)                 0.00      26.01 r
+  NRS_reg/U18/Y (BUFX2M)                                  0.23      26.24 r
+  NRS_reg/U8/Y (INVX2M)                                   0.09      26.33 f
+  NRS_reg/U21/Y (AO22X1M)                                 0.39      26.71 f
+  NRS_reg/U12/Y (AOI22X1M)                                0.20      26.91 r
+  NRS_reg/U4/Y (OAI2B2X1M)                                0.17      27.08 f
+  NRS_reg/U3/Y (CLKBUFX8M)                                0.86      27.94 f
+  NRS_reg/c_n_est_i (NRS_reg_new_rx)                      0.00      27.94 f
+  nrs_est_i (out)                                         0.00      27.94 f
+  data arrival time                                                 27.94
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -27.94
+  --------------------------------------------------------------------------
+  slack (MET)                                                       75.86
+
+
+  Startpoint: rd_addr_est[0]
+              (input port clocked by clk)
+  Endpoint: nrs_est_r (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_est[0] (in)                                     0.01      26.01 r
+  U2/Y (BUFX2M)                                           0.30      26.31 r
+  NRS_reg/rd_addr_est[0] (NRS_reg_new_rx)                 0.00      26.31 r
+  NRS_reg/U16/Y (MX4X1M)                                  0.40      26.71 f
+  NRS_reg/U2/Y (MX4X8M)                                   0.90      27.61 f
+  NRS_reg/c_n_est_r (NRS_reg_new_rx)                      0.00      27.61 f
+  nrs_est_r (out)                                         0.00      27.61 f
+  data arrival time                                                 27.61
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -27.61
+  --------------------------------------------------------------------------
+  slack (MET)                                                       76.19
+
+
+  Startpoint: N_cell_ID[1]
+              (input port clocked by clk)
+  Endpoint: cinit_generator/adder/adder_out_reg[17]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[1] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[1] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[1] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[1] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U42/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U131/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U2/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S1_2_0/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S1_3_0/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S1_4_0/CO (ADDFX2M)
+                                                          0.55      28.07 r
+  cinit_generator/multiplier/mult_33/S1_5_0/CO (ADDFX2M)
+                                                          0.55      28.62 r
+  cinit_generator/multiplier/mult_33/S1_6_0/CO (ADDFX2M)
+                                                          0.55      29.18 r
+  cinit_generator/multiplier/mult_33/S4_0/S (ADDFX2M)     0.56      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/A[5] (multiplier_DW01_add_0)
+                                                          0.00      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/U9/Y (BUFX2M)
+                                                          0.15      29.88 f
+  cinit_generator/multiplier/mult_33/FS_1/SUM[5] (multiplier_DW01_add_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_33/PRODUCT[7] (multiplier_DW02_mult_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_out[7] (multiplier)     0.00      29.88 f
+  cinit_generator/b_mux/mult_out[7] (b_mux)               0.00      29.88 f
+  cinit_generator/b_mux/U18/Y (NOR2BX2M)                  0.13      30.01 f
+  cinit_generator/b_mux/b_out[8] (b_mux)                  0.00      30.01 f
+  cinit_generator/adder/b[8] (adder)                      0.00      30.01 f
+  cinit_generator/adder/add_11/B[8] (adder_DW01_add_0)
+                                                          0.00      30.01 f
+  cinit_generator/adder/add_11/U1_8/CO (ADDFX2M)          0.49      30.50 f
+  cinit_generator/adder/add_11/U1_9/CO (ADDFX2M)          0.33      30.83 f
+  cinit_generator/adder/add_11/U1_10/CO (ADDFX2M)         0.33      31.16 f
+  cinit_generator/adder/add_11/U1_11/CO (ADDFX2M)         0.33      31.49 f
+  cinit_generator/adder/add_11/U1_12/CO (ADDFX2M)         0.33      31.81 f
+  cinit_generator/adder/add_11/U1_13/CO (ADDFX2M)         0.33      32.14 f
+  cinit_generator/adder/add_11/U1_14/CO (ADDFX2M)         0.33      32.47 f
+  cinit_generator/adder/add_11/U1_15/CO (ADDFX2M)         0.33      32.80 f
+  cinit_generator/adder/add_11/U1_16/CO (ADDFX2M)         0.33      33.12 f
+  cinit_generator/adder/add_11/U1_17/Y (XOR3XLM)          0.24      33.37 f
+  cinit_generator/adder/add_11/SUM[17] (adder_DW01_add_0)
+                                                          0.00      33.37 f
+  cinit_generator/adder/U6/Y (AO22X1M)                    0.33      33.70 f
+  cinit_generator/adder/adder_out_reg[17]/D (DFFRQX2M)
+                                                          0.00      33.70 f
+  data arrival time                                                 33.70
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  cinit_generator/adder/adder_out_reg[17]/CK (DFFRQX2M)
+                                                          0.00     129.80 r
+  library setup time                                     -0.17     129.63
+  data required time                                               129.63
+  --------------------------------------------------------------------------
+  data required time                                               129.63
+  data arrival time                                                -33.70
+  --------------------------------------------------------------------------
+  slack (MET)                                                       95.94
+
+
+  Startpoint: N_cell_ID[1]
+              (input port clocked by clk)
+  Endpoint: cinit_generator/adder/adder_out_reg[16]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[1] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[1] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[1] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[1] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U42/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U131/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U2/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S1_2_0/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S1_3_0/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S1_4_0/CO (ADDFX2M)
+                                                          0.55      28.07 r
+  cinit_generator/multiplier/mult_33/S1_5_0/CO (ADDFX2M)
+                                                          0.55      28.62 r
+  cinit_generator/multiplier/mult_33/S1_6_0/CO (ADDFX2M)
+                                                          0.55      29.18 r
+  cinit_generator/multiplier/mult_33/S4_0/S (ADDFX2M)     0.56      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/A[5] (multiplier_DW01_add_0)
+                                                          0.00      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/U9/Y (BUFX2M)
+                                                          0.15      29.88 f
+  cinit_generator/multiplier/mult_33/FS_1/SUM[5] (multiplier_DW01_add_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_33/PRODUCT[7] (multiplier_DW02_mult_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_out[7] (multiplier)     0.00      29.88 f
+  cinit_generator/b_mux/mult_out[7] (b_mux)               0.00      29.88 f
+  cinit_generator/b_mux/U18/Y (NOR2BX2M)                  0.13      30.01 f
+  cinit_generator/b_mux/b_out[8] (b_mux)                  0.00      30.01 f
+  cinit_generator/adder/b[8] (adder)                      0.00      30.01 f
+  cinit_generator/adder/add_11/B[8] (adder_DW01_add_0)
+                                                          0.00      30.01 f
+  cinit_generator/adder/add_11/U1_8/CO (ADDFX2M)          0.49      30.50 f
+  cinit_generator/adder/add_11/U1_9/CO (ADDFX2M)          0.33      30.83 f
+  cinit_generator/adder/add_11/U1_10/CO (ADDFX2M)         0.33      31.16 f
+  cinit_generator/adder/add_11/U1_11/CO (ADDFX2M)         0.33      31.49 f
+  cinit_generator/adder/add_11/U1_12/CO (ADDFX2M)         0.33      31.81 f
+  cinit_generator/adder/add_11/U1_13/CO (ADDFX2M)         0.33      32.14 f
+  cinit_generator/adder/add_11/U1_14/CO (ADDFX2M)         0.33      32.47 f
+  cinit_generator/adder/add_11/U1_15/CO (ADDFX2M)         0.33      32.80 f
+  cinit_generator/adder/add_11/U1_16/S (ADDFX2M)          0.30      33.09 r
+  cinit_generator/adder/add_11/SUM[16] (adder_DW01_add_0)
+                                                          0.00      33.09 r
+  cinit_generator/adder/U5/Y (AO22X1M)                    0.14      33.24 r
+  cinit_generator/adder/adder_out_reg[16]/D (DFFRQX2M)
+                                                          0.00      33.24 r
+  data arrival time                                                 33.24
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  cinit_generator/adder/adder_out_reg[16]/CK (DFFRQX2M)
+                                                          0.00     129.80 r
+  library setup time                                     -0.30     129.50
+  data required time                                               129.50
+  --------------------------------------------------------------------------
+  data required time                                               129.50
+  data arrival time                                                -33.24
+  --------------------------------------------------------------------------
+  slack (MET)                                                       96.26
+
+
+  Startpoint: N_cell_ID[1]
+              (input port clocked by clk)
+  Endpoint: cinit_generator/adder/adder_out_reg[15]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[1] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[1] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[1] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[1] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U42/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U131/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U2/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S1_2_0/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S1_3_0/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S1_4_0/CO (ADDFX2M)
+                                                          0.55      28.07 r
+  cinit_generator/multiplier/mult_33/S1_5_0/CO (ADDFX2M)
+                                                          0.55      28.62 r
+  cinit_generator/multiplier/mult_33/S1_6_0/CO (ADDFX2M)
+                                                          0.55      29.18 r
+  cinit_generator/multiplier/mult_33/S4_0/S (ADDFX2M)     0.56      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/A[5] (multiplier_DW01_add_0)
+                                                          0.00      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/U9/Y (BUFX2M)
+                                                          0.15      29.88 f
+  cinit_generator/multiplier/mult_33/FS_1/SUM[5] (multiplier_DW01_add_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_33/PRODUCT[7] (multiplier_DW02_mult_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_out[7] (multiplier)     0.00      29.88 f
+  cinit_generator/b_mux/mult_out[7] (b_mux)               0.00      29.88 f
+  cinit_generator/b_mux/U18/Y (NOR2BX2M)                  0.13      30.01 f
+  cinit_generator/b_mux/b_out[8] (b_mux)                  0.00      30.01 f
+  cinit_generator/adder/b[8] (adder)                      0.00      30.01 f
+  cinit_generator/adder/add_11/B[8] (adder_DW01_add_0)
+                                                          0.00      30.01 f
+  cinit_generator/adder/add_11/U1_8/CO (ADDFX2M)          0.49      30.50 f
+  cinit_generator/adder/add_11/U1_9/CO (ADDFX2M)          0.33      30.83 f
+  cinit_generator/adder/add_11/U1_10/CO (ADDFX2M)         0.33      31.16 f
+  cinit_generator/adder/add_11/U1_11/CO (ADDFX2M)         0.33      31.49 f
+  cinit_generator/adder/add_11/U1_12/CO (ADDFX2M)         0.33      31.81 f
+  cinit_generator/adder/add_11/U1_13/CO (ADDFX2M)         0.33      32.14 f
+  cinit_generator/adder/add_11/U1_14/CO (ADDFX2M)         0.33      32.47 f
+  cinit_generator/adder/add_11/U1_15/S (ADDFX2M)          0.30      32.77 r
+  cinit_generator/adder/add_11/SUM[15] (adder_DW01_add_0)
+                                                          0.00      32.77 r
+  cinit_generator/adder/U4/Y (AO22X1M)                    0.14      32.91 r
+  cinit_generator/adder/adder_out_reg[15]/D (DFFRQX2M)
+                                                          0.00      32.91 r
+  data arrival time                                                 32.91
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  cinit_generator/adder/adder_out_reg[15]/CK (DFFRQX2M)
+                                                          0.00     129.80 r
+  library setup time                                     -0.30     129.50
+  data required time                                               129.50
+  --------------------------------------------------------------------------
+  data required time                                               129.50
+  data arrival time                                                -32.91
+  --------------------------------------------------------------------------
+  slack (MET)                                                       96.59
+
+
+  Startpoint: N_cell_ID[1]
+              (input port clocked by clk)
+  Endpoint: cinit_generator/adder/adder_out_reg[14]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[1] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[1] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[1] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[1] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U42/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U131/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U2/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S1_2_0/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S1_3_0/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S1_4_0/CO (ADDFX2M)
+                                                          0.55      28.07 r
+  cinit_generator/multiplier/mult_33/S1_5_0/CO (ADDFX2M)
+                                                          0.55      28.62 r
+  cinit_generator/multiplier/mult_33/S1_6_0/CO (ADDFX2M)
+                                                          0.55      29.18 r
+  cinit_generator/multiplier/mult_33/S4_0/S (ADDFX2M)     0.56      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/A[5] (multiplier_DW01_add_0)
+                                                          0.00      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/U9/Y (BUFX2M)
+                                                          0.15      29.88 f
+  cinit_generator/multiplier/mult_33/FS_1/SUM[5] (multiplier_DW01_add_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_33/PRODUCT[7] (multiplier_DW02_mult_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_out[7] (multiplier)     0.00      29.88 f
+  cinit_generator/b_mux/mult_out[7] (b_mux)               0.00      29.88 f
+  cinit_generator/b_mux/U18/Y (NOR2BX2M)                  0.13      30.01 f
+  cinit_generator/b_mux/b_out[8] (b_mux)                  0.00      30.01 f
+  cinit_generator/adder/b[8] (adder)                      0.00      30.01 f
+  cinit_generator/adder/add_11/B[8] (adder_DW01_add_0)
+                                                          0.00      30.01 f
+  cinit_generator/adder/add_11/U1_8/CO (ADDFX2M)          0.49      30.50 f
+  cinit_generator/adder/add_11/U1_9/CO (ADDFX2M)          0.33      30.83 f
+  cinit_generator/adder/add_11/U1_10/CO (ADDFX2M)         0.33      31.16 f
+  cinit_generator/adder/add_11/U1_11/CO (ADDFX2M)         0.33      31.49 f
+  cinit_generator/adder/add_11/U1_12/CO (ADDFX2M)         0.33      31.81 f
+  cinit_generator/adder/add_11/U1_13/CO (ADDFX2M)         0.33      32.14 f
+  cinit_generator/adder/add_11/U1_14/S (ADDFX2M)          0.30      32.44 r
+  cinit_generator/adder/add_11/SUM[14] (adder_DW01_add_0)
+                                                          0.00      32.44 r
+  cinit_generator/adder/U9/Y (AO22X1M)                    0.14      32.58 r
+  cinit_generator/adder/adder_out_reg[14]/D (DFFRQX2M)
+                                                          0.00      32.58 r
+  data arrival time                                                 32.58
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  cinit_generator/adder/adder_out_reg[14]/CK (DFFRQX2M)
+                                                          0.00     129.80 r
+  library setup time                                     -0.30     129.50
+  data required time                                               129.50
+  --------------------------------------------------------------------------
+  data required time                                               129.50
+  data arrival time                                                -32.58
+  --------------------------------------------------------------------------
+  slack (MET)                                                       96.92
+
+
+  Startpoint: N_cell_ID[1]
+              (input port clocked by clk)
+  Endpoint: cinit_generator/adder/adder_out_reg[13]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[1] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[1] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[1] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[1] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U42/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U131/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U2/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S1_2_0/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S1_3_0/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S1_4_0/CO (ADDFX2M)
+                                                          0.55      28.07 r
+  cinit_generator/multiplier/mult_33/S1_5_0/CO (ADDFX2M)
+                                                          0.55      28.62 r
+  cinit_generator/multiplier/mult_33/S1_6_0/CO (ADDFX2M)
+                                                          0.55      29.18 r
+  cinit_generator/multiplier/mult_33/S4_0/S (ADDFX2M)     0.56      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/A[5] (multiplier_DW01_add_0)
+                                                          0.00      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/U9/Y (BUFX2M)
+                                                          0.15      29.88 f
+  cinit_generator/multiplier/mult_33/FS_1/SUM[5] (multiplier_DW01_add_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_33/PRODUCT[7] (multiplier_DW02_mult_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_out[7] (multiplier)     0.00      29.88 f
+  cinit_generator/b_mux/mult_out[7] (b_mux)               0.00      29.88 f
+  cinit_generator/b_mux/U18/Y (NOR2BX2M)                  0.13      30.01 f
+  cinit_generator/b_mux/b_out[8] (b_mux)                  0.00      30.01 f
+  cinit_generator/adder/b[8] (adder)                      0.00      30.01 f
+  cinit_generator/adder/add_11/B[8] (adder_DW01_add_0)
+                                                          0.00      30.01 f
+  cinit_generator/adder/add_11/U1_8/CO (ADDFX2M)          0.49      30.50 f
+  cinit_generator/adder/add_11/U1_9/CO (ADDFX2M)          0.33      30.83 f
+  cinit_generator/adder/add_11/U1_10/CO (ADDFX2M)         0.33      31.16 f
+  cinit_generator/adder/add_11/U1_11/CO (ADDFX2M)         0.33      31.49 f
+  cinit_generator/adder/add_11/U1_12/CO (ADDFX2M)         0.33      31.81 f
+  cinit_generator/adder/add_11/U1_13/S (ADDFX2M)          0.30      32.11 r
+  cinit_generator/adder/add_11/SUM[13] (adder_DW01_add_0)
+                                                          0.00      32.11 r
+  cinit_generator/adder/U8/Y (AO22X1M)                    0.14      32.25 r
+  cinit_generator/adder/adder_out_reg[13]/D (DFFRQX2M)
+                                                          0.00      32.25 r
+  data arrival time                                                 32.25
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  cinit_generator/adder/adder_out_reg[13]/CK (DFFRQX2M)
+                                                          0.00     129.80 r
+  library setup time                                     -0.30     129.50
+  data required time                                               129.50
+  --------------------------------------------------------------------------
+  data required time                                               129.50
+  data arrival time                                                -32.25
+  --------------------------------------------------------------------------
+  slack (MET)                                                       97.25
+
+
+  Startpoint: N_cell_ID[1]
+              (input port clocked by clk)
+  Endpoint: cinit_generator/adder/adder_out_reg[12]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[1] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[1] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[1] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[1] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U42/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U131/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U2/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S1_2_0/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S1_3_0/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S1_4_0/CO (ADDFX2M)
+                                                          0.55      28.07 r
+  cinit_generator/multiplier/mult_33/S1_5_0/CO (ADDFX2M)
+                                                          0.55      28.62 r
+  cinit_generator/multiplier/mult_33/S1_6_0/CO (ADDFX2M)
+                                                          0.55      29.18 r
+  cinit_generator/multiplier/mult_33/S4_0/S (ADDFX2M)     0.56      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/A[5] (multiplier_DW01_add_0)
+                                                          0.00      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/U9/Y (BUFX2M)
+                                                          0.15      29.88 f
+  cinit_generator/multiplier/mult_33/FS_1/SUM[5] (multiplier_DW01_add_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_33/PRODUCT[7] (multiplier_DW02_mult_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_out[7] (multiplier)     0.00      29.88 f
+  cinit_generator/b_mux/mult_out[7] (b_mux)               0.00      29.88 f
+  cinit_generator/b_mux/U18/Y (NOR2BX2M)                  0.13      30.01 f
+  cinit_generator/b_mux/b_out[8] (b_mux)                  0.00      30.01 f
+  cinit_generator/adder/b[8] (adder)                      0.00      30.01 f
+  cinit_generator/adder/add_11/B[8] (adder_DW01_add_0)
+                                                          0.00      30.01 f
+  cinit_generator/adder/add_11/U1_8/CO (ADDFX2M)          0.49      30.50 f
+  cinit_generator/adder/add_11/U1_9/CO (ADDFX2M)          0.33      30.83 f
+  cinit_generator/adder/add_11/U1_10/CO (ADDFX2M)         0.33      31.16 f
+  cinit_generator/adder/add_11/U1_11/CO (ADDFX2M)         0.33      31.49 f
+  cinit_generator/adder/add_11/U1_12/S (ADDFX2M)          0.30      31.78 r
+  cinit_generator/adder/add_11/SUM[12] (adder_DW01_add_0)
+                                                          0.00      31.78 r
+  cinit_generator/adder/U7/Y (AO22X1M)                    0.14      31.93 r
+  cinit_generator/adder/adder_out_reg[12]/D (DFFRQX2M)
+                                                          0.00      31.93 r
+  data arrival time                                                 31.93
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  cinit_generator/adder/adder_out_reg[12]/CK (DFFRQX2M)
+                                                          0.00     129.80 r
+  library setup time                                     -0.30     129.50
+  data required time                                               129.50
+  --------------------------------------------------------------------------
+  data required time                                               129.50
+  data arrival time                                                -31.93
+  --------------------------------------------------------------------------
+  slack (MET)                                                       97.57
+
+
+  Startpoint: N_cell_ID[1]
+              (input port clocked by clk)
+  Endpoint: cinit_generator/adder/adder_out_reg[11]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[1] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[1] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[1] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[1] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U42/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U131/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U2/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S1_2_0/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S1_3_0/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S1_4_0/CO (ADDFX2M)
+                                                          0.55      28.07 r
+  cinit_generator/multiplier/mult_33/S1_5_0/CO (ADDFX2M)
+                                                          0.55      28.62 r
+  cinit_generator/multiplier/mult_33/S1_6_0/CO (ADDFX2M)
+                                                          0.55      29.18 r
+  cinit_generator/multiplier/mult_33/S4_0/S (ADDFX2M)     0.56      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/A[5] (multiplier_DW01_add_0)
+                                                          0.00      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/U9/Y (BUFX2M)
+                                                          0.15      29.88 f
+  cinit_generator/multiplier/mult_33/FS_1/SUM[5] (multiplier_DW01_add_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_33/PRODUCT[7] (multiplier_DW02_mult_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_out[7] (multiplier)     0.00      29.88 f
+  cinit_generator/b_mux/mult_out[7] (b_mux)               0.00      29.88 f
+  cinit_generator/b_mux/U18/Y (NOR2BX2M)                  0.13      30.01 f
+  cinit_generator/b_mux/b_out[8] (b_mux)                  0.00      30.01 f
+  cinit_generator/adder/b[8] (adder)                      0.00      30.01 f
+  cinit_generator/adder/add_11/B[8] (adder_DW01_add_0)
+                                                          0.00      30.01 f
+  cinit_generator/adder/add_11/U1_8/CO (ADDFX2M)          0.49      30.50 f
+  cinit_generator/adder/add_11/U1_9/CO (ADDFX2M)          0.33      30.83 f
+  cinit_generator/adder/add_11/U1_10/CO (ADDFX2M)         0.33      31.16 f
+  cinit_generator/adder/add_11/U1_11/S (ADDFX2M)          0.30      31.45 r
+  cinit_generator/adder/add_11/SUM[11] (adder_DW01_add_0)
+                                                          0.00      31.45 r
+  cinit_generator/adder/U14/Y (AO22X1M)                   0.14      31.60 r
+  cinit_generator/adder/adder_out_reg[11]/D (DFFRQX2M)
+                                                          0.00      31.60 r
+  data arrival time                                                 31.60
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  cinit_generator/adder/adder_out_reg[11]/CK (DFFRQX2M)
+                                                          0.00     129.80 r
+  library setup time                                     -0.30     129.50
+  data required time                                               129.50
+  --------------------------------------------------------------------------
+  data required time                                               129.50
+  data arrival time                                                -31.60
+  --------------------------------------------------------------------------
+  slack (MET)                                                       97.90
+
+
+  Startpoint: N_cell_ID[1]
+              (input port clocked by clk)
+  Endpoint: cinit_generator/adder/adder_out_reg[10]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[1] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[1] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[1] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[1] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U42/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U131/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U2/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S1_2_0/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S1_3_0/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S1_4_0/CO (ADDFX2M)
+                                                          0.55      28.07 r
+  cinit_generator/multiplier/mult_33/S1_5_0/CO (ADDFX2M)
+                                                          0.55      28.62 r
+  cinit_generator/multiplier/mult_33/S1_6_0/CO (ADDFX2M)
+                                                          0.55      29.18 r
+  cinit_generator/multiplier/mult_33/S4_0/S (ADDFX2M)     0.56      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/A[5] (multiplier_DW01_add_0)
+                                                          0.00      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/U9/Y (BUFX2M)
+                                                          0.15      29.88 f
+  cinit_generator/multiplier/mult_33/FS_1/SUM[5] (multiplier_DW01_add_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_33/PRODUCT[7] (multiplier_DW02_mult_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_out[7] (multiplier)     0.00      29.88 f
+  cinit_generator/b_mux/mult_out[7] (b_mux)               0.00      29.88 f
+  cinit_generator/b_mux/U18/Y (NOR2BX2M)                  0.13      30.01 f
+  cinit_generator/b_mux/b_out[8] (b_mux)                  0.00      30.01 f
+  cinit_generator/adder/b[8] (adder)                      0.00      30.01 f
+  cinit_generator/adder/add_11/B[8] (adder_DW01_add_0)
+                                                          0.00      30.01 f
+  cinit_generator/adder/add_11/U1_8/CO (ADDFX2M)          0.49      30.50 f
+  cinit_generator/adder/add_11/U1_9/CO (ADDFX2M)          0.33      30.83 f
+  cinit_generator/adder/add_11/U1_10/S (ADDFX2M)          0.30      31.13 r
+  cinit_generator/adder/add_11/SUM[10] (adder_DW01_add_0)
+                                                          0.00      31.13 r
+  cinit_generator/adder/U13/Y (AO22X1M)                   0.14      31.27 r
+  cinit_generator/adder/adder_out_reg[10]/D (DFFRQX2M)
+                                                          0.00      31.27 r
+  data arrival time                                                 31.27
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  cinit_generator/adder/adder_out_reg[10]/CK (DFFRQX2M)
+                                                          0.00     129.80 r
+  library setup time                                     -0.30     129.50
+  data required time                                               129.50
+  --------------------------------------------------------------------------
+  data required time                                               129.50
+  data arrival time                                                -31.27
+  --------------------------------------------------------------------------
+  slack (MET)                                                       98.23
+
+
+  Startpoint: N_cell_ID[2]
+              (input port clocked by clk)
+  Endpoint: cinit_generator/adder/adder_out_reg[9]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[2] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[2] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[2] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[2] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U41/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U130/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U7/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S2_2_1/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S2_3_1/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S2_4_1/CO (ADDFX2M)
+                                                          0.55      28.07 r
+  cinit_generator/multiplier/mult_33/S2_5_1/CO (ADDFX2M)
+                                                          0.55      28.62 r
+  cinit_generator/multiplier/mult_33/S2_6_1/CO (ADDFX2M)
+                                                          0.55      29.18 r
+  cinit_generator/multiplier/mult_33/S4_1/S (ADDFX2M)     0.59      29.76 f
+  cinit_generator/multiplier/mult_33/U24/Y (INVX2M)       0.08      29.84 r
+  cinit_generator/multiplier/mult_33/U23/Y (XNOR2X2M)     0.17      30.01 r
+  cinit_generator/multiplier/mult_33/FS_1/A[6] (multiplier_DW01_add_0)
+                                                          0.00      30.01 r
+  cinit_generator/multiplier/mult_33/FS_1/U6/Y (INVX2M)
+                                                          0.06      30.08 f
+  cinit_generator/multiplier/mult_33/FS_1/U7/Y (INVX2M)
+                                                          0.05      30.12 r
+  cinit_generator/multiplier/mult_33/FS_1/SUM[6] (multiplier_DW01_add_0)
+                                                          0.00      30.12 r
+  cinit_generator/multiplier/mult_33/PRODUCT[8] (multiplier_DW02_mult_0)
+                                                          0.00      30.12 r
+  cinit_generator/multiplier/mult_out[8] (multiplier)     0.00      30.12 r
+  cinit_generator/b_mux/mult_out[8] (b_mux)               0.00      30.12 r
+  cinit_generator/b_mux/U24/Y (NOR2BX2M)                  0.14      30.27 r
+  cinit_generator/b_mux/b_out[9] (b_mux)                  0.00      30.27 r
+  cinit_generator/adder/b[9] (adder)                      0.00      30.27 r
+  cinit_generator/adder/add_11/B[9] (adder_DW01_add_0)
+                                                          0.00      30.27 r
+  cinit_generator/adder/add_11/U1_9/S (ADDFX2M)           0.58      30.85 f
+  cinit_generator/adder/add_11/SUM[9] (adder_DW01_add_0)
+                                                          0.00      30.85 f
+  cinit_generator/adder/U12/Y (AO22X1M)                   0.33      31.18 f
+  cinit_generator/adder/adder_out_reg[9]/D (DFFRQX2M)     0.00      31.18 f
+  data arrival time                                                 31.18
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  cinit_generator/adder/adder_out_reg[9]/CK (DFFRQX2M)
+                                                          0.00     129.80 r
+  library setup time                                     -0.17     129.63
+  data required time                                               129.63
+  --------------------------------------------------------------------------
+  data required time                                               129.63
+  data arrival time                                                -31.18
+  --------------------------------------------------------------------------
+  slack (MET)                                                       98.46
+
+
+  Startpoint: N_cell_ID[1]
+              (input port clocked by clk)
+  Endpoint: x2_LFSR/LFSR_reg[9]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[1] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[1] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[1] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[1] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U42/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U131/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U2/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S1_2_0/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S1_3_0/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S1_4_0/CO (ADDFX2M)
+                                                          0.55      28.07 r
+  cinit_generator/multiplier/mult_33/S1_5_0/CO (ADDFX2M)
+                                                          0.55      28.62 r
+  cinit_generator/multiplier/mult_33/S1_6_0/CO (ADDFX2M)
+                                                          0.55      29.18 r
+  cinit_generator/multiplier/mult_33/S4_0/S (ADDFX2M)     0.56      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/A[5] (multiplier_DW01_add_0)
+                                                          0.00      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/U9/Y (BUFX2M)
+                                                          0.15      29.88 f
+  cinit_generator/multiplier/mult_33/FS_1/SUM[5] (multiplier_DW01_add_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_33/PRODUCT[7] (multiplier_DW02_mult_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_out[7] (multiplier)     0.00      29.88 f
+  cinit_generator/b_mux/mult_out[7] (b_mux)               0.00      29.88 f
+  cinit_generator/b_mux/U18/Y (NOR2BX2M)                  0.13      30.01 f
+  cinit_generator/b_mux/b_out[8] (b_mux)                  0.00      30.01 f
+  cinit_generator/adder/b[8] (adder)                      0.00      30.01 f
+  cinit_generator/adder/add_11/B[8] (adder_DW01_add_0)
+                                                          0.00      30.01 f
+  cinit_generator/adder/add_11/U1_8/CO (ADDFX2M)          0.49      30.50 f
+  cinit_generator/adder/add_11/U1_9/S (ADDFX2M)           0.31      30.81 r
+  cinit_generator/adder/add_11/SUM[9] (adder_DW01_add_0)
+                                                          0.00      30.81 r
+  cinit_generator/adder/adder_out_comp[9] (adder)         0.00      30.81 r
+  cinit_generator/cinit[9] (cinit_gen_top)                0.00      30.81 r
+  x2_LFSR/seed[9] (x2_LFSR)                               0.00      30.81 r
+  x2_LFSR/U11/Y (AOI22X1M)                                0.09      30.91 f
+  x2_LFSR/U10/Y (OAI2B1X2M)                               0.09      30.99 r
+  x2_LFSR/LFSR_reg[9]/D (DFFRQX2M)                        0.00      30.99 r
+  data arrival time                                                 30.99
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  x2_LFSR/LFSR_reg[9]/CK (DFFRQX2M)                       0.00     129.80 r
+  library setup time                                     -0.33     129.47
+  data required time                                               129.47
+  --------------------------------------------------------------------------
+  data required time                                               129.47
+  data arrival time                                                -30.99
+  --------------------------------------------------------------------------
+  slack (MET)                                                       98.48
+
+
+  Startpoint: N_cell_ID[1]
+              (input port clocked by clk)
+  Endpoint: cinit_generator/adder/adder_out_reg[8]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[1] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[1] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[1] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[1] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U42/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U131/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U2/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S1_2_0/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S1_3_0/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S1_4_0/CO (ADDFX2M)
+                                                          0.55      28.07 r
+  cinit_generator/multiplier/mult_33/S1_5_0/CO (ADDFX2M)
+                                                          0.55      28.62 r
+  cinit_generator/multiplier/mult_33/S1_6_0/CO (ADDFX2M)
+                                                          0.55      29.18 r
+  cinit_generator/multiplier/mult_33/S4_0/S (ADDFX2M)     0.56      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/A[5] (multiplier_DW01_add_0)
+                                                          0.00      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/U9/Y (BUFX2M)
+                                                          0.15      29.88 f
+  cinit_generator/multiplier/mult_33/FS_1/SUM[5] (multiplier_DW01_add_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_33/PRODUCT[7] (multiplier_DW02_mult_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_out[7] (multiplier)     0.00      29.88 f
+  cinit_generator/b_mux/mult_out[7] (b_mux)               0.00      29.88 f
+  cinit_generator/b_mux/U18/Y (NOR2BX2M)                  0.13      30.01 f
+  cinit_generator/b_mux/b_out[8] (b_mux)                  0.00      30.01 f
+  cinit_generator/adder/b[8] (adder)                      0.00      30.01 f
+  cinit_generator/adder/add_11/B[8] (adder_DW01_add_0)
+                                                          0.00      30.01 f
+  cinit_generator/adder/add_11/U1_8/S (ADDFX2M)           0.53      30.54 f
+  cinit_generator/adder/add_11/SUM[8] (adder_DW01_add_0)
+                                                          0.00      30.54 f
+  cinit_generator/adder/U11/Y (AO22X1M)                   0.33      30.87 f
+  cinit_generator/adder/adder_out_reg[8]/D (DFFRQX2M)     0.00      30.87 f
+  data arrival time                                                 30.87
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  cinit_generator/adder/adder_out_reg[8]/CK (DFFRQX2M)
+                                                          0.00     129.80 r
+  library setup time                                     -0.17     129.63
+  data required time                                               129.63
+  --------------------------------------------------------------------------
+  data required time                                               129.63
+  data arrival time                                                -30.87
+  --------------------------------------------------------------------------
+  slack (MET)                                                       98.77
+
+
+  Startpoint: N_cell_ID[1]
+              (input port clocked by clk)
+  Endpoint: x2_LFSR/LFSR_reg[8]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[1] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[1] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[1] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[1] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U42/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U131/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U2/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S1_2_0/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S1_3_0/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S1_4_0/CO (ADDFX2M)
+                                                          0.55      28.07 r
+  cinit_generator/multiplier/mult_33/S1_5_0/CO (ADDFX2M)
+                                                          0.55      28.62 r
+  cinit_generator/multiplier/mult_33/S1_6_0/CO (ADDFX2M)
+                                                          0.55      29.18 r
+  cinit_generator/multiplier/mult_33/S4_0/S (ADDFX2M)     0.56      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/A[5] (multiplier_DW01_add_0)
+                                                          0.00      29.73 f
+  cinit_generator/multiplier/mult_33/FS_1/U9/Y (BUFX2M)
+                                                          0.15      29.88 f
+  cinit_generator/multiplier/mult_33/FS_1/SUM[5] (multiplier_DW01_add_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_33/PRODUCT[7] (multiplier_DW02_mult_0)
+                                                          0.00      29.88 f
+  cinit_generator/multiplier/mult_out[7] (multiplier)     0.00      29.88 f
+  cinit_generator/b_mux/mult_out[7] (b_mux)               0.00      29.88 f
+  cinit_generator/b_mux/U18/Y (NOR2BX2M)                  0.13      30.01 f
+  cinit_generator/b_mux/b_out[8] (b_mux)                  0.00      30.01 f
+  cinit_generator/adder/b[8] (adder)                      0.00      30.01 f
+  cinit_generator/adder/add_11/B[8] (adder_DW01_add_0)
+                                                          0.00      30.01 f
+  cinit_generator/adder/add_11/U1_8/S (ADDFX2M)           0.53      30.54 f
+  cinit_generator/adder/add_11/SUM[8] (adder_DW01_add_0)
+                                                          0.00      30.54 f
+  cinit_generator/adder/adder_out_comp[8] (adder)         0.00      30.54 f
+  cinit_generator/cinit[8] (cinit_gen_top)                0.00      30.54 f
+  x2_LFSR/seed[8] (x2_LFSR)                               0.00      30.54 f
+  x2_LFSR/U13/Y (AOI22X1M)                                0.17      30.70 r
+  x2_LFSR/U12/Y (OAI2B1X2M)                               0.09      30.79 f
+  x2_LFSR/LFSR_reg[8]/D (DFFRQX2M)                        0.00      30.79 f
+  data arrival time                                                 30.79
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  x2_LFSR/LFSR_reg[8]/CK (DFFRQX2M)                       0.00     129.80 r
+  library setup time                                     -0.18     129.62
+  data required time                                               129.62
+  --------------------------------------------------------------------------
+  data required time                                               129.62
+  data arrival time                                                -30.79
+  --------------------------------------------------------------------------
+  slack (MET)                                                       98.83
+
+
+  Startpoint: N_cell_ID[1]
+              (input port clocked by clk)
+  Endpoint: cinit_generator/adder/adder_out_reg[7]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[1] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[1] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[1] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[1] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U42/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U131/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U2/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S1_2_0/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S1_3_0/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S1_4_0/CO (ADDFX2M)
+                                                          0.55      28.07 r
+  cinit_generator/multiplier/mult_33/S1_5_0/CO (ADDFX2M)
+                                                          0.55      28.62 r
+  cinit_generator/multiplier/mult_33/S1_6_0/S (ADDFX2M)
+                                                          0.56      29.18 f
+  cinit_generator/multiplier/mult_33/FS_1/A[4] (multiplier_DW01_add_0)
+                                                          0.00      29.18 f
+  cinit_generator/multiplier/mult_33/FS_1/U10/Y (BUFX2M)
+                                                          0.15      29.33 f
+  cinit_generator/multiplier/mult_33/FS_1/SUM[4] (multiplier_DW01_add_0)
+                                                          0.00      29.33 f
+  cinit_generator/multiplier/mult_33/PRODUCT[6] (multiplier_DW02_mult_0)
+                                                          0.00      29.33 f
+  cinit_generator/multiplier/mult_out[6] (multiplier)     0.00      29.33 f
+  cinit_generator/b_mux/mult_out[6] (b_mux)               0.00      29.33 f
+  cinit_generator/b_mux/U17/Y (NOR2BX2M)                  0.13      29.46 f
+  cinit_generator/b_mux/b_out[7] (b_mux)                  0.00      29.46 f
+  cinit_generator/adder/b[7] (adder)                      0.00      29.46 f
+  cinit_generator/adder/add_11/B[7] (adder_DW01_add_0)
+                                                          0.00      29.46 f
+  cinit_generator/adder/add_11/U1_7/S (ADDFX2M)           0.53      29.99 f
+  cinit_generator/adder/add_11/SUM[7] (adder_DW01_add_0)
+                                                          0.00      29.99 f
+  cinit_generator/adder/U10/Y (AO22X1M)                   0.33      30.32 f
+  cinit_generator/adder/adder_out_reg[7]/D (DFFRQX2M)     0.00      30.32 f
+  data arrival time                                                 30.32
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  cinit_generator/adder/adder_out_reg[7]/CK (DFFRQX2M)
+                                                          0.00     129.80 r
+  library setup time                                     -0.17     129.63
+  data required time                                               129.63
+  --------------------------------------------------------------------------
+  data required time                                               129.63
+  data arrival time                                                -30.32
+  --------------------------------------------------------------------------
+  slack (MET)                                                       99.32
+
+
+  Startpoint: N_cell_ID[1]
+              (input port clocked by clk)
+  Endpoint: x2_LFSR/LFSR_reg[7]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[1] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[1] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[1] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[1] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U42/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U131/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U2/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S1_2_0/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S1_3_0/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S1_4_0/CO (ADDFX2M)
+                                                          0.55      28.07 r
+  cinit_generator/multiplier/mult_33/S1_5_0/CO (ADDFX2M)
+                                                          0.55      28.62 r
+  cinit_generator/multiplier/mult_33/S1_6_0/S (ADDFX2M)
+                                                          0.56      29.18 f
+  cinit_generator/multiplier/mult_33/FS_1/A[4] (multiplier_DW01_add_0)
+                                                          0.00      29.18 f
+  cinit_generator/multiplier/mult_33/FS_1/U10/Y (BUFX2M)
+                                                          0.15      29.33 f
+  cinit_generator/multiplier/mult_33/FS_1/SUM[4] (multiplier_DW01_add_0)
+                                                          0.00      29.33 f
+  cinit_generator/multiplier/mult_33/PRODUCT[6] (multiplier_DW02_mult_0)
+                                                          0.00      29.33 f
+  cinit_generator/multiplier/mult_out[6] (multiplier)     0.00      29.33 f
+  cinit_generator/b_mux/mult_out[6] (b_mux)               0.00      29.33 f
+  cinit_generator/b_mux/U17/Y (NOR2BX2M)                  0.13      29.46 f
+  cinit_generator/b_mux/b_out[7] (b_mux)                  0.00      29.46 f
+  cinit_generator/adder/b[7] (adder)                      0.00      29.46 f
+  cinit_generator/adder/add_11/B[7] (adder_DW01_add_0)
+                                                          0.00      29.46 f
+  cinit_generator/adder/add_11/U1_7/S (ADDFX2M)           0.53      29.99 f
+  cinit_generator/adder/add_11/SUM[7] (adder_DW01_add_0)
+                                                          0.00      29.99 f
+  cinit_generator/adder/adder_out_comp[7] (adder)         0.00      29.99 f
+  cinit_generator/cinit[7] (cinit_gen_top)                0.00      29.99 f
+  x2_LFSR/seed[7] (x2_LFSR)                               0.00      29.99 f
+  x2_LFSR/U9/Y (AOI22X1M)                                 0.17      30.15 r
+  x2_LFSR/U8/Y (OAI2B1X2M)                                0.09      30.24 f
+  x2_LFSR/LFSR_reg[7]/D (DFFRQX2M)                        0.00      30.24 f
+  data arrival time                                                 30.24
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  x2_LFSR/LFSR_reg[7]/CK (DFFRQX2M)                       0.00     129.80 r
+  library setup time                                     -0.18     129.62
+  data required time                                               129.62
+  --------------------------------------------------------------------------
+  data required time                                               129.62
+  data arrival time                                                -30.24
+  --------------------------------------------------------------------------
+  slack (MET)                                                       99.38
+
+
+  Startpoint: N_cell_ID[1]
+              (input port clocked by clk)
+  Endpoint: cinit_generator/adder/adder_out_reg[6]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[1] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[1] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[1] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[1] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U42/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U131/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U2/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S1_2_0/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S1_3_0/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S1_4_0/CO (ADDFX2M)
+                                                          0.55      28.07 r
+  cinit_generator/multiplier/mult_33/S1_5_0/S (ADDFX2M)
+                                                          0.56      28.63 f
+  cinit_generator/multiplier/mult_33/FS_1/A[3] (multiplier_DW01_add_0)
+                                                          0.00      28.63 f
+  cinit_generator/multiplier/mult_33/FS_1/U11/Y (BUFX2M)
+                                                          0.15      28.78 f
+  cinit_generator/multiplier/mult_33/FS_1/SUM[3] (multiplier_DW01_add_0)
+                                                          0.00      28.78 f
+  cinit_generator/multiplier/mult_33/PRODUCT[5] (multiplier_DW02_mult_0)
+                                                          0.00      28.78 f
+  cinit_generator/multiplier/mult_out[5] (multiplier)     0.00      28.78 f
+  cinit_generator/b_mux/mult_out[5] (b_mux)               0.00      28.78 f
+  cinit_generator/b_mux/U23/Y (OAI2BB2X1M)                0.24      29.02 f
+  cinit_generator/b_mux/b_out[6] (b_mux)                  0.00      29.02 f
+  cinit_generator/adder/b[6] (adder)                      0.00      29.02 f
+  cinit_generator/adder/add_11/B[6] (adder_DW01_add_0)
+                                                          0.00      29.02 f
+  cinit_generator/adder/add_11/U1_6/S (ADDFX2M)           0.54      29.56 f
+  cinit_generator/adder/add_11/SUM[6] (adder_DW01_add_0)
+                                                          0.00      29.56 f
+  cinit_generator/adder/U18/Y (AO22X1M)                   0.33      29.89 f
+  cinit_generator/adder/adder_out_reg[6]/D (DFFRQX2M)     0.00      29.89 f
+  data arrival time                                                 29.89
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  cinit_generator/adder/adder_out_reg[6]/CK (DFFRQX2M)
+                                                          0.00     129.80 r
+  library setup time                                     -0.17     129.63
+  data required time                                               129.63
+  --------------------------------------------------------------------------
+  data required time                                               129.63
+  data arrival time                                                -29.89
+  --------------------------------------------------------------------------
+  slack (MET)                                                       99.74
+
+
+  Startpoint: N_cell_ID[1]
+              (input port clocked by clk)
+  Endpoint: x2_LFSR/LFSR_reg[6]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[1] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[1] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[1] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[1] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U42/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U131/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U2/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S1_2_0/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S1_3_0/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S1_4_0/CO (ADDFX2M)
+                                                          0.55      28.07 r
+  cinit_generator/multiplier/mult_33/S1_5_0/S (ADDFX2M)
+                                                          0.56      28.63 f
+  cinit_generator/multiplier/mult_33/FS_1/A[3] (multiplier_DW01_add_0)
+                                                          0.00      28.63 f
+  cinit_generator/multiplier/mult_33/FS_1/U11/Y (BUFX2M)
+                                                          0.15      28.78 f
+  cinit_generator/multiplier/mult_33/FS_1/SUM[3] (multiplier_DW01_add_0)
+                                                          0.00      28.78 f
+  cinit_generator/multiplier/mult_33/PRODUCT[5] (multiplier_DW02_mult_0)
+                                                          0.00      28.78 f
+  cinit_generator/multiplier/mult_out[5] (multiplier)     0.00      28.78 f
+  cinit_generator/b_mux/mult_out[5] (b_mux)               0.00      28.78 f
+  cinit_generator/b_mux/U23/Y (OAI2BB2X1M)                0.24      29.02 f
+  cinit_generator/b_mux/b_out[6] (b_mux)                  0.00      29.02 f
+  cinit_generator/adder/b[6] (adder)                      0.00      29.02 f
+  cinit_generator/adder/add_11/B[6] (adder_DW01_add_0)
+                                                          0.00      29.02 f
+  cinit_generator/adder/add_11/U1_6/S (ADDFX2M)           0.54      29.56 f
+  cinit_generator/adder/add_11/SUM[6] (adder_DW01_add_0)
+                                                          0.00      29.56 f
+  cinit_generator/adder/adder_out_comp[6] (adder)         0.00      29.56 f
+  cinit_generator/cinit[6] (cinit_gen_top)                0.00      29.56 f
+  x2_LFSR/seed[6] (x2_LFSR)                               0.00      29.56 f
+  x2_LFSR/U21/Y (AOI22X1M)                                0.17      29.73 r
+  x2_LFSR/U20/Y (OAI2B1X2M)                               0.09      29.82 f
+  x2_LFSR/LFSR_reg[6]/D (DFFRQX2M)                        0.00      29.82 f
+  data arrival time                                                 29.82
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  x2_LFSR/LFSR_reg[6]/CK (DFFRQX2M)                       0.00     129.80 r
+  library setup time                                     -0.18     129.62
+  data required time                                               129.62
+  --------------------------------------------------------------------------
+  data required time                                               129.62
+  data arrival time                                                -29.82
+  --------------------------------------------------------------------------
+  slack (MET)                                                       99.81
+
+
+  Startpoint: N_cell_ID[1]
+              (input port clocked by clk)
+  Endpoint: cinit_generator/adder/adder_out_reg[5]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[1] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[1] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[1] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[1] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U42/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U131/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U2/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S1_2_0/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S1_3_0/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S1_4_0/S (ADDFX2M)
+                                                          0.56      28.08 f
+  cinit_generator/multiplier/mult_33/FS_1/A[2] (multiplier_DW01_add_0)
+                                                          0.00      28.08 f
+  cinit_generator/multiplier/mult_33/FS_1/U12/Y (BUFX2M)
+                                                          0.15      28.23 f
+  cinit_generator/multiplier/mult_33/FS_1/SUM[2] (multiplier_DW01_add_0)
+                                                          0.00      28.23 f
+  cinit_generator/multiplier/mult_33/PRODUCT[4] (multiplier_DW02_mult_0)
+                                                          0.00      28.23 f
+  cinit_generator/multiplier/mult_out[4] (multiplier)     0.00      28.23 f
+  cinit_generator/b_mux/mult_out[4] (b_mux)               0.00      28.23 f
+  cinit_generator/b_mux/U22/Y (INVX2M)                    0.05      28.28 r
+  cinit_generator/b_mux/U21/Y (OAI222X1M)                 0.17      28.45 f
+  cinit_generator/b_mux/b_out[5] (b_mux)                  0.00      28.45 f
+  cinit_generator/adder/b[5] (adder)                      0.00      28.45 f
+  cinit_generator/adder/add_11/B[5] (adder_DW01_add_0)
+                                                          0.00      28.45 f
+  cinit_generator/adder/add_11/U1_5/S (ADDFX2M)           0.58      29.03 f
+  cinit_generator/adder/add_11/SUM[5] (adder_DW01_add_0)
+                                                          0.00      29.03 f
+  cinit_generator/adder/U17/Y (AO22X1M)                   0.33      29.36 f
+  cinit_generator/adder/adder_out_reg[5]/D (DFFRQX2M)     0.00      29.36 f
+  data arrival time                                                 29.36
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  cinit_generator/adder/adder_out_reg[5]/CK (DFFRQX2M)
+                                                          0.00     129.80 r
+  library setup time                                     -0.17     129.63
+  data required time                                               129.63
+  --------------------------------------------------------------------------
+  data required time                                               129.63
+  data arrival time                                                -29.36
+  --------------------------------------------------------------------------
+  slack (MET)                                                      100.28
+
+
+  Startpoint: N_cell_ID[1]
+              (input port clocked by clk)
+  Endpoint: x2_LFSR/LFSR_reg[5]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  N_cell_ID[1] (in)                                       0.03      26.03 r
+  cinit_generator/N_cell_ID[1] (cinit_gen_top)            0.00      26.03 r
+  cinit_generator/multiplier/b[1] (multiplier)            0.00      26.03 r
+  cinit_generator/multiplier/mult_33/B[1] (multiplier_DW02_mult_0)
+                                                          0.00      26.03 r
+  cinit_generator/multiplier/mult_33/U42/Y (INVX2M)       0.08      26.12 f
+  cinit_generator/multiplier/mult_33/U131/Y (NOR2X1M)     0.15      26.27 r
+  cinit_generator/multiplier/mult_33/U2/Y (AND2X2M)       0.16      26.43 r
+  cinit_generator/multiplier/mult_33/S1_2_0/CO (ADDFX2M)
+                                                          0.54      26.97 r
+  cinit_generator/multiplier/mult_33/S1_3_0/CO (ADDFX2M)
+                                                          0.55      27.52 r
+  cinit_generator/multiplier/mult_33/S1_4_0/S (ADDFX2M)
+                                                          0.56      28.08 f
+  cinit_generator/multiplier/mult_33/FS_1/A[2] (multiplier_DW01_add_0)
+                                                          0.00      28.08 f
+  cinit_generator/multiplier/mult_33/FS_1/U12/Y (BUFX2M)
+                                                          0.15      28.23 f
+  cinit_generator/multiplier/mult_33/FS_1/SUM[2] (multiplier_DW01_add_0)
+                                                          0.00      28.23 f
+  cinit_generator/multiplier/mult_33/PRODUCT[4] (multiplier_DW02_mult_0)
+                                                          0.00      28.23 f
+  cinit_generator/multiplier/mult_out[4] (multiplier)     0.00      28.23 f
+  cinit_generator/b_mux/mult_out[4] (b_mux)               0.00      28.23 f
+  cinit_generator/b_mux/U22/Y (INVX2M)                    0.05      28.28 r
+  cinit_generator/b_mux/U21/Y (OAI222X1M)                 0.17      28.45 f
+  cinit_generator/b_mux/b_out[5] (b_mux)                  0.00      28.45 f
+  cinit_generator/adder/b[5] (adder)                      0.00      28.45 f
+  cinit_generator/adder/add_11/B[5] (adder_DW01_add_0)
+                                                          0.00      28.45 f
+  cinit_generator/adder/add_11/U1_5/S (ADDFX2M)           0.58      29.03 f
+  cinit_generator/adder/add_11/SUM[5] (adder_DW01_add_0)
+                                                          0.00      29.03 f
+  cinit_generator/adder/adder_out_comp[5] (adder)         0.00      29.03 f
+  cinit_generator/cinit[5] (cinit_gen_top)                0.00      29.03 f
+  x2_LFSR/seed[5] (x2_LFSR)                               0.00      29.03 f
+  x2_LFSR/U19/Y (AOI22X1M)                                0.17      29.19 r
+  x2_LFSR/U18/Y (OAI2B1X2M)                               0.09      29.28 f
+  x2_LFSR/LFSR_reg[5]/D (DFFRQX2M)                        0.00      29.28 f
+  data arrival time                                                 29.28
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  x2_LFSR/LFSR_reg[5]/CK (DFFRQX2M)                       0.00     129.80 r
+  library setup time                                     -0.18     129.62
+  data required time                                               129.62
+  --------------------------------------------------------------------------
+  data required time                                               129.62
+  data arrival time                                                -29.28
+  --------------------------------------------------------------------------
+  slack (MET)                                                      100.34
+
+
+1

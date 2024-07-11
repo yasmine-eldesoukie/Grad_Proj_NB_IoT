@@ -1,0 +1,62 @@
+ 
+****************************************
+Report : area
+Design : NRS_top_new_rx
+Version: K-2015.06
+Date   : Tue Jul  2 23:20:13 2024
+****************************************
+
+Library(s) Used:
+
+    scmetro_tsmc_cl013g_rvt_ss_1p08v_125c (File: /home/IC/tsmc_fb_cl013g_sc/aci/sc-m/synopsys/scmetro_tsmc_cl013g_rvt_ss_1p08v_125c.db)
+
+Number of ports:                          527
+Number of nets:                          1322
+Number of cells:                          757
+Number of combinational cells:            608
+Number of sequential cells:               133
+Number of macros/black boxes:               0
+Number of buf/inv:                         82
+Number of references:                       8
+
+Combinational area:               5761.123267
+Buf/Inv area:                      313.002207
+Noncombinational area:            3360.655176
+Macro/Black Box area:                0.000000
+Net Interconnect area:      undefined  (No wire load specified)
+
+Total cell area:                  9121.778443
+Total area:                 undefined
+
+Hierarchical area distribution
+------------------------------
+
+                                  Global cell area          Local cell area
+                                  ------------------  ---------------------------- 
+Hierarchical cell                 Absolute   Percent  Combi-     Noncombi-  Black-
+                                  Total      Total    national   national   boxes   Design
+--------------------------------  ---------  -------  ---------  ---------  ------  ------------------------------
+NRS_top_new_rx                    9121.7784    100.0     9.4136     0.0000  0.0000  NRS_top_new_rx
+NRS_control_unit                  1039.0261     11.4   305.9420   580.1131  0.0000  NRS_control_unit_rx
+NRS_control_unit/add_148           152.9710      1.7   152.9710     0.0000  0.0000  NRS_control_unit_rx_DW01_inc_0
+NRS_reg                            917.8260     10.1   503.6276   414.1984  0.0000  NRS_reg_new_rx
+XOR                                 11.7670      0.1    11.7670     0.0000  0.0000  XOR
+cinit_generator                   4267.8909     46.8     7.0602     0.0000  0.0000  cinit_gen_top
+cinit_generator/a_mux              181.2118      2.0   181.2118     0.0000  0.0000  a_mux
+cinit_generator/adder             1171.9932     12.8   177.6817   465.9732  0.0000  adder
+cinit_generator/adder/add_11       528.3383      5.8   528.3383     0.0000  0.0000  adder_DW01_add_0
+cinit_generator/b_mux              211.8060      2.3   211.8060     0.0000  0.0000  b_mux
+cinit_generator/cinit_control_unit
+                                   232.9866      2.6   129.4370   103.5496  0.0000  cinit_control_unit
+cinit_generator/multiplier        2462.8331     27.0     0.0000     0.0000  0.0000  multiplier
+cinit_generator/multiplier/mult_33
+                                  2462.8331     27.0  2181.6018     0.0000  0.0000  multiplier_DW02_mult_0
+cinit_generator/multiplier/mult_33/FS_1
+                                   281.2313      3.1   281.2313     0.0000  0.0000  multiplier_DW01_add_0
+slot_counter                       461.2664      5.1   304.7653   156.5011  0.0000  slot_counter_rx
+x1_LFSR                           1095.5077     12.0   258.8740   836.6337  0.0000  x1_LFSR
+x2_LFSR                           1319.0807     14.5   515.3946   803.6861  0.0000  x2_LFSR
+--------------------------------  ---------  -------  ---------  ---------  ------  ------------------------------
+Total                                                 5761.1233  3360.6552  0.0000
+
+1

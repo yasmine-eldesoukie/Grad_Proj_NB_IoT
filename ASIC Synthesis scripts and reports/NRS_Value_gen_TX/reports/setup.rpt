@@ -1,0 +1,807 @@
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 20
+Design : NRS_top_new_tx
+Version: K-2015.06
+Date   : Sat Jul  6 12:09:47 2024
+****************************************
+
+Operating Conditions: scmetro_tsmc_cl013g_rvt_ss_1p08v_125c   Library: scmetro_tsmc_cl013g_rvt_ss_1p08v_125c
+Wire Load Model Mode: top
+
+  Startpoint: rd_addr_mapper_1r[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_1r[10]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_1r[0] (in)                               0.01      26.01 r
+  U37/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_1r[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U24/Y (MX4X1M)                                  0.40      26.71 f
+  NRS_reg/U14/Y (MX4X1M)                                  0.36      27.07 f
+  NRS_reg/c0 (NRS_reg_new_tx)                             0.00      27.07 f
+  NRS_decision_muxes/c0 (NRS_decision_muxes_tx)           0.00      27.07 f
+  NRS_decision_muxes/U38/Y (INVX2M)                       0.25      27.32 r
+  NRS_decision_muxes/U46/Y (INVX8M)                       0.45      27.77 f
+  NRS_decision_muxes/U50/Y (INVX8M)                       0.88      28.65 r
+  NRS_decision_muxes/U48/Y (CLKBUFX8M)                    1.03      29.68 r
+  NRS_decision_muxes/nrs_mapper_1r[10] (NRS_decision_muxes_tx)
+                                                          0.00      29.68 r
+  nrs_mapper_1r[10] (out)                                 0.00      29.68 r
+  data arrival time                                                 29.68
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -29.68
+  --------------------------------------------------------------------------
+  slack (MET)                                                       74.12
+
+
+  Startpoint: rd_addr_mapper_1r[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_1r[8]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_1r[0] (in)                               0.01      26.01 r
+  U37/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_1r[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U24/Y (MX4X1M)                                  0.40      26.71 f
+  NRS_reg/U14/Y (MX4X1M)                                  0.36      27.07 f
+  NRS_reg/c0 (NRS_reg_new_tx)                             0.00      27.07 f
+  NRS_decision_muxes/c0 (NRS_decision_muxes_tx)           0.00      27.07 f
+  NRS_decision_muxes/U38/Y (INVX2M)                       0.25      27.32 r
+  NRS_decision_muxes/U46/Y (INVX8M)                       0.45      27.77 f
+  NRS_decision_muxes/U50/Y (INVX8M)                       0.88      28.65 r
+  NRS_decision_muxes/U47/Y (CLKBUFX8M)                    1.03      29.68 r
+  NRS_decision_muxes/nrs_mapper_1r[8] (NRS_decision_muxes_tx)
+                                                          0.00      29.68 r
+  nrs_mapper_1r[8] (out)                                  0.00      29.68 r
+  data arrival time                                                 29.68
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -29.68
+  --------------------------------------------------------------------------
+  slack (MET)                                                       74.12
+
+
+  Startpoint: rd_addr_mapper_1r[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_1r[5]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_1r[0] (in)                               0.01      26.01 r
+  U37/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_1r[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U24/Y (MX4X1M)                                  0.40      26.71 f
+  NRS_reg/U14/Y (MX4X1M)                                  0.36      27.07 f
+  NRS_reg/c0 (NRS_reg_new_tx)                             0.00      27.07 f
+  NRS_decision_muxes/c0 (NRS_decision_muxes_tx)           0.00      27.07 f
+  NRS_decision_muxes/U38/Y (INVX2M)                       0.25      27.32 r
+  NRS_decision_muxes/U46/Y (INVX8M)                       0.45      27.77 f
+  NRS_decision_muxes/U50/Y (INVX8M)                       0.88      28.65 r
+  NRS_decision_muxes/U49/Y (CLKBUFX8M)                    1.03      29.68 r
+  NRS_decision_muxes/nrs_mapper_1r[5] (NRS_decision_muxes_tx)
+                                                          0.00      29.68 r
+  nrs_mapper_1r[5] (out)                                  0.00      29.68 r
+  data arrival time                                                 29.68
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -29.68
+  --------------------------------------------------------------------------
+  slack (MET)                                                       74.12
+
+
+  Startpoint: rd_addr_mapper_1i[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_1i[10]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_1i[0] (in)                               0.01      26.01 r
+  U36/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_1i[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U23/Y (MX4X1M)                                  0.40      26.71 f
+  NRS_reg/U11/Y (MX4X1M)                                  0.36      27.07 f
+  NRS_reg/c1 (NRS_reg_new_tx)                             0.00      27.07 f
+  NRS_decision_muxes/c1 (NRS_decision_muxes_tx)           0.00      27.07 f
+  NRS_decision_muxes/U37/Y (INVX2M)                       0.25      27.32 r
+  NRS_decision_muxes/U58/Y (INVX8M)                       0.45      27.77 f
+  NRS_decision_muxes/U62/Y (INVX8M)                       0.88      28.65 r
+  NRS_decision_muxes/U60/Y (CLKBUFX8M)                    1.03      29.68 r
+  NRS_decision_muxes/nrs_mapper_1i[10] (NRS_decision_muxes_tx)
+                                                          0.00      29.68 r
+  nrs_mapper_1i[10] (out)                                 0.00      29.68 r
+  data arrival time                                                 29.68
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -29.68
+  --------------------------------------------------------------------------
+  slack (MET)                                                       74.12
+
+
+  Startpoint: rd_addr_mapper_1i[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_1i[8]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_1i[0] (in)                               0.01      26.01 r
+  U36/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_1i[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U23/Y (MX4X1M)                                  0.40      26.71 f
+  NRS_reg/U11/Y (MX4X1M)                                  0.36      27.07 f
+  NRS_reg/c1 (NRS_reg_new_tx)                             0.00      27.07 f
+  NRS_decision_muxes/c1 (NRS_decision_muxes_tx)           0.00      27.07 f
+  NRS_decision_muxes/U37/Y (INVX2M)                       0.25      27.32 r
+  NRS_decision_muxes/U58/Y (INVX8M)                       0.45      27.77 f
+  NRS_decision_muxes/U62/Y (INVX8M)                       0.88      28.65 r
+  NRS_decision_muxes/U59/Y (CLKBUFX8M)                    1.03      29.68 r
+  NRS_decision_muxes/nrs_mapper_1i[8] (NRS_decision_muxes_tx)
+                                                          0.00      29.68 r
+  nrs_mapper_1i[8] (out)                                  0.00      29.68 r
+  data arrival time                                                 29.68
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -29.68
+  --------------------------------------------------------------------------
+  slack (MET)                                                       74.12
+
+
+  Startpoint: rd_addr_mapper_1i[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_1i[5]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_1i[0] (in)                               0.01      26.01 r
+  U36/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_1i[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U23/Y (MX4X1M)                                  0.40      26.71 f
+  NRS_reg/U11/Y (MX4X1M)                                  0.36      27.07 f
+  NRS_reg/c1 (NRS_reg_new_tx)                             0.00      27.07 f
+  NRS_decision_muxes/c1 (NRS_decision_muxes_tx)           0.00      27.07 f
+  NRS_decision_muxes/U37/Y (INVX2M)                       0.25      27.32 r
+  NRS_decision_muxes/U58/Y (INVX8M)                       0.45      27.77 f
+  NRS_decision_muxes/U62/Y (INVX8M)                       0.88      28.65 r
+  NRS_decision_muxes/U61/Y (CLKBUFX8M)                    1.03      29.68 r
+  NRS_decision_muxes/nrs_mapper_1i[5] (NRS_decision_muxes_tx)
+                                                          0.00      29.68 r
+  nrs_mapper_1i[5] (out)                                  0.00      29.68 r
+  data arrival time                                                 29.68
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -29.68
+  --------------------------------------------------------------------------
+  slack (MET)                                                       74.12
+
+
+  Startpoint: rd_addr_mapper_2r[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_2r[10]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_2r[0] (in)                               0.01      26.01 r
+  U35/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_2r[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U22/Y (MX4X1M)                                  0.40      26.71 f
+  NRS_reg/U8/Y (MX4X1M)                                   0.36      27.07 f
+  NRS_reg/c2 (NRS_reg_new_tx)                             0.00      27.07 f
+  NRS_decision_muxes/c2 (NRS_decision_muxes_tx)           0.00      27.07 f
+  NRS_decision_muxes/U36/Y (INVX2M)                       0.25      27.32 r
+  NRS_decision_muxes/U70/Y (INVX8M)                       0.45      27.77 f
+  NRS_decision_muxes/U74/Y (INVX8M)                       0.88      28.65 r
+  NRS_decision_muxes/U72/Y (CLKBUFX8M)                    1.03      29.68 r
+  NRS_decision_muxes/nrs_mapper_2r[10] (NRS_decision_muxes_tx)
+                                                          0.00      29.68 r
+  nrs_mapper_2r[10] (out)                                 0.00      29.68 r
+  data arrival time                                                 29.68
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -29.68
+  --------------------------------------------------------------------------
+  slack (MET)                                                       74.12
+
+
+  Startpoint: rd_addr_mapper_2r[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_2r[8]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_2r[0] (in)                               0.01      26.01 r
+  U35/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_2r[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U22/Y (MX4X1M)                                  0.40      26.71 f
+  NRS_reg/U8/Y (MX4X1M)                                   0.36      27.07 f
+  NRS_reg/c2 (NRS_reg_new_tx)                             0.00      27.07 f
+  NRS_decision_muxes/c2 (NRS_decision_muxes_tx)           0.00      27.07 f
+  NRS_decision_muxes/U36/Y (INVX2M)                       0.25      27.32 r
+  NRS_decision_muxes/U70/Y (INVX8M)                       0.45      27.77 f
+  NRS_decision_muxes/U74/Y (INVX8M)                       0.88      28.65 r
+  NRS_decision_muxes/U71/Y (CLKBUFX8M)                    1.03      29.68 r
+  NRS_decision_muxes/nrs_mapper_2r[8] (NRS_decision_muxes_tx)
+                                                          0.00      29.68 r
+  nrs_mapper_2r[8] (out)                                  0.00      29.68 r
+  data arrival time                                                 29.68
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -29.68
+  --------------------------------------------------------------------------
+  slack (MET)                                                       74.12
+
+
+  Startpoint: rd_addr_mapper_2r[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_2r[5]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_2r[0] (in)                               0.01      26.01 r
+  U35/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_2r[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U22/Y (MX4X1M)                                  0.40      26.71 f
+  NRS_reg/U8/Y (MX4X1M)                                   0.36      27.07 f
+  NRS_reg/c2 (NRS_reg_new_tx)                             0.00      27.07 f
+  NRS_decision_muxes/c2 (NRS_decision_muxes_tx)           0.00      27.07 f
+  NRS_decision_muxes/U36/Y (INVX2M)                       0.25      27.32 r
+  NRS_decision_muxes/U70/Y (INVX8M)                       0.45      27.77 f
+  NRS_decision_muxes/U74/Y (INVX8M)                       0.88      28.65 r
+  NRS_decision_muxes/U73/Y (CLKBUFX8M)                    1.03      29.68 r
+  NRS_decision_muxes/nrs_mapper_2r[5] (NRS_decision_muxes_tx)
+                                                          0.00      29.68 r
+  nrs_mapper_2r[5] (out)                                  0.00      29.68 r
+  data arrival time                                                 29.68
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -29.68
+  --------------------------------------------------------------------------
+  slack (MET)                                                       74.12
+
+
+  Startpoint: rd_addr_mapper_2i[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_2i[10]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_2i[0] (in)                               0.01      26.01 r
+  U34/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_2i[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U21/Y (MX4X1M)                                  0.40      26.71 f
+  NRS_reg/U5/Y (MX4X1M)                                   0.36      27.07 f
+  NRS_reg/c3 (NRS_reg_new_tx)                             0.00      27.07 f
+  NRS_decision_muxes/c3 (NRS_decision_muxes_tx)           0.00      27.07 f
+  NRS_decision_muxes/U35/Y (INVX2M)                       0.25      27.32 r
+  NRS_decision_muxes/U82/Y (INVX8M)                       0.45      27.77 f
+  NRS_decision_muxes/U86/Y (INVX8M)                       0.88      28.65 r
+  NRS_decision_muxes/U84/Y (CLKBUFX8M)                    1.03      29.68 r
+  NRS_decision_muxes/nrs_mapper_2i[10] (NRS_decision_muxes_tx)
+                                                          0.00      29.68 r
+  nrs_mapper_2i[10] (out)                                 0.00      29.68 r
+  data arrival time                                                 29.68
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -29.68
+  --------------------------------------------------------------------------
+  slack (MET)                                                       74.12
+
+
+  Startpoint: rd_addr_mapper_2i[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_2i[8]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_2i[0] (in)                               0.01      26.01 r
+  U34/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_2i[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U21/Y (MX4X1M)                                  0.40      26.71 f
+  NRS_reg/U5/Y (MX4X1M)                                   0.36      27.07 f
+  NRS_reg/c3 (NRS_reg_new_tx)                             0.00      27.07 f
+  NRS_decision_muxes/c3 (NRS_decision_muxes_tx)           0.00      27.07 f
+  NRS_decision_muxes/U35/Y (INVX2M)                       0.25      27.32 r
+  NRS_decision_muxes/U82/Y (INVX8M)                       0.45      27.77 f
+  NRS_decision_muxes/U86/Y (INVX8M)                       0.88      28.65 r
+  NRS_decision_muxes/U83/Y (CLKBUFX8M)                    1.03      29.68 r
+  NRS_decision_muxes/nrs_mapper_2i[8] (NRS_decision_muxes_tx)
+                                                          0.00      29.68 r
+  nrs_mapper_2i[8] (out)                                  0.00      29.68 r
+  data arrival time                                                 29.68
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -29.68
+  --------------------------------------------------------------------------
+  slack (MET)                                                       74.12
+
+
+  Startpoint: rd_addr_mapper_2i[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_2i[5]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_2i[0] (in)                               0.01      26.01 r
+  U34/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_2i[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U21/Y (MX4X1M)                                  0.40      26.71 f
+  NRS_reg/U5/Y (MX4X1M)                                   0.36      27.07 f
+  NRS_reg/c3 (NRS_reg_new_tx)                             0.00      27.07 f
+  NRS_decision_muxes/c3 (NRS_decision_muxes_tx)           0.00      27.07 f
+  NRS_decision_muxes/U35/Y (INVX2M)                       0.25      27.32 r
+  NRS_decision_muxes/U82/Y (INVX8M)                       0.45      27.77 f
+  NRS_decision_muxes/U86/Y (INVX8M)                       0.88      28.65 r
+  NRS_decision_muxes/U85/Y (CLKBUFX8M)                    1.03      29.68 r
+  NRS_decision_muxes/nrs_mapper_2i[5] (NRS_decision_muxes_tx)
+                                                          0.00      29.68 r
+  nrs_mapper_2i[5] (out)                                  0.00      29.68 r
+  data arrival time                                                 29.68
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -29.68
+  --------------------------------------------------------------------------
+  slack (MET)                                                       74.12
+
+
+  Startpoint: rd_addr_mapper_1r[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_1r[9]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_1r[0] (in)                               0.01      26.01 r
+  U37/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_1r[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U24/Y (MX4X1M)                                  0.28      26.59 r
+  NRS_reg/U14/Y (MX4X1M)                                  0.23      26.82 r
+  NRS_reg/c0 (NRS_reg_new_tx)                             0.00      26.82 r
+  NRS_decision_muxes/c0 (NRS_decision_muxes_tx)           0.00      26.82 r
+  NRS_decision_muxes/U38/Y (INVX2M)                       0.14      26.96 f
+  NRS_decision_muxes/U46/Y (INVX8M)                       0.77      27.73 r
+  NRS_decision_muxes/U45/Y (CLKBUFX8M)                    1.03      28.76 r
+  NRS_decision_muxes/nrs_mapper_1r[9] (NRS_decision_muxes_tx)
+                                                          0.00      28.76 r
+  nrs_mapper_1r[9] (out)                                  0.00      28.76 r
+  data arrival time                                                 28.76
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -28.76
+  --------------------------------------------------------------------------
+  slack (MET)                                                       75.04
+
+
+  Startpoint: rd_addr_mapper_1i[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_1i[9]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_1i[0] (in)                               0.01      26.01 r
+  U36/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_1i[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U23/Y (MX4X1M)                                  0.28      26.59 r
+  NRS_reg/U11/Y (MX4X1M)                                  0.23      26.82 r
+  NRS_reg/c1 (NRS_reg_new_tx)                             0.00      26.82 r
+  NRS_decision_muxes/c1 (NRS_decision_muxes_tx)           0.00      26.82 r
+  NRS_decision_muxes/U37/Y (INVX2M)                       0.14      26.96 f
+  NRS_decision_muxes/U58/Y (INVX8M)                       0.77      27.73 r
+  NRS_decision_muxes/U57/Y (CLKBUFX8M)                    1.03      28.76 r
+  NRS_decision_muxes/nrs_mapper_1i[9] (NRS_decision_muxes_tx)
+                                                          0.00      28.76 r
+  nrs_mapper_1i[9] (out)                                  0.00      28.76 r
+  data arrival time                                                 28.76
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -28.76
+  --------------------------------------------------------------------------
+  slack (MET)                                                       75.04
+
+
+  Startpoint: rd_addr_mapper_2r[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_2r[9]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_2r[0] (in)                               0.01      26.01 r
+  U35/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_2r[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U22/Y (MX4X1M)                                  0.28      26.59 r
+  NRS_reg/U8/Y (MX4X1M)                                   0.23      26.82 r
+  NRS_reg/c2 (NRS_reg_new_tx)                             0.00      26.82 r
+  NRS_decision_muxes/c2 (NRS_decision_muxes_tx)           0.00      26.82 r
+  NRS_decision_muxes/U36/Y (INVX2M)                       0.14      26.96 f
+  NRS_decision_muxes/U70/Y (INVX8M)                       0.77      27.73 r
+  NRS_decision_muxes/U69/Y (CLKBUFX8M)                    1.03      28.76 r
+  NRS_decision_muxes/nrs_mapper_2r[9] (NRS_decision_muxes_tx)
+                                                          0.00      28.76 r
+  nrs_mapper_2r[9] (out)                                  0.00      28.76 r
+  data arrival time                                                 28.76
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -28.76
+  --------------------------------------------------------------------------
+  slack (MET)                                                       75.04
+
+
+  Startpoint: rd_addr_mapper_2i[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_2i[9]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_2i[0] (in)                               0.01      26.01 r
+  U34/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_2i[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U21/Y (MX4X1M)                                  0.28      26.59 r
+  NRS_reg/U5/Y (MX4X1M)                                   0.23      26.82 r
+  NRS_reg/c3 (NRS_reg_new_tx)                             0.00      26.82 r
+  NRS_decision_muxes/c3 (NRS_decision_muxes_tx)           0.00      26.82 r
+  NRS_decision_muxes/U35/Y (INVX2M)                       0.14      26.96 f
+  NRS_decision_muxes/U82/Y (INVX8M)                       0.77      27.73 r
+  NRS_decision_muxes/U81/Y (CLKBUFX8M)                    1.03      28.76 r
+  NRS_decision_muxes/nrs_mapper_2i[9] (NRS_decision_muxes_tx)
+                                                          0.00      28.76 r
+  nrs_mapper_2i[9] (out)                                  0.00      28.76 r
+  data arrival time                                                 28.76
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -28.76
+  --------------------------------------------------------------------------
+  slack (MET)                                                       75.04
+
+
+  Startpoint: rd_addr_mapper_1i[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_1i[15]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_1i[0] (in)                               0.01      26.01 r
+  U36/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_1i[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U23/Y (MX4X1M)                                  0.28      26.59 r
+  NRS_reg/U11/Y (MX4X1M)                                  0.23      26.82 r
+  NRS_reg/c1 (NRS_reg_new_tx)                             0.00      26.82 r
+  NRS_decision_muxes/c1 (NRS_decision_muxes_tx)           0.00      26.82 r
+  NRS_decision_muxes/U37/Y (INVX2M)                       0.14      26.96 f
+  NRS_decision_muxes/U53/Y (INVX8M)                       0.76      27.72 r
+  NRS_decision_muxes/U51/Y (CLKBUFX8M)                    1.03      28.75 r
+  NRS_decision_muxes/nrs_mapper_1i[15] (NRS_decision_muxes_tx)
+                                                          0.00      28.75 r
+  nrs_mapper_1i[15] (out)                                 0.00      28.75 r
+  data arrival time                                                 28.75
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -28.75
+  --------------------------------------------------------------------------
+  slack (MET)                                                       75.05
+
+
+  Startpoint: rd_addr_mapper_1i[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_1i[14]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_1i[0] (in)                               0.01      26.01 r
+  U36/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_1i[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U23/Y (MX4X1M)                                  0.28      26.59 r
+  NRS_reg/U11/Y (MX4X1M)                                  0.23      26.82 r
+  NRS_reg/c1 (NRS_reg_new_tx)                             0.00      26.82 r
+  NRS_decision_muxes/c1 (NRS_decision_muxes_tx)           0.00      26.82 r
+  NRS_decision_muxes/U37/Y (INVX2M)                       0.14      26.96 f
+  NRS_decision_muxes/U56/Y (INVX8M)                       0.76      27.72 r
+  NRS_decision_muxes/U54/Y (CLKBUFX8M)                    1.03      28.75 r
+  NRS_decision_muxes/nrs_mapper_1i[14] (NRS_decision_muxes_tx)
+                                                          0.00      28.75 r
+  nrs_mapper_1i[14] (out)                                 0.00      28.75 r
+  data arrival time                                                 28.75
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -28.75
+  --------------------------------------------------------------------------
+  slack (MET)                                                       75.05
+
+
+  Startpoint: rd_addr_mapper_1i[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_1i[6]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_1i[0] (in)                               0.01      26.01 r
+  U36/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_1i[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U23/Y (MX4X1M)                                  0.28      26.59 r
+  NRS_reg/U11/Y (MX4X1M)                                  0.23      26.82 r
+  NRS_reg/c1 (NRS_reg_new_tx)                             0.00      26.82 r
+  NRS_decision_muxes/c1 (NRS_decision_muxes_tx)           0.00      26.82 r
+  NRS_decision_muxes/U37/Y (INVX2M)                       0.14      26.96 f
+  NRS_decision_muxes/U53/Y (INVX8M)                       0.76      27.72 r
+  NRS_decision_muxes/U52/Y (CLKBUFX8M)                    1.03      28.75 r
+  NRS_decision_muxes/nrs_mapper_1i[6] (NRS_decision_muxes_tx)
+                                                          0.00      28.75 r
+  nrs_mapper_1i[6] (out)                                  0.00      28.75 r
+  data arrival time                                                 28.75
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -28.75
+  --------------------------------------------------------------------------
+  slack (MET)                                                       75.05
+
+
+  Startpoint: rd_addr_mapper_1i[0]
+              (input port clocked by clk)
+  Endpoint: nrs_mapper_1i[4]
+            (output port clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                   0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                   26.00      26.00 r
+  rd_addr_mapper_1i[0] (in)                               0.01      26.01 r
+  U36/Y (BUFX2M)                                          0.30      26.31 r
+  NRS_reg/rd_addr_mapper_1i[0] (NRS_reg_new_tx)           0.00      26.31 r
+  NRS_reg/U23/Y (MX4X1M)                                  0.28      26.59 r
+  NRS_reg/U11/Y (MX4X1M)                                  0.23      26.82 r
+  NRS_reg/c1 (NRS_reg_new_tx)                             0.00      26.82 r
+  NRS_decision_muxes/c1 (NRS_decision_muxes_tx)           0.00      26.82 r
+  NRS_decision_muxes/U37/Y (INVX2M)                       0.14      26.96 f
+  NRS_decision_muxes/U56/Y (INVX8M)                       0.76      27.72 r
+  NRS_decision_muxes/U55/Y (CLKBUFX8M)                    1.03      28.75 r
+  NRS_decision_muxes/nrs_mapper_1i[4] (NRS_decision_muxes_tx)
+                                                          0.00      28.75 r
+  nrs_mapper_1i[4] (out)                                  0.00      28.75 r
+  data arrival time                                                 28.75
+
+  clock clk (rise edge)                                 130.00     130.00
+  clock network delay (ideal)                             0.00     130.00
+  clock uncertainty                                      -0.20     129.80
+  output external delay                                 -26.00     103.80
+  data required time                                               103.80
+  --------------------------------------------------------------------------
+  data required time                                               103.80
+  data arrival time                                                -28.75
+  --------------------------------------------------------------------------
+  slack (MET)                                                       75.05
+
+
+1

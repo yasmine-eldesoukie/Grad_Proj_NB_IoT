@@ -1,0 +1,59 @@
+Loading db file '/home/IC/tsmc_fb_cl013g_sc/aci/sc-m/synopsys/scmetro_tsmc_cl013g_rvt_ss_1p08v_125c.db'
+Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
+Warning: Design has unannotated primary inputs. (PWR-414)
+Warning: Design has unannotated sequential cell outputs. (PWR-415)
+ 
+****************************************
+Report : power
+        -hier
+        -analysis_effort low
+Design : NRS_top_new_tx
+Version: K-2015.06
+Date   : Tue Jul  2 22:52:56 2024
+****************************************
+
+
+Library(s) Used:
+
+    scmetro_tsmc_cl013g_rvt_ss_1p08v_125c (File: /home/IC/tsmc_fb_cl013g_sc/aci/sc-m/synopsys/scmetro_tsmc_cl013g_rvt_ss_1p08v_125c.db)
+
+
+Operating Conditions: scmetro_tsmc_cl013g_rvt_ss_1p08v_125c   Library: scmetro_tsmc_cl013g_rvt_ss_1p08v_125c
+Wire Load Model Mode: top
+
+
+Global Operating Voltage = 1.08 
+Power-specific unit information :
+    Voltage Units = 1V
+    Capacitance Units = 1.000000pf
+    Time Units = 1ns
+    Dynamic Power Units = 1mW    (derived from V,C,T units)
+    Leakage Power Units = 1pW
+
+
+--------------------------------------------------------------------------------
+                                       Switch   Int      Leak     Total
+Hierarchy                              Power    Power    Power    Power    %
+--------------------------------------------------------------------------------
+NRS_top_new_tx                         1.32e-03 1.92e-02 6.59e+06 2.71e-02 100.0
+  NRS_control_unit (NRS_control_unit_tx)
+                                       6.44e-05 2.70e-03 5.75e+05 3.34e-03  12.3
+    add_147 (NRS_control_unit_tx_DW01_inc_0)
+                                       4.44e-06 8.73e-06 1.39e+05 1.52e-04   0.6
+  NRS_decision_muxes (NRS_decision_muxes_tx)
+                                          0.000    0.000 4.86e+05 4.86e-04   1.8
+  NRS_reg (NRS_reg_new_tx)                0.000 1.79e-03 7.51e+05 2.55e-03   9.4
+  XOR (XOR)                               0.000    0.000 1.17e+04 1.17e-05   0.0
+  x2_LFSR (x2_LFSR)                    1.34e-04 4.39e-03 6.47e+05 5.17e-03  19.1
+  x1_LFSR (x1_LFSR)                    3.68e-05 3.95e-03 4.88e+05 4.47e-03  16.5
+  slot_counter (slot_counter_tx)       8.50e-05 1.14e-03 2.91e+05 1.51e-03   5.6
+  cinit_generator (cinit_gen_top)      9.15e-04 5.20e-03 3.18e+06 9.30e-03  34.3
+    cinit_control_unit (cinit_control_unit)
+                                       8.09e-05 7.25e-04 1.32e+05 9.38e-04   3.5
+    multiplier (multiplier)            5.69e-04 1.52e-03 2.02e+06 4.10e-03  15.1
+      mult_33 (multiplier_DW02_mult_0) 5.69e-04 1.52e-03 2.02e+06 4.10e-03  15.1
+    adder (adder)                      1.03e-04 2.83e-03 7.94e+05 3.73e-03  13.8
+      add_11 (adder_DW01_add_0)        2.88e-05 2.01e-04 5.01e+05 7.31e-04   2.7
+    b_mux (b_mux)                      7.26e-05 7.90e-05 1.26e+05 2.78e-04   1.0
+    a_mux (a_mux)                      4.02e-05 4.67e-05 1.06e+05 1.93e-04   0.7
+1

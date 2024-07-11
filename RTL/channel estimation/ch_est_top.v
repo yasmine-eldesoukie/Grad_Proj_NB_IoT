@@ -43,7 +43,7 @@ module ch_est_top #(parameter
  wire [1:0] s_h1, s_h2;
  wire s_est;
  wire [1:0] shift;
-
+ 
  wire avg_mem_en, en_reg_E, en_reg_2E, en_reg_5E;
 
  //complex mult
@@ -71,7 +71,6 @@ module ch_est_top #(parameter
 	.wr_addr(addr_mem),
 	.a(E_r_1),
 	.b(E_r_2),
-	.v_shift(v_shift),
 	.E1(E1_r),
 	.E2(E2_r), 
 	.E3(E3_r), 
@@ -85,7 +84,6 @@ module ch_est_top #(parameter
 	.wr_addr(addr_mem),
 	.a(E_i_1),
 	.b(E_i_2),
-	.v_shift(v_shift),
 	.E1(E1_i),
 	.E2(E2_i), 
 	.E3(E3_i), 
